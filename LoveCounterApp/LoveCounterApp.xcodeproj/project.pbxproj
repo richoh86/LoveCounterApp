@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		79274C232230F9D4005F1F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79274C222230F9D4005F1F2D /* AppDelegate.swift */; };
-		79274C252230F9D4005F1F2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79274C242230F9D4005F1F2D /* ViewController.swift */; };
+		79274C252230F9D4005F1F2D /* FirstUseViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79274C242230F9D4005F1F2D /* FirstUseViewController1.swift */; };
 		79274C282230F9D4005F1F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79274C262230F9D4005F1F2D /* Main.storyboard */; };
 		79274C2A2230F9D5005F1F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79274C292230F9D5005F1F2D /* Assets.xcassets */; };
 		79274C2D2230F9D5005F1F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79274C2B2230F9D5005F1F2D /* LaunchScreen.storyboard */; };
+		7948909F2232013E00013884 /* FirstUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7948909E2232013E00013884 /* FirstUserView.swift */; };
+		794890A12232233700013884 /* FirstUseViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794890A02232233700013884 /* FirstUseViewController2.swift */; };
+		794890A32232233A00013884 /* FirstUseViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794890A22232233A00013884 /* FirstUseViewController3.swift */; };
 		C33360A236A44B004EB79BD1 /* Pods_LoveCounterApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C68CC37133AB2B32EC53C8 /* Pods_LoveCounterApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,11 +22,14 @@
 		62C68CC37133AB2B32EC53C8 /* Pods_LoveCounterApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveCounterApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79274C1F2230F9D4005F1F2D /* LoveCounterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveCounterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79274C222230F9D4005F1F2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		79274C242230F9D4005F1F2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		79274C242230F9D4005F1F2D /* FirstUseViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseViewController1.swift; sourceTree = "<group>"; };
 		79274C272230F9D4005F1F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		79274C292230F9D5005F1F2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79274C2C2230F9D5005F1F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79274C2E2230F9D5005F1F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7948909E2232013E00013884 /* FirstUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUserView.swift; sourceTree = "<group>"; };
+		794890A02232233700013884 /* FirstUseViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseViewController2.swift; sourceTree = "<group>"; };
+		794890A22232233A00013884 /* FirstUseViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseViewController3.swift; sourceTree = "<group>"; };
 		B0FC2498124851B8B85D0E3E /* Pods-LoveCounterApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveCounterApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveCounterApp/Pods-LoveCounterApp.release.xcconfig"; sourceTree = "<group>"; };
 		EFFE6A37D8236F503A20937D /* Pods-LoveCounterApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveCounterApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoveCounterApp/Pods-LoveCounterApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,14 +67,41 @@
 		79274C212230F9D4005F1F2D /* LoveCounterApp */ = {
 			isa = PBXGroup;
 			children = (
+				7948909D2231FAD000013884 /* Model */,
+				7948909B2231FABF00013884 /* View */,
+				7948909C2231FAC900013884 /* Controller */,
 				79274C222230F9D4005F1F2D /* AppDelegate.swift */,
-				79274C242230F9D4005F1F2D /* ViewController.swift */,
 				79274C262230F9D4005F1F2D /* Main.storyboard */,
 				79274C292230F9D5005F1F2D /* Assets.xcassets */,
 				79274C2B2230F9D5005F1F2D /* LaunchScreen.storyboard */,
 				79274C2E2230F9D5005F1F2D /* Info.plist */,
 			);
 			path = LoveCounterApp;
+			sourceTree = "<group>";
+		};
+		7948909B2231FABF00013884 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7948909E2232013E00013884 /* FirstUserView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7948909C2231FAC900013884 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				79274C242230F9D4005F1F2D /* FirstUseViewController1.swift */,
+				794890A02232233700013884 /* FirstUseViewController2.swift */,
+				794890A22232233A00013884 /* FirstUseViewController3.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7948909D2231FAD000013884 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		AC22E383E098CC6B251282D6 /* Pods */ = {
@@ -208,8 +241,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79274C252230F9D4005F1F2D /* ViewController.swift in Sources */,
+				79274C252230F9D4005F1F2D /* FirstUseViewController1.swift in Sources */,
+				794890A12232233700013884 /* FirstUseViewController2.swift in Sources */,
 				79274C232230F9D4005F1F2D /* AppDelegate.swift in Sources */,
+				794890A32232233A00013884 /* FirstUseViewController3.swift in Sources */,
+				7948909F2232013E00013884 /* FirstUserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

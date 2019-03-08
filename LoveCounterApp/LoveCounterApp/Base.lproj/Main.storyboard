@@ -10,46 +10,31 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--First Use View Controller1-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="overFullScreen" id="BYZ-38-t0r" customClass="ViewController" customModule="LoveCounterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstUseViewController1" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="overFullScreen" id="BYZ-38-t0r" customClass="FirstUseViewController1" customModule="LoveCounterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImg" translatesAutoresizingMaskIntoConstraints="NO" id="nfo-uP-4BV">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steve-halama-558233-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="nfo-uP-4BV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a93-9Z-pXi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHe-GX-lKp">
-                                <rect key="frame" x="0.0" y="572" width="375" height="95"/>
-                                <color key="backgroundColor" red="0.92662614580000002" green="0.47526210549999998" blue="0.45880568030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="CA8-UC-aRm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="완료">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dHe-GX-lKp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="80x-3S-wFf"/>
                             <constraint firstItem="nfo-uP-4BV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Iil-tU-v6m"/>
                             <constraint firstItem="a93-9Z-pXi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Soy-Wf-NRg"/>
-                            <constraint firstAttribute="bottom" secondItem="a93-9Z-pXi" secondAttribute="bottom" id="UUU-6w-Gdo"/>
-                            <constraint firstItem="dHe-GX-lKp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VBG-Ts-Y1b"/>
                             <constraint firstItem="nfo-uP-4BV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bjY-Lj-HmM"/>
-                            <constraint firstAttribute="bottom" secondItem="nfo-uP-4BV" secondAttribute="bottom" id="bxv-Xi-h2q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="a93-9Z-pXi" secondAttribute="trailing" id="ca9-nq-uXQ"/>
-                            <constraint firstAttribute="bottom" secondItem="dHe-GX-lKp" secondAttribute="bottom" id="pUp-X5-Cxp"/>
                             <constraint firstAttribute="trailing" secondItem="nfo-uP-4BV" secondAttribute="trailing" id="uvH-Mx-UbI"/>
                             <constraint firstItem="a93-9Z-pXi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="vBP-jj-LN7"/>
+                            <constraint firstItem="a93-9Z-pXi" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="y7A-EU-dSR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -62,7 +47,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1071.2" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1062" y="-454"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sOA-8Q-jOx">
@@ -84,8 +69,86 @@
             </objects>
             <point key="canvasLocation" x="166" y="134"/>
         </scene>
+        <!--First Use View Controller2-->
+        <scene sceneID="2SR-uo-CIQ">
+            <objects>
+                <viewController storyboardIdentifier="FirstUseViewController2" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="overFullScreen" id="3zA-5q-WjA" customClass="FirstUseViewController2" customModule="LoveCounterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r9d-sd-FD4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steve-halama-558233-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="aVe-vP-Px4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGT-ay-vXt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PGT-ay-vXt" firstAttribute="bottom" secondItem="ORu-bA-p9v" secondAttribute="bottom" id="A24-QI-Y6q"/>
+                            <constraint firstItem="aVe-vP-Px4" firstAttribute="leading" secondItem="r9d-sd-FD4" secondAttribute="leading" id="Ihv-qg-I3l"/>
+                            <constraint firstAttribute="trailing" secondItem="aVe-vP-Px4" secondAttribute="trailing" id="QIP-jt-vcB"/>
+                            <constraint firstItem="aVe-vP-Px4" firstAttribute="top" secondItem="r9d-sd-FD4" secondAttribute="top" id="ZUa-dS-7A8"/>
+                            <constraint firstItem="ORu-bA-p9v" firstAttribute="trailing" secondItem="PGT-ay-vXt" secondAttribute="trailing" id="jv4-Hv-kxu"/>
+                            <constraint firstItem="PGT-ay-vXt" firstAttribute="top" secondItem="r9d-sd-FD4" secondAttribute="top" id="peM-Dd-HEd"/>
+                            <constraint firstItem="PGT-ay-vXt" firstAttribute="leading" secondItem="ORu-bA-p9v" secondAttribute="leading" id="zQi-Cy-mEk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ORu-bA-p9v"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="iyy-hC-NFF"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="aVe-vP-Px4" id="iey-6o-wJm"/>
+                        <outlet property="blackBackGroundView" destination="PGT-ay-vXt" id="uAY-LW-N63"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mW1-u8-Qlc" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1748" y="-455"/>
+        </scene>
+        <!--First Use View Controller3-->
+        <scene sceneID="FNU-KZ-MTt">
+            <objects>
+                <viewController storyboardIdentifier="FirstUseViewController3" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="overFullScreen" id="D9K-qB-iwg" customClass="FirstUseViewController3" customModule="LoveCounterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rLJ-V4-Kby">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steve-halama-558233-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="GuR-Xr-GF4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHf-A4-8zV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="GuR-Xr-GF4" firstAttribute="leading" secondItem="rLJ-V4-Kby" secondAttribute="leading" id="5QW-kE-su0"/>
+                            <constraint firstItem="A2X-fy-jr4" firstAttribute="trailing" secondItem="cHf-A4-8zV" secondAttribute="trailing" id="Bcr-tn-Qia"/>
+                            <constraint firstItem="cHf-A4-8zV" firstAttribute="leading" secondItem="A2X-fy-jr4" secondAttribute="leading" id="jmw-u0-mGk"/>
+                            <constraint firstAttribute="trailing" secondItem="GuR-Xr-GF4" secondAttribute="trailing" id="kpt-xt-fqn"/>
+                            <constraint firstItem="GuR-Xr-GF4" firstAttribute="top" secondItem="rLJ-V4-Kby" secondAttribute="top" id="n7j-bP-1AB"/>
+                            <constraint firstItem="cHf-A4-8zV" firstAttribute="bottom" secondItem="A2X-fy-jr4" secondAttribute="bottom" id="sRr-Rl-6c9"/>
+                            <constraint firstItem="cHf-A4-8zV" firstAttribute="top" secondItem="rLJ-V4-Kby" secondAttribute="top" id="vaz-yU-0Sy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="A2X-fy-jr4"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="70V-qJ-DN6"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="GuR-Xr-GF4" id="ElA-TY-Siu"/>
+                        <outlet property="blackBackGroundView" destination="cHf-A4-8zV" id="92I-VV-dKC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wUL-bd-c9K" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2438" y="-455"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="backgroundImg" width="375" height="812"/>
+        <image name="steve-halama-558233-unsplash" width="375" height="812"/>
     </resources>
 </document>
