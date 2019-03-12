@@ -9,19 +9,32 @@
 import UIKit
 import SnapKit
 
+
+// textView 모두 UILabel로 변경할 것
 class FirstUserView: UIView {
     
     let imageView = UIImageView()
     let titleOnTop = UITextView()
     
     let shapeLayer = CAShapeLayer()
-    let textView = UITextView()
+    let textLb = UILabel()
     
+    let dateBoxView = UIView()
     let dateSelectButton = UIButton()
     let dateImageView = UIImageView()
-    let dateTextView = UITextView()
+    let dateTextLb = UILabel()
     
     let nextButton = UIButton()
+    
+    let dateSpinnerUIbox = UIView()
+    let dateText = UILabel()
+    let cancelBtn = UIButton()
+    let dateSpinner = UIDatePicker()
+    
+    let completeBtnContainer = UIView()
+    let completeBtn = UIButton()
+    let btnNameLb = UILabel()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,9 +49,10 @@ class FirstUserView: UIView {
     private func commonInit() {
         
         createTopTitleView()
-        createTextInShapeLayer(text: "1일")
+        createTextInShapeLayer()
         createButton()
         createDateBtnBox()
+        
         updateAutoLayout()
         
     }
@@ -72,43 +86,48 @@ class FirstUserView: UIView {
         return shapeLayer
     }
     
-    func createTextInShapeLayer(text: String){
+    func createTextInShapeLayer(){
         
-        textView.text = text
-        textView.textColor = UIColor.white
-        textView.textAlignment = .center
-        textView.backgroundColor = .none
-        textView.font = UIFont.boldSystemFont(ofSize: 50)
-        textView.isEditable = false
+        textLb.text = "1일"
+        textLb.textColor = UIColor.white
+        textLb.textAlignment = .center
+        textLb.font = UIFont.boldSystemFont(ofSize: 50)
         
-        addSubview(textView)
+        addSubview(textLb)
     }
     
     func createDateBtnBox(){
         
+        dateBoxView.backgroundColor = .none
+        dateBoxView.layer.cornerRadius = 5.0
+        dateBoxView.layer.borderColor = UIColor.white.cgColor
+        dateBoxView.layer.borderWidth = 2
+    
         dateSelectButton.backgroundColor = .none
+
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        let currentDate = formatter.string(from: date)
         
-        dateSelectButton.layer.cornerRadius = 5.0
-        dateSelectButton.layer.borderColor = UIColor.white.cgColor
-        dateSelectButton.layer.borderWidth = 2
+        dateTextLb.textColor = .white
+        dateTextLb.text = currentDate
+        dateTextLb.textAlignment = .justified
+        dateTextLb.font = UIFont.systemFont(ofSize: 30)
         
-        dateTextView.frame = CGRect(x: 0, y: 0, width: 180, height: 50)
-        dateTextView.textColor = .white
-        dateTextView.text = "2019.03.12"
-        dateTextView.textAlignment = .center
-        dateTextView.backgroundColor = .none
-        dateTextView.font = UIFont.systemFont(ofSize: 30)
-        
-        dateImageView.frame = CGRect(x: 182, y: 16, width: 25, height: 20)
         dateImageView.image = UIImage(named: "icons8-expand-arrow-filled-100")
         
-        dateSelectButton.addSubview(dateTextView)
-        dateSelectButton.addSubview(dateImageView)
-        addSubview(dateSelectButton)
+        dateBoxView.addSubview(dateTextLb)
+        dateBoxView.addSubview(dateImageView)
+        
+        // UIView 위에 textView와 dateImageView를 올리고 해당 UIView에 다시 dateSelectButton을 올린다
+        addSubview(dateBoxView)
+        dateBoxView.addSubview(dateSelectButton)
         
     }
     
     func createButton(){
+        
         
         nextButton.setTitle("다음", for: .normal)
         nextButton.setTitleColor(UIColor.white, for: .normal)
@@ -117,6 +136,73 @@ class FirstUserView: UIView {
         
         addSubview(nextButton)
  
+    }
+    
+    func showDateSpinnerUIBox() {
+        
+        dateSpinnerUIbox.frame = CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: self.bounds.height*(3/5))
+        dateSpinnerUIbox.backgroundColor = .white
+        
+        addSubview(dateSpinnerUIbox)
+  
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        let currentDate = formatter.string(from: date)
+        
+        dateText.text = currentDate
+        dateText.textColor = .black
+        dateText.font = UIFont.systemFont(ofSize: 25)
+        
+        dateSpinnerUIbox.addSubview(dateText)
+        
+        dateText.snp.makeConstraints { make in
+            make.top.equalTo(dateSpinnerUIbox).inset(10)
+            make.centerX.equalTo(dateSpinnerUIbox)
+            make.height.equalTo(45)
+        }
+        
+        cancelBtn.setTitle("취소", for: .normal)
+        cancelBtn.setTitleColor(#colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1), for: .normal)
+        cancelBtn.titleLabel?.font = UIFont.systemFont(ofSize: 19)
+        
+        dateSpinnerUIbox.addSubview(cancelBtn)
+        
+        cancelBtn.snp.makeConstraints { make in
+            make.centerY.equalTo(dateText.snp.centerY)
+            make.right.equalTo(dateSpinnerUIbox).inset(15)
+        }
+        
+        dateSpinner.datePickerMode = .date
+    
+        dateSpinnerUIbox.addSubview(dateSpinner)
+        
+        dateSpinner.snp.makeConstraints { make in
+            make.top.equalTo(dateText.snp.bottom)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(200)
+//            make.height.greaterThanOrEqualTo(210)
+//            make.height.lessThanOrEqualTo(250)
+        }
+
+        completeBtn.setTitleColor(#colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1), for: UIControl.State.normal)
+        completeBtn.setTitle("완료", for: .normal)
+        completeBtn.titleLabel?.textAlignment = .center
+        completeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        
+        dateSpinnerUIbox.addSubview(completeBtn)
+        
+        completeBtn.snp.makeConstraints { make in
+            make.top.equalTo(dateSpinner.snp.bottom)
+            make.left.equalTo(dateSpinnerUIbox.snp.left)
+            make.right.equalTo(dateSpinnerUIbox.snp.right)
+//            make.height.equalTo(75)
+            make.height.greaterThanOrEqualTo(55)
+//            make.bottom.equalTo(dateSpinnerUIbox.snp.bottom)
+//            make.bottom.greaterThanOrEqualToSuperview()
+//            make.left.right.bottom.equalToSuperview()
+        }
     }
     
     private func updateAutoLayout(){
@@ -128,18 +214,39 @@ class FirstUserView: UIView {
             make.topMargin.equalTo(130)
         }
         
-        textView.snp.makeConstraints { make in
+        textLb.snp.makeConstraints { make in
             make.width.equalTo(100)
             make.height.equalTo(87)
             make.centerX.equalToSuperview()
-            make.top.equalTo(titleOnTop).offset(140)
+            make.top.equalTo(titleOnTop).offset(135)
+        }
+        
+        dateBoxView.snp.makeConstraints { make in
+            make.width.equalTo(220)
+            make.height.equalTo(60)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(textLb).offset(280)
+        }
+        
+        dateTextLb.snp.makeConstraints { make in
+            make.edges.left.equalTo(dateBoxView).inset(15)
+            make.edges.top.equalTo(dateBoxView).inset(15)
+            make.edges.bottom.equalTo(dateBoxView).inset(15)
+        }
+        
+        dateImageView.snp.makeConstraints { make in
+            make.width.equalTo(25)
+            make.height.equalTo(20)
+            make.left.equalTo(dateTextLb.snp.right).inset(25)
+            make.right.equalTo(dateBoxView).inset(15)
+            make.centerY.equalTo(dateBoxView)
         }
         
         dateSelectButton.snp.makeConstraints { make in
             make.width.equalTo(220)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.top.equalTo(textView).offset(300)
+            make.top.equalTo(textLb).offset(280)
         }
         
         nextButton.snp.makeConstraints { make in
@@ -147,6 +254,5 @@ class FirstUserView: UIView {
             make.height.equalTo(95)
             make.bottom.equalToSuperview()
         }
-        
     }
 }
