@@ -24,10 +24,15 @@ class MainViewController: UIViewController {
         mainView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
         
         mainView.settingBtn.addTarget(self, action: #selector(settingBtnAction), for: .touchUpInside)
+        mainView.arrowBtn.addTarget(self, action: #selector(arrowBtnAction), for: .touchUpInside)
         
         // 계산된 날짜 가져오기 (만나지 얼마나 됐는지)
         self.calDateText()
         self.view.addSubview(mainView)
+    }
+    
+    @objc func arrowBtnAction(){
+        print("아래 화살표 버튼 pushed!!")
     }
     
     @objc func settingBtnAction(){

@@ -26,6 +26,12 @@ class MainView: UIView {
     let cameraImg1 = UIImageView()
     let cameraImg2 = UIImageView()
     
+    let name1 = UILabel()
+    let name2 = UILabel()
+    
+    let arrowImg = UIImageView()
+    let arrowBtn = UIButton()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -45,6 +51,10 @@ class MainView: UIView {
         
         createHeartImg()
         createProfilePlaceHolder()
+    
+        createNameLb()
+        
+        createArrowAndButton()
 
         updateAutoLayout()
     }
@@ -103,6 +113,12 @@ class MainView: UIView {
         textLb.font = UIFont.boldSystemFont(ofSize: 50)
         
         addSubview(textLb)
+        
+        textLb.layer.shadowColor = UIColor.black.cgColor
+        textLb.layer.shadowRadius = 1.0
+        textLb.layer.shadowOpacity = 0.5
+        textLb.layer.shadowOffset = CGSize(width: 2, height: 2)
+        textLb.layer.masksToBounds = false
     }
     
     func createHeartImg(){
@@ -123,6 +139,30 @@ class MainView: UIView {
         addSubview(circleForPic2)
         circleForPic1.addSubview(cameraImg1)
         circleForPic2.addSubview(cameraImg2)
+        
+    }
+    
+    func createNameLb() {
+        
+        name1.text = "이름"
+        name1.textAlignment = .center
+        name1.textColor = .white
+        name1.font = UIFont.systemFont(ofSize: 20)
+        
+        name2.text = "이름"
+        name2.textAlignment = .center
+        name2.textColor = .white
+        name2.font = UIFont.systemFont(ofSize: 20)
+        
+        addSubview(name1)
+        addSubview(name2)
+    }
+    
+    func createArrowAndButton() {
+        
+        arrowImg.image = UIImage(named: "icons8-collapse-arrow-filled-100")
+        addSubview(arrowImg)
+        addSubview(arrowBtn)
         
     }
     
@@ -169,11 +209,8 @@ class MainView: UIView {
         }
         
         cameraImg1.snp.makeConstraints { make in
-            make.edges.top.left.bottom.right.equalTo(circleForPic1).inset(25)
-        }
-        
-        cameraImg2.snp.makeConstraints { make in
-            make.edges.top.left.bottom.right.equalTo(circleForPic2).inset(25)
+            make.edges.top.bottom.equalTo(circleForPic1).inset(23)
+            make.edges.left.right.equalTo(circleForPic1).inset(25)
         }
         
         circleForPic2.snp.makeConstraints { make in
@@ -183,5 +220,30 @@ class MainView: UIView {
             make.centerX.equalTo(heart).offset(100)
         }
         
+        cameraImg2.snp.makeConstraints { make in
+            make.edges.top.bottom.equalTo(circleForPic2).inset(23)
+            make.edges.left.right.equalTo(circleForPic2).inset(25)
+        }
+        
+        name1.snp.makeConstraints { make in
+            make.centerX.equalTo(circleForPic1)
+            make.top.equalTo(circleForPic1.snp.bottom).offset(10)
+        }
+        
+        name2.snp.makeConstraints { make in
+            make.centerX.equalTo(circleForPic2)
+            make.top.equalTo(circleForPic2.snp.bottom).offset(10)
+        }
+        
+        arrowImg.snp.makeConstraints { make in
+            make.width.equalTo(40)
+            make.height.equalTo(30)
+            make.centerX.equalTo(heart.snp.centerX)
+            make.bottom.equalTo(self.snp.bottom).offset(-50)
+        }
+        
+        arrowBtn.snp.makeConstraints { make in
+            make.top.bottom.left.right.equalTo(arrowImg)
+        }
     }
 }
