@@ -12,6 +12,8 @@
 		79274C282230F9D4005F1F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79274C262230F9D4005F1F2D /* Main.storyboard */; };
 		79274C2A2230F9D5005F1F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79274C292230F9D5005F1F2D /* Assets.xcassets */; };
 		79274C2D2230F9D5005F1F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79274C2B2230F9D5005F1F2D /* LaunchScreen.storyboard */; };
+		7933FD3F2238D66800EB4276 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7933FD3E2238D66800EB4276 /* MainViewController.swift */; };
+		7933FD412238D6C400EB4276 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7933FD402238D6C400EB4276 /* MainView.swift */; };
 		7948909F2232013E00013884 /* FirstUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7948909E2232013E00013884 /* FirstUserView.swift */; };
 		794890A12232233700013884 /* FirstUseViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794890A02232233700013884 /* FirstUseViewController2.swift */; };
 		794890A32232233A00013884 /* FirstUseViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794890A22232233A00013884 /* FirstUseViewController3.swift */; };
@@ -27,6 +29,8 @@
 		79274C292230F9D5005F1F2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79274C2C2230F9D5005F1F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79274C2E2230F9D5005F1F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7933FD3E2238D66800EB4276 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7933FD402238D6C400EB4276 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7948909E2232013E00013884 /* FirstUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUserView.swift; sourceTree = "<group>"; };
 		794890A02232233700013884 /* FirstUseViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseViewController2.swift; sourceTree = "<group>"; };
 		794890A22232233A00013884 /* FirstUseViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseViewController3.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				7948909E2232013E00013884 /* FirstUserView.swift */,
+				7933FD402238D6C400EB4276 /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -93,6 +98,7 @@
 				79274C242230F9D4005F1F2D /* FirstUseViewController1.swift */,
 				794890A02232233700013884 /* FirstUseViewController2.swift */,
 				794890A22232233A00013884 /* FirstUseViewController3.swift */,
+				7933FD3E2238D66800EB4276 /* MainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -242,8 +248,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				79274C252230F9D4005F1F2D /* FirstUseViewController1.swift in Sources */,
+				7933FD412238D6C400EB4276 /* MainView.swift in Sources */,
 				794890A12232233700013884 /* FirstUseViewController2.swift in Sources */,
 				79274C232230F9D4005F1F2D /* AppDelegate.swift in Sources */,
+				7933FD3F2238D66800EB4276 /* MainViewController.swift in Sources */,
 				794890A32232233A00013884 /* FirstUseViewController3.swift in Sources */,
 				7948909F2232013E00013884 /* FirstUserView.swift in Sources */,
 			);
@@ -402,7 +410,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.richard.LoveCounterApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -421,7 +429,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.richard.LoveCounterApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

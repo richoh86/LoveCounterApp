@@ -128,14 +128,12 @@ class FirstUserView: UIView {
     
     func createButton(){
         
-        
         nextButton.setTitle("다음", for: .normal)
         nextButton.setTitleColor(UIColor.white, for: .normal)
         nextButton.backgroundColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
         nextButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
         
         addSubview(nextButton)
- 
     }
     
     func showDateSpinnerUIBox() {
@@ -173,8 +171,10 @@ class FirstUserView: UIView {
             make.right.equalTo(dateSpinnerUIbox).inset(15)
         }
         
+        let locale = Locale(identifier: "ko_KR")
         dateSpinner.datePickerMode = .date
-    
+        dateSpinner.locale = locale
+        
         dateSpinnerUIbox.addSubview(dateSpinner)
         
         dateSpinner.snp.makeConstraints { make in
@@ -182,8 +182,6 @@ class FirstUserView: UIView {
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.height.equalTo(200)
-//            make.height.greaterThanOrEqualTo(210)
-//            make.height.lessThanOrEqualTo(250)
         }
 
         completeBtn.setTitleColor(#colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1), for: UIControl.State.normal)
@@ -211,21 +209,23 @@ class FirstUserView: UIView {
             make.width.equalTo(300)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.topMargin.equalTo(130)
+//            make.topMargin.equalTo(130)
+            make.top.equalTo(self.snp.top).offset(150)
         }
         
         textLb.snp.makeConstraints { make in
-            make.width.equalTo(100)
+            make.width.greaterThanOrEqualTo(100)
             make.height.equalTo(87)
             make.centerX.equalToSuperview()
-            make.top.equalTo(titleOnTop).offset(135)
+//            make.top.equalTo(titleOnTop).offset(135)
+            make.centerY.equalToSuperview().offset(-70)
         }
         
         dateBoxView.snp.makeConstraints { make in
             make.width.equalTo(220)
             make.height.equalTo(60)
             make.centerX.equalToSuperview()
-            make.top.equalTo(textLb).offset(280)
+            make.top.equalTo(textLb).offset(250)
         }
         
         dateTextLb.snp.makeConstraints { make in
@@ -246,7 +246,7 @@ class FirstUserView: UIView {
             make.width.equalTo(220)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.top.equalTo(textLb).offset(280)
+            make.top.equalTo(textLb).offset(250)
         }
         
         nextButton.snp.makeConstraints { make in

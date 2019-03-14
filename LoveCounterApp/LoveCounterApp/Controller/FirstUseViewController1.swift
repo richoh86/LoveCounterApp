@@ -16,7 +16,8 @@ class FirstUseViewController1: UIViewController {
     @IBOutlet weak var blackBackGroundView: UIView!
     
     let firstUserView = FirstUserView()
-    var strDate: String?
+    var strDateForSpinnerUIBox: String?
+    var strSelectedDayForCount: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,7 @@ class FirstUseViewController1: UIViewController {
         
         firstUserView.cancelBtn.addTarget(self, action: #selector(cancelBtnAction), for: .touchUpInside)
         
-        if let unwrappedStrDate = strDate {
+        if let unwrappedStrDate = strDateForSpinnerUIBox {
             firstUserView.dateText.text = unwrappedStrDate
         }
         
@@ -65,13 +66,47 @@ class FirstUseViewController1: UIViewController {
     
     @objc func completeSelectDate(){
         
-        let date = firstUserView.dateSpinner.date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy.MM.dd"
-        strDate = dateFormatter.string(from: date)
+        // 선택된 날짜 (연인이 된 날짜)
+        let selectedDate = firstUserView.dateSpinner.date
+        // Date 포맷은 yyyy.MM.dd
+        let dateFormatter1 = DateFormatter()
+        dateFormatter1.dateFormat = "yyyy.MM.dd"
+        // 선택된 시간 String 값을 변환
+        strDateForSpinnerUIBox = dateFormatter1.string(from: selectedDate)
+        // spinnerUIBox안에 보여주는 날짜 표기
+        firstUserView.dateTextLb.text = strDateForSpinnerUIBox
         
-        firstUserView.dateTextLb.text = strDate
+        // 현재 날짜
+        let currentDate = Date()
+        // 현재 날짜 String으로 가져오기
+        let strCurDate = dateFormatter1.string(from: currentDate)
+        // 현재 날짜 다시 포맷에 맞게 date 로 타입 변환
+        let curDate = dateFormatter1.date(from: strCurDate)!
+        // 연인이 된 날짜 String -> Date
+        let selDate = dateFormatter1.date(from: strDateForSpinnerUIBox!)!
         
+        // UserDefault 저장
+        UserDefaults.standard.set(selDate, forKey: "selDate")
+        
+        // 연인이 된 날짜로 부터 현재 날짜까지 차이 계산
+        let interval = selDate.timeIntervalSince(curDate)
+        // 연인이 된 날짜와 현재 날짜의 차이 계산 값
+        let days = Int(interval / 86400)
+        print("\(days) 차이.")
+        
+        if days > 0 {
+            firstUserView.textLb.text = "+\(days)일"
+        }else{
+            firstUserView.textLb.text = "\(-days)일"
+        }
+        
+//        let calendar = Calendar.current
+//        let dateGap = calendar.dateComponents([.year,.month,.day,.hour], from: curDate, to: selDate)
+//
+//        if case let (y?, m?, d?, h?) = (dateGap.year, dateGap.month, dateGap.day, dateGap.hour)
+//        {
+//            print("\(y)년 \(m)개월 \(d)일 \(h)시간 후")
+//        }
         hideDateViewWithAnimation()
         
     }
@@ -106,6 +141,8 @@ class FirstUseViewController1: UIViewController {
     override func viewDidLayoutSubviews() {
         // shapeLayer 생성 및 layer에 추가
         let shapeLayer = firstUserView.createShapeLayer()
+        firstUserView.shapeLayer.position.x = self.view.center.x
+        firstUserView.shapeLayer.position.y = self.view.center.y - 70
         self.view.layer.addSublayer(shapeLayer)
     }
     

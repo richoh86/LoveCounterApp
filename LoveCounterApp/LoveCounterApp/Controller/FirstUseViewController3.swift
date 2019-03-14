@@ -40,7 +40,7 @@ class FirstUseViewController3: UIViewController {
         firstUserView.nextButton.setTitle("완료", for: .normal)
     
         // 다음 VC로 넘겨주는 버튼 액션
-        firstUserView.nextButton.addTarget(self, action: #selector(nextBtnAction), for: .touchUpInside)
+        firstUserView.nextButton.addTarget(self, action: #selector(completeBtnAction), for: .touchUpInside)
         // 날짜를 선택하는 뷰 만들어 보여주기!
         firstUserView.dateSelectButton.addTarget(self, action: #selector(selectDateSelectionBtn), for: .touchUpInside)
         // 날짜 선택 완료시 날짜를 가져올 수 있도록 설정
@@ -52,12 +52,15 @@ class FirstUseViewController3: UIViewController {
         
     }
     
-    @objc func nextBtnAction(){
+    @objc func completeBtnAction(){
 
         print("완료")
-//        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "FirstUseViewController3") else {return}
-//        self.navigationController?.pushViewController(vc, animated: true)
         
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") else {return}
+        // 첫번째 사용인지 확인하는 Bool 값: true가 설정되면 앱 실행시 FirstUseVC들은 실행되지 않는다
+        UserDefaults.standard.set( true, forKey: "firstUseBool")
+        self.present(vc, animated: true)
+
     }
     
     @objc func selectDateSelectionBtn(){
@@ -78,6 +81,11 @@ class FirstUseViewController3: UIViewController {
         dateFormatter.dateFormat = "yyyy.MM.dd"
         strDate = dateFormatter.string(from: date)
         
+        let dateFormat = dateFormatter.date(from: strDate!)
+        
+        //UserDefaults에 내 생일 저장
+        UserDefaults.standard.set(dateFormat, forKey: "LoveBirthDay")
+        
         firstUserView.dateTextLb.text = strDate
         
         hideDateViewWithAnimation()
@@ -88,7 +96,6 @@ class FirstUseViewController3: UIViewController {
         print("취소")
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-            
             self.firstUserView.dateSpinnerUIbox.frame = CGRect(x: 0, y: self.firstUserView.bounds.height, width: self.firstUserView.bounds.width, height: self.firstUserView.bounds.height*(3/5))
             
         })
@@ -105,7 +112,6 @@ class FirstUseViewController3: UIViewController {
     private func hideDateViewWithAnimation(){
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-            
             self.firstUserView.dateSpinnerUIbox.frame = CGRect(x: 0, y: self.firstUserView.bounds.height, width: self.firstUserView.bounds.width, height: self.firstUserView.bounds.height*(3/5))
             
         })
@@ -114,6 +120,8 @@ class FirstUseViewController3: UIViewController {
     override func viewDidLayoutSubviews() {
         // shapeLayer 생성 및 layer에 추가
         let shapeLayer = firstUserView.createShapeLayer()
+        firstUserView.shapeLayer.position.x = self.view.center.x
+        firstUserView.shapeLayer.position.y = self.view.center.y - 70
         self.view.layer.addSublayer(shapeLayer)
     }
     
@@ -121,45 +129,5 @@ class FirstUseViewController3: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-//    @objc func selectDateAction(){
-//
-//        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-//
-//            self.firstUserView.dateSpinnerUIbox.backgroundColor = .white
-//            self.firstUserView.dateSpinnerUIbox.frame = CGRect(x: 0, y: self.firstUserView.bounds.height*(3/5), width: self.firstUserView.bounds.width, height: self.firstUserView.bounds.height*(3/5))
-//
-//        })
-//
-//    }
-//
-//    override func viewDidLayoutSubviews() {
-//
-//        let shapeLayer = firstUserView.createShapeLayer()
-//        self.view.layer.addSublayer(shapeLayer)
-//
-//        firstUserView.showDateSpinnerUIBox()
-//
-//        firstUserView.cancelBtn.addTarget(self, action: #selector(cancelBtnAction), for: .touchUpInside)
-//    }
-//
-//    @objc func cancelBtnAction(){
-//        print("취소")
-//
-//        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-//
-//            self.firstUserView.dateSpinnerUIbox.frame = CGRect(x: 0, y: self.firstUserView.bounds.height, width: self.firstUserView.bounds.width, height: self.firstUserView.bounds.height*(3/5))
-//
-//        }) { _ in
-//            self.firstUserView.dateSpinnerUIbox.removeFromSuperview()
-//        }
-//
-//    }
-//
-//    // status bar -> white color
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
-    
 }
 
