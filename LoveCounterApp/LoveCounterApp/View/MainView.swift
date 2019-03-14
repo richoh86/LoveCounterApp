@@ -50,9 +50,9 @@ class MainView: UIView {
         createTextInShapeLayer()
         
         createHeartImg()
-        createProfilePlaceHolder()
-    
-        createNameLb()
+        
+//        createProfilePlaceHolder()
+//        createNameLb()
         
         createArrowAndButton()
 
@@ -110,7 +110,7 @@ class MainView: UIView {
         textLb.text = "1일"
         textLb.textColor = UIColor.white
         textLb.textAlignment = .center
-        textLb.font = UIFont.boldSystemFont(ofSize: 50)
+        textLb.font = UIFont.boldSystemFont(ofSize: 45)
         
         addSubview(textLb)
         
@@ -195,49 +195,49 @@ class MainView: UIView {
         }
         
         heart.snp.makeConstraints { make in
-            make.width.equalTo(50)
-            make.height.equalTo(45)
+            make.width.equalTo(45)
+            make.height.equalTo(40)
             make.centerX.equalTo(self.snp.centerX)
             make.centerY.equalTo(self.snp.centerY).offset(170)
         }
         
-        circleForPic1.snp.makeConstraints { make in
-            make.width.equalTo(100)
-            make.height.equalTo(100)
-            make.centerY.equalTo(heart)
-            make.centerX.equalTo(heart).offset(-100)
-        }
-        
-        cameraImg1.snp.makeConstraints { make in
-            make.edges.top.bottom.equalTo(circleForPic1).inset(23)
-            make.edges.left.right.equalTo(circleForPic1).inset(25)
-        }
-        
-        circleForPic2.snp.makeConstraints { make in
-            make.width.equalTo(100)
-            make.height.equalTo(100)
-            make.centerY.equalTo(heart)
-            make.centerX.equalTo(heart).offset(100)
-        }
-        
-        cameraImg2.snp.makeConstraints { make in
-            make.edges.top.bottom.equalTo(circleForPic2).inset(23)
-            make.edges.left.right.equalTo(circleForPic2).inset(25)
-        }
-        
-        name1.snp.makeConstraints { make in
-            make.centerX.equalTo(circleForPic1)
-            make.top.equalTo(circleForPic1.snp.bottom).offset(10)
-        }
-        
-        name2.snp.makeConstraints { make in
-            make.centerX.equalTo(circleForPic2)
-            make.top.equalTo(circleForPic2.snp.bottom).offset(10)
-        }
+//        circleForPic1.snp.makeConstraints { make in
+//            make.width.equalTo(100)
+//            make.height.equalTo(100)
+//            make.centerY.equalTo(heart)
+//            make.centerX.equalTo(heart).offset(-100)
+//        }
+//
+//        cameraImg1.snp.makeConstraints { make in
+//            make.edges.top.bottom.equalTo(circleForPic1).inset(23)
+//            make.edges.left.right.equalTo(circleForPic1).inset(25)
+//        }
+//
+//        circleForPic2.snp.makeConstraints { make in
+//            make.width.equalTo(100)
+//            make.height.equalTo(100)
+//            make.centerY.equalTo(heart)
+//            make.centerX.equalTo(heart).offset(100)
+//        }
+//
+//        cameraImg2.snp.makeConstraints { make in
+//            make.edges.top.bottom.equalTo(circleForPic2).inset(23)
+//            make.edges.left.right.equalTo(circleForPic2).inset(25)
+//        }
+//
+//        name1.snp.makeConstraints { make in
+//            make.centerX.equalTo(circleForPic1)
+//            make.top.equalTo(circleForPic1.snp.bottom).offset(10)
+//        }
+//
+//        name2.snp.makeConstraints { make in
+//            make.centerX.equalTo(circleForPic2)
+//            make.top.equalTo(circleForPic2.snp.bottom).offset(10)
+//        }
         
         arrowImg.snp.makeConstraints { make in
-            make.width.equalTo(40)
-            make.height.equalTo(30)
+            make.width.equalTo(30)
+            make.height.equalTo(20)
             make.centerX.equalTo(heart.snp.centerX)
             make.bottom.equalTo(self.snp.bottom).offset(-50)
         }
