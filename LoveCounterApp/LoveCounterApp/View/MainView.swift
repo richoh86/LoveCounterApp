@@ -51,16 +51,16 @@ class MainView: UIView {
         
         createHeartImg()
         
-//        createProfilePlaceHolder()
-//        createNameLb()
+        createProfilePlaceHolder()
+        createNameLb()
         
         createArrowAndButton()
-
+        
         updateAutoLayout()
     }
-
+    
     func createSettingBtn(){
-
+        
         imgSetting.image = UIImage(named: "icons8-settings-filled-100")
         addSubview(imgSetting)
         addSubview(settingBtn)
@@ -68,28 +68,30 @@ class MainView: UIView {
     
     func createTopTitle(){
         
+        topTitle.numberOfLines = 2
+        topTitle.textColor = UIColor.white
+        topTitle.textAlignment = .justified
+        topTitle.font = UIFont.boldSystemFont(ofSize: 25)
+        
+        topTitle.layer.shadowColor = UIColor.black.cgColor
+        topTitle.layer.shadowRadius = 1.0
+        topTitle.layer.shadowOpacity = 0.5
+        topTitle.layer.shadowOffset = CGSize(width: 2, height: 2)
+        topTitle.layer.masksToBounds = false
+        
         if let selectedDate = UserDefaults.standard.value(forKey: "selDate") as? Date {
             // Date 포맷은 yyyy.MM.dd
             let dateFormatter1 = DateFormatter()
             dateFormatter1.dateFormat = "yyyy년 MM월 dd일"
             // 선택된 시간 String 값을 변환
             let strSelectedDate = dateFormatter1.string(from: selectedDate)
-            
             topTitle.text = "\(strSelectedDate)!\n우리의 사랑은 시작되었다."
-            topTitle.numberOfLines = 2
-            topTitle.textColor = UIColor.white
-            topTitle.textAlignment = .justified
-            topTitle.font = UIFont.boldSystemFont(ofSize: 25)
-            
-            addSubview(topTitle)
-            
-            topTitle.layer.shadowColor = UIColor.black.cgColor
-            topTitle.layer.shadowRadius = 1.0
-            topTitle.layer.shadowOpacity = 0.5
-            topTitle.layer.shadowOffset = CGSize(width: 2, height: 2)
-            topTitle.layer.masksToBounds = false
+        }else{
+            topTitle.numberOfLines = 1
+            topTitle.text = "사랑은 위대한 것"
         }
         
+        addSubview(topTitle)
     }
     
     func createShapeLayer() -> CAShapeLayer{
@@ -167,24 +169,31 @@ class MainView: UIView {
     }
     
     private func updateAutoLayout(){
-    
+        
         imgSetting.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(50)
             make.right.equalToSuperview().inset(15)
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
-
+        
         settingBtn.snp.makeConstraints { make in
             make.top.bottom.left.right.equalTo(imgSetting)
         }
-
+        
         // 임시주석처리: 오류나는부분
+//        topTitle.snp.makeConstraints { make in
+//            make.width.greaterThanOrEqualTo(100)
+//            make.height.greaterThanOrEqualTo(100)
+//            make.top.equalTo(imgSetting.snp.bottom).offset(15)
+//            make.bottom.equalTo(textLb).offset(150)
+//        }
+        
         topTitle.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(80)
+            make.left.equalToSuperview().offset(20)
             make.width.greaterThanOrEqualTo(100)
             make.height.greaterThanOrEqualTo(100)
-            make.top.equalTo(imgSetting.snp.bottom).offset(15)
-            make.left.equalTo(self.snp.left).offset(20)
         }
         
         textLb.snp.makeConstraints { make in
@@ -201,39 +210,41 @@ class MainView: UIView {
             make.centerY.equalTo(self.snp.centerY).offset(170)
         }
         
-//        circleForPic1.snp.makeConstraints { make in
-//            make.width.equalTo(100)
-//            make.height.equalTo(100)
-//            make.centerY.equalTo(heart)
-//            make.centerX.equalTo(heart).offset(-100)
-//        }
-//
-//        cameraImg1.snp.makeConstraints { make in
-//            make.edges.top.bottom.equalTo(circleForPic1).inset(23)
-//            make.edges.left.right.equalTo(circleForPic1).inset(25)
-//        }
-//
-//        circleForPic2.snp.makeConstraints { make in
-//            make.width.equalTo(100)
-//            make.height.equalTo(100)
-//            make.centerY.equalTo(heart)
-//            make.centerX.equalTo(heart).offset(100)
-//        }
-//
-//        cameraImg2.snp.makeConstraints { make in
-//            make.edges.top.bottom.equalTo(circleForPic2).inset(23)
-//            make.edges.left.right.equalTo(circleForPic2).inset(25)
-//        }
-//
-//        name1.snp.makeConstraints { make in
-//            make.centerX.equalTo(circleForPic1)
-//            make.top.equalTo(circleForPic1.snp.bottom).offset(10)
-//        }
-//
-//        name2.snp.makeConstraints { make in
-//            make.centerX.equalTo(circleForPic2)
-//            make.top.equalTo(circleForPic2.snp.bottom).offset(10)
-//        }
+        circleForPic1.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(100)
+            make.centerY.equalTo(heart)
+            make.centerX.equalTo(heart).offset(-100)
+        }
+        
+        cameraImg1.snp.makeConstraints { make in
+            make.width.equalTo(55)
+            make.height.equalTo(40)
+            make.center.equalTo(circleForPic1.snp.center)
+        }
+        
+        circleForPic2.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(100)
+            make.centerY.equalTo(heart)
+            make.centerX.equalTo(heart).offset(100)
+        }
+        
+        cameraImg2.snp.makeConstraints { make in
+            make.width.equalTo(55)
+            make.height.equalTo(40)
+            make.center.equalTo(circleForPic2.snp.center)
+        }
+        
+        name1.snp.makeConstraints { make in
+            make.centerX.equalTo(circleForPic1)
+            make.top.equalTo(circleForPic1.snp.bottom).offset(10)
+        }
+
+        name2.snp.makeConstraints { make in
+            make.centerX.equalTo(circleForPic2)
+            make.top.equalTo(circleForPic2.snp.bottom).offset(10)
+        }
         
         arrowImg.snp.makeConstraints { make in
             make.width.equalTo(30)
