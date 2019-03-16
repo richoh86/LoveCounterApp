@@ -31,8 +31,15 @@ class MainViewController: UIViewController {
         self.view.addSubview(mainView)
     }
     
+    
+    /// CalenderVC 이동
     @objc func arrowBtnAction(){
+        
         print("아래 화살표 버튼 pushed!!")
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let calendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarViewController")
+        calendarVC.modalPresentationStyle = .overFullScreen
+        self.present(calendarVC, animated: true)
     }
     
     @objc func settingBtnAction(){
@@ -64,10 +71,11 @@ class MainViewController: UIViewController {
             let days = Int(interval / 86400)
             print("\(days) 차이.")
             
+            // 연인이 된 날짜 첫날은 1일로 보기 때문에 1을 더 해준다
             if days > 0 {
-                mainView.textLb.text = "+\(days)일"
+                mainView.textLb.text = "+\(days + 1)일"
             }else{
-                mainView.textLb.text = "\(-days)일"
+                mainView.textLb.text = "\(-(days - 1))일"
             }
         }
     }

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "steve-halama-558233-unsplash.png",
+      "filename" : "icons8-planner-filled-100.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "@2xsteve-halama-558233-unsplash.png",
+      "filename" : "icons8-planner-filled-100@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "@3xsteve-halama-558233-unsplash.png",
+      "filename" : "icons8-planner-filled-100@3x.png",
       "scale" : "3x"
     }
   ],

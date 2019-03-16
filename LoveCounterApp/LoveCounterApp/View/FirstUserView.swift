@@ -249,6 +249,7 @@ class FirstUserView: UIView {
             make.top.equalTo(textLb).offset(250)
         }
         
+        // iphone7 기기에서 아래 버튼 영역이 다 보이지 않는 현상... 수정 필요
         nextButton.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.height.equalTo(95)

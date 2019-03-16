@@ -95,9 +95,9 @@ class FirstUseViewController1: UIViewController {
         print("\(days) 차이.")
         
         if days > 0 {
-            firstUserView.textLb.text = "+\(days)일"
+            firstUserView.textLb.text = "+\(days + 1)일"
         }else{
-            firstUserView.textLb.text = "\(-days)일"
+            firstUserView.textLb.text = "\(-days + 1)일"
         }
         
 //        let calendar = Calendar.current

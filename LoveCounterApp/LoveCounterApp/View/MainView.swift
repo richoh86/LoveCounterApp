@@ -254,7 +254,9 @@ class MainView: UIView {
         }
         
         arrowBtn.snp.makeConstraints { make in
-            make.top.bottom.left.right.equalTo(arrowImg)
+            make.center.equalTo(arrowImg)
+            make.width.equalTo(100)
+            make.height.equalTo(100)
         }
     }
 }
