@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7908A6B4223D21C2001DED45 /* TableViewCellForCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7908A6B3223D21C2001DED45 /* TableViewCellForCalendar.swift */; };
+		7916D770223F3436002AD8C6 /* NameAndImgChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7916D76F223F3436002AD8C6 /* NameAndImgChangeViewController.swift */; };
+		7916D772223F3837002AD8C6 /* NameAndImgChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7916D771223F3837002AD8C6 /* NameAndImgChangeView.swift */; };
 		79267D29223E201000DA3840 /* TableViewCellForAnniversary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79267D28223E201000DA3840 /* TableViewCellForAnniversary.swift */; };
 		79274C232230F9D4005F1F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79274C222230F9D4005F1F2D /* AppDelegate.swift */; };
 		79274C252230F9D4005F1F2D /* FirstUseViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79274C242230F9D4005F1F2D /* FirstUseViewController1.swift */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		62C68CC37133AB2B32EC53C8 /* Pods_LoveCounterApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveCounterApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7908A6B3223D21C2001DED45 /* TableViewCellForCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellForCalendar.swift; sourceTree = "<group>"; };
+		7916D76F223F3436002AD8C6 /* NameAndImgChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameAndImgChangeViewController.swift; sourceTree = "<group>"; };
+		7916D771223F3837002AD8C6 /* NameAndImgChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameAndImgChangeView.swift; sourceTree = "<group>"; };
 		79267D28223E201000DA3840 /* TableViewCellForAnniversary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellForAnniversary.swift; sourceTree = "<group>"; };
 		79274C1F2230F9D4005F1F2D /* LoveCounterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveCounterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79274C222230F9D4005F1F2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 				79C5A5DE223B48E000B8D199 /* CalendarView.swift */,
 				7908A6B3223D21C2001DED45 /* TableViewCellForCalendar.swift */,
 				79267D28223E201000DA3840 /* TableViewCellForAnniversary.swift */,
+				7916D771223F3837002AD8C6 /* NameAndImgChangeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -113,6 +118,7 @@
 				794890A22232233A00013884 /* FirstUseViewController3.swift */,
 				7933FD3E2238D66800EB4276 /* MainViewController.swift */,
 				79C5A5DC223B44E400B8D199 /* CalendarViewController.swift */,
+				7916D76F223F3436002AD8C6 /* NameAndImgChangeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -269,10 +275,12 @@
 				7933FD412238D6C400EB4276 /* MainView.swift in Sources */,
 				794890A12232233700013884 /* FirstUseViewController2.swift in Sources */,
 				79274C232230F9D4005F1F2D /* AppDelegate.swift in Sources */,
+				7916D772223F3837002AD8C6 /* NameAndImgChangeView.swift in Sources */,
 				79C5A5DF223B48E000B8D199 /* CalendarView.swift in Sources */,
 				7933FD3F2238D66800EB4276 /* MainViewController.swift in Sources */,
 				794890A32232233A00013884 /* FirstUseViewController3.swift in Sources */,
 				7908A6B4223D21C2001DED45 /* TableViewCellForCalendar.swift in Sources */,
+				7916D770223F3436002AD8C6 /* NameAndImgChangeViewController.swift in Sources */,
 				7948909F2232013E00013884 /* FirstUserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

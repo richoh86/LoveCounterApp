@@ -21,13 +21,45 @@ class MainView: UIView {
     
     let heart = UIImageView()
     
-    let circleForPic1 = UIImageView()
-    let circleForPic2 = UIImageView()
+    let circleViewForPic1: UIImageView = {
+        let view = UIImageView()
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = 3.0
+        view.backgroundColor = .clear
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 50
+        view.image = UIImage(named: "profileSample1")
+        return view
+    }()
+    
+    let circleViewForPic2: UIImageView = {
+        let view = UIImageView()
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = 3.0
+        view.backgroundColor = .clear
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 50
+        view.image = UIImage(named: "profileSample2")
+        return view
+    }()
+    
     let cameraImg1 = UIImageView()
     let cameraImg2 = UIImageView()
     
     let name1 = UILabel()
     let name2 = UILabel()
+    
+    let btnForChangeNameImg1: UIButton = {
+       let btn = UIButton()
+        btn.tag = 1
+       return btn
+    }()
+    
+    let btnForChangeNameImg2: UIButton = {
+        let btn = UIButton()
+        btn.tag = 2
+        return btn
+    }()
     
     let arrowImg = UIImageView()
     let arrowBtn = UIButton()
@@ -131,16 +163,18 @@ class MainView: UIView {
     }
     
     func createProfilePlaceHolder(){
-        
-        circleForPic1.image = UIImage(named: "Oval")
-        circleForPic2.image = UIImage(named: "Oval")
+    
         cameraImg1.image = UIImage(named: "icons8-compact-camera-100")
         cameraImg2.image = UIImage(named: "icons8-compact-camera-100")
+
+        addSubview(cameraImg1)
+        addSubview(cameraImg2)
         
-        addSubview(circleForPic1)
-        addSubview(circleForPic2)
-        circleForPic1.addSubview(cameraImg1)
-        circleForPic2.addSubview(cameraImg2)
+        addSubview(circleViewForPic1)
+        addSubview(circleViewForPic2)
+        
+        addSubview(btnForChangeNameImg1)
+        addSubview(btnForChangeNameImg2)
         
     }
     
@@ -210,40 +244,56 @@ class MainView: UIView {
             make.centerY.equalTo(self.snp.centerY).offset(170)
         }
         
-        circleForPic1.snp.makeConstraints { make in
+        circleViewForPic1.snp.makeConstraints { make in
             make.width.equalTo(100)
             make.height.equalTo(100)
             make.centerY.equalTo(heart)
             make.centerX.equalTo(heart).offset(-100)
         }
         
-        cameraImg1.snp.makeConstraints { make in
-            make.width.equalTo(55)
-            make.height.equalTo(40)
-            make.center.equalTo(circleForPic1.snp.center)
-        }
-        
-        circleForPic2.snp.makeConstraints { make in
+        circleViewForPic2.snp.makeConstraints { make in
             make.width.equalTo(100)
             make.height.equalTo(100)
             make.centerY.equalTo(heart)
             make.centerX.equalTo(heart).offset(100)
         }
         
+        cameraImg1.snp.makeConstraints { make in
+            make.width.equalTo(55)
+            make.height.equalTo(40)
+            make.center.equalTo(circleViewForPic1.snp.center)
+        }
+        
         cameraImg2.snp.makeConstraints { make in
             make.width.equalTo(55)
             make.height.equalTo(40)
-            make.center.equalTo(circleForPic2.snp.center)
+            make.center.equalTo(circleViewForPic2.snp.center)
         }
         
         name1.snp.makeConstraints { make in
-            make.centerX.equalTo(circleForPic1)
-            make.top.equalTo(circleForPic1.snp.bottom).offset(10)
+            make.centerX.equalTo(circleViewForPic1)
+            make.top.equalTo(circleViewForPic1.snp.bottom).offset(10)
         }
-
+        
         name2.snp.makeConstraints { make in
-            make.centerX.equalTo(circleForPic2)
-            make.top.equalTo(circleForPic2.snp.bottom).offset(10)
+            make.centerX.equalTo(circleViewForPic2)
+            make.top.equalTo(circleViewForPic2.snp.bottom).offset(10)
+        }
+        
+        btnForChangeNameImg1.snp.makeConstraints { make in
+            
+            make.width.equalTo(130)
+            make.height.equalTo(150)
+            make.center.equalTo(circleViewForPic1.snp.center)
+            
+        }
+        
+        btnForChangeNameImg2.snp.makeConstraints { make in
+            
+            make.width.equalTo(130)
+            make.height.equalTo(150)
+            make.center.equalTo(circleViewForPic2.snp.center)
+            
         }
         
         arrowImg.snp.makeConstraints { make in

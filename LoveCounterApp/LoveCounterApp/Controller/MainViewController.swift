@@ -26,12 +26,26 @@ class MainViewController: UIViewController {
         mainView.settingBtn.addTarget(self, action: #selector(settingBtnAction), for: .touchUpInside)
         mainView.arrowBtn.addTarget(self, action: #selector(arrowBtnAction), for: .touchUpInside)
         
+        mainView.btnForChangeNameImg1.addTarget(self, action: #selector(changeNameOrImg), for: .touchUpInside)
+        mainView.btnForChangeNameImg2.addTarget(self, action: #selector(changeNameOrImg), for: .touchUpInside)
+        
         // 계산된 날짜 가져오기 (만나지 얼마나 됐는지)
         self.calDateText()
         self.view.addSubview(mainView)
     }
     
-    
+    /// 이름 또는 프로필 사진 변경 팝업 VC 버튼 Action
+    @objc func changeNameOrImg(sender: UIButton){
+
+        print(sender.tag)
+        
+        let nameAndImgVC = NameAndImgChangeViewController(btnTag: sender.tag)
+        nameAndImgVC.modalPresentationStyle = .overCurrentContext
+        nameAndImgVC.modalTransitionStyle = .crossDissolve
+        self.present(nameAndImgVC, animated: true, completion: nil)
+        
+    }
+
     /// CalenderVC 이동
     @objc func arrowBtnAction(){
         
@@ -71,7 +85,7 @@ class MainViewController: UIViewController {
             let days = Int(interval / 86400)
             print("\(days) 차이.")
             
-            // 연인이 된 날짜 첫날은 1일로 보기 때문에 1을 더 해준다
+            // 연인이 된 날짜 첫날은 1일로 보기 때문에 차이 값에서 1을 더 해준다
             if days > 0 {
                 mainView.textLb.text = "+\(days + 1)일"
             }else{
