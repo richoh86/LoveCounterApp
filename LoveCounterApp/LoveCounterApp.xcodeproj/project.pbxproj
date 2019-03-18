@@ -24,6 +24,8 @@
 		79C5A5DD223B44E400B8D199 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5A5DC223B44E400B8D199 /* CalendarViewController.swift */; };
 		79C5A5DF223B48E000B8D199 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5A5DE223B48E000B8D199 /* CalendarView.swift */; };
 		79C5A5E1223B7DDC00B8D199 /* CalenderDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5A5E0223B7DDC00B8D199 /* CalenderDataCenter.swift */; };
+		79EA3A1F223F6C2000417EC4 /* NameChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EA3A1E223F6C2000417EC4 /* NameChangeViewController.swift */; };
+		79EA3A21223F6C3900417EC4 /* NameChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EA3A20223F6C3900417EC4 /* NameChangeView.swift */; };
 		C33360A236A44B004EB79BD1 /* Pods_LoveCounterApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C68CC37133AB2B32EC53C8 /* Pods_LoveCounterApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +50,8 @@
 		79C5A5DC223B44E400B8D199 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		79C5A5DE223B48E000B8D199 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		79C5A5E0223B7DDC00B8D199 /* CalenderDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderDataCenter.swift; sourceTree = "<group>"; };
+		79EA3A1E223F6C2000417EC4 /* NameChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameChangeViewController.swift; sourceTree = "<group>"; };
+		79EA3A20223F6C3900417EC4 /* NameChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameChangeView.swift; sourceTree = "<group>"; };
 		B0FC2498124851B8B85D0E3E /* Pods-LoveCounterApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveCounterApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveCounterApp/Pods-LoveCounterApp.release.xcconfig"; sourceTree = "<group>"; };
 		EFFE6A37D8236F503A20937D /* Pods-LoveCounterApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveCounterApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoveCounterApp/Pods-LoveCounterApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +110,7 @@
 				7908A6B3223D21C2001DED45 /* TableViewCellForCalendar.swift */,
 				79267D28223E201000DA3840 /* TableViewCellForAnniversary.swift */,
 				7916D771223F3837002AD8C6 /* NameAndImgChangeView.swift */,
+				79EA3A20223F6C3900417EC4 /* NameChangeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 				7933FD3E2238D66800EB4276 /* MainViewController.swift */,
 				79C5A5DC223B44E400B8D199 /* CalendarViewController.swift */,
 				7916D76F223F3436002AD8C6 /* NameAndImgChangeViewController.swift */,
+				79EA3A1E223F6C2000417EC4 /* NameChangeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -269,7 +275,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				79267D29223E201000DA3840 /* TableViewCellForAnniversary.swift in Sources */,
+				79EA3A21223F6C3900417EC4 /* NameChangeView.swift in Sources */,
 				79C5A5DD223B44E400B8D199 /* CalendarViewController.swift in Sources */,
+				79EA3A1F223F6C2000417EC4 /* NameChangeViewController.swift in Sources */,
 				79C5A5E1223B7DDC00B8D199 /* CalenderDataCenter.swift in Sources */,
 				79274C252230F9D4005F1F2D /* FirstUseViewController1.swift in Sources */,
 				7933FD412238D6C400EB4276 /* MainView.swift in Sources */,

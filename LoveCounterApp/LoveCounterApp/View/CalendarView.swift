@@ -37,7 +37,7 @@ class CalendarView: UIView {
     
     let textForTab2: UILabel = {
         let tab2 = UILabel()
-        tab2.text = "기념일"
+        tab2.text = "생일 + 기념일"
         tab2.font = UIFont.systemFont(ofSize: 17)
         tab2.textColor = .white
         tab2.textAlignment = .center

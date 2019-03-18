@@ -13,10 +13,25 @@ class MainViewController: UIViewController {
     @IBOutlet weak var backgroundImg: UIImageView!
     
     let mainView = MainView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameChangeObserver()
         createUI()
+    }
+    
+    func nameChangeObserver(){
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "nameChange"), object: nil, queue: nil) { (noti) in
+            if let name1 = noti.userInfo?["name1"] as? String{
+                print(name1)
+                self.mainView.name1.text = name1
+            }
+            if let name2 = noti.userInfo?["name2"] as? String{
+                print(name2)
+                self.mainView.name2.text = name2
+            }
+        }
     }
     
     private func createUI(){

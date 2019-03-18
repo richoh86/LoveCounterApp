@@ -22,9 +22,6 @@ class NameAndImgChangeView: UIView {
         let view = UIStackView()
         view.distribution = .fillEqually
         view.axis = .vertical
-       //stack 뷰는 작동안하는 것 같음...
-//        view.layer.cornerRadius = 15
-//        view.clipsToBounds = true
         return view
     }()
     
@@ -64,7 +61,7 @@ class NameAndImgChangeView: UIView {
     
     let textLb3: UILabel = {
         let text = UILabel()
-        text.text = "취소"
+        text.text = "돌아가기"
         text.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         text.textAlignment = .center
         return text

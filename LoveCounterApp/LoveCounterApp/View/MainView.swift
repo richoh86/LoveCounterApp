@@ -180,12 +180,20 @@ class MainView: UIView {
     
     func createNameLb() {
         
-        name1.text = "이름"
+        if let name1  = UserDefaults.standard.value(forKey: "name1") as? String{
+            self.name1.text = name1
+        }else{
+            name1.text = "이름"
+        }
         name1.textAlignment = .center
         name1.textColor = .white
         name1.font = UIFont.systemFont(ofSize: 20)
         
-        name2.text = "이름"
+        if let name2  = UserDefaults.standard.value(forKey: "name2") as? String{
+            self.name2.text = name2
+        }else{
+            name2.text = "이름"
+        }
         name2.textAlignment = .center
         name2.textColor = .white
         name2.font = UIFont.systemFont(ofSize: 20)
