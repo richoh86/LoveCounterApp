@@ -10,6 +10,10 @@ import Foundation
 
 class CalenderDataCenter {
     
+    // ---------------------------- //
+    //  "커플" 탭1                    //
+    // ---------------------------- //
+    
     // Int Value for Calcuation
     var countDays: [Int] = []
     // 1. String Value 100일,200일.. + 1주년, 2주년 ..
@@ -23,11 +27,47 @@ class CalenderDataCenter {
     // 3. D-Day 현재날짜로 부터 몇일 남았는지 계산한 값
     var strDday: [String] = []
     
+    // ---------------------------- //
+    //  "기념일" 탭2                   //
+    // ---------------------------- //
+    
+    // 1. 기념일 이름 ex) 발렌타인 데이, 생일
+    var nameOfAnniversaryDay: [String] =
+        [
+            "본인생일",
+            "내꺼생일",
+            "다이어리데이",
+            "발렌타인데이",
+            "화이트데이",
+            "블랙데이",
+            "로즈데이",
+            "키스데이",
+            "실버데이",
+            "그린데이",
+            "포토데이",
+            "와인데이",
+            "무비데이",
+            "허그데이",
+            "크리스마스"
+    
+        ]
+    
+    // 2. 기념일 날짜 ex) 2019년(올해) 3월 14일
+    var dateOfAnniversaryDay: [String] = []
+    
+    // 3. 현재 날짜로 부터 기념일까지 남은 기간 D-day 계산 값
+    var dDayOfAnniversaryDay: [String] = []
+    
     init() {
+        
         calCountDays()
         dateCal()
+        
+        dateCalForAnniversaryDay()
+        
     }
     
+    /// "커플" 탭 함수
     /// 30주년까지 100일 단위, 1주년 단위 숫자와 텍스트 값을 배열에 담는다
     func calCountDays() {
         for i in 100..<11000{
@@ -42,6 +82,7 @@ class CalenderDataCenter {
         }
     }
     
+    /// "커플" 탭 함수
     /// 100일,200일 계산된 날짜 + 현재날짜로 부터 해당 기념일이 얼마나 남았는지 계산
     func dateCal(){
         
@@ -71,6 +112,42 @@ class CalenderDataCenter {
                 strDday.append("D+\(-days)")
             }
         }
+    }
+    
+    /// "기념일" 탭 함수
+    /// 기념일 날짜 계산하는 함수
+    func dateCalForAnniversaryDay() {
+        
+        // 1. 본인생일과 내꺼생일을 UserDefault에서 가져와서 String 값으로 넣어준다
+        let dateFormatter1 = DateFormatter()
+        dateFormatter1.dateFormat = "MM월 dd일"
+        
+        let curDate = Date()
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.dateFormat = "yyyy년"
+        let strCurYear = dateFormatter2.string(from: curDate)
+        
+        if let myBirthDay = UserDefaults.standard.value(forKey: "myBirthDay") as? Date {
+            let strMyBirthDay = dateFormatter1.string(from: myBirthDay)
+            dateOfAnniversaryDay.append(strCurYear+" "+strMyBirthDay)
+            print("초기저장본인생일",myBirthDay)
+        
+        }
+        
+        if let loveBirthDay = UserDefaults.standard.value(forKey: "LoveBirthDay") as? Date {
+            let strloveBirthDay = dateFormatter1.string(from: loveBirthDay)
+            dateOfAnniversaryDay.append(strCurYear+" "+strloveBirthDay)
+            print("초기저장내꺼생일",loveBirthDay)
+        }
+        
+        // 2. 나머지 기념일들은 현재 연도를 year에 넣어주고 나머지 날짜들을 넣어준다
+        for i in 1..<13 {
+            dateOfAnniversaryDay.append("\(strCurYear) \(i)월 14일")
+        }
+        // 3. 크리스마스 12월 25일 추가
+        dateOfAnniversaryDay.append("\(strCurYear) 12월 25일")
+        
+        print(dateOfAnniversaryDay.count)
     }
 }
 extension Date {
@@ -118,6 +195,4 @@ extension Date {
             return currentDate
         }
     }
-
-   
 }

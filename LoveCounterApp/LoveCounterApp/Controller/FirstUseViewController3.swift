@@ -83,7 +83,7 @@ class FirstUseViewController3: UIViewController {
         
         let dateFormat = dateFormatter.date(from: strDate!)
         
-        //UserDefaults에 내 생일 저장
+        //UserDefaults에 내꺼 생일 저장
         UserDefaults.standard.set(dateFormat, forKey: "LoveBirthDay")
         
         firstUserView.dateTextLb.text = strDate

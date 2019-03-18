@@ -15,6 +15,57 @@ class CalendarView: UIView {
     let calendarImgView = UIImageView()
     let titleLb = UILabel()
     
+    let stackViewForTabs: UIStackView = {
+       let container = UIStackView()
+        container.axis = .horizontal
+        container.distribution = .fillEqually
+       return container
+    }()
+    
+    let tab1 = UIView()
+    
+    let textForTab1: UILabel = {
+        let tab1 = UILabel()
+        tab1.text = "커플"
+        tab1.font = UIFont.systemFont(ofSize: 17)
+        tab1.textColor = .white
+        tab1.textAlignment = .center
+        return tab1
+    }()
+
+    let tab2 = UIView()
+    
+    let textForTab2: UILabel = {
+        let tab2 = UILabel()
+        tab2.text = "기념일"
+        tab2.font = UIFont.systemFont(ofSize: 17)
+        tab2.textColor = .white
+        tab2.textAlignment = .center
+        return tab2
+    }()
+    
+    let bottomLineView1: UIView = {
+        let line = UIView()
+        line.backgroundColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
+        return line
+    }()
+    
+    let bottomLineView2: UIView = {
+        let line = UIView()
+        line.backgroundColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
+        return line
+    }()
+    
+    let btnForTab1: UIButton = {
+        let btn = UIButton()
+        return btn
+    }()
+    
+    let btnForTab2: UIButton = {
+        let btn = UIButton()
+        return btn
+    }()
+    
     let arrowDown = UIImageView()
     let btnForArrowDown = UIButton()
     
@@ -29,6 +80,7 @@ class CalendarView: UIView {
     
     func commonInit(){
         createTopTitle()
+        createTabs()
         createArrowDownBtn()
         updateAutoLayout()
     }
@@ -51,6 +103,22 @@ class CalendarView: UIView {
         
         addSubview(topTitleContainerView)
     }
+    
+    func createTabs() {
+        
+        tab1.addSubview(textForTab1)
+        tab1.addSubview(bottomLineView1)
+        tab1.addSubview(btnForTab1)
+        
+        tab2.addSubview(textForTab2)
+        tab2.addSubview(bottomLineView2)
+        tab2.addSubview(btnForTab2)
+        
+        stackViewForTabs.addArrangedSubview(tab1)
+        stackViewForTabs.addArrangedSubview(tab2)
+        addSubview(stackViewForTabs)
+        
+    }
    
     func createArrowDownBtn(){
         arrowDown.image = UIImage(named: "icons8-expand-arrow-filled-100")
@@ -59,6 +127,49 @@ class CalendarView: UIView {
     }
     
     func updateAutoLayout(){
+        
+        topTitleContainerView.snp.makeConstraints { make in
+            make.width.equalTo(170)
+            make.height.equalTo(20)
+            make.top.equalTo(self.snp.top).offset(50)
+            make.centerX.equalToSuperview()
+        }
+        
+        stackViewForTabs.snp.makeConstraints { make in
+            
+            make.width.equalToSuperview()
+            make.height.equalTo(70)
+            make.top.equalTo(topTitleContainerView.snp.bottom)
+            
+        }
+        
+        textForTab1.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        textForTab2.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        bottomLineView1.snp.makeConstraints { make in
+            make.height.equalTo(3)
+            make.width.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        bottomLineView2.snp.makeConstraints { make in
+            make.height.equalTo(3)
+            make.width.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        btnForTab1.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        btnForTab2.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         arrowDown.snp.makeConstraints { make in
             make.width.equalTo(30)
@@ -72,13 +183,5 @@ class CalendarView: UIView {
             make.width.equalTo(100)
             make.height.equalTo(70)
         }
-        
-        topTitleContainerView.snp.makeConstraints { make in
-            make.width.equalTo(170)
-            make.height.equalTo(20)
-            make.top.equalTo(self.snp.top).offset(50)
-            make.centerX.equalToSuperview()
-        }
-        
     }
 }

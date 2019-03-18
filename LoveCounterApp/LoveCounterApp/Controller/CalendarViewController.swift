@@ -13,8 +13,9 @@ class CalendarViewController: UIViewController {
     
     let calendarView = CalendarView()
     let tableViewForCouple = UITableView()
+    let tableViewForAnniversary = UITableView()
     let cDataCenter = CalenderDataCenter()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,17 +25,13 @@ class CalendarViewController: UIViewController {
         
         createUI()
         
-        // TableView 생성 시작
-        self.tableViewForCouple.dataSource = self
-        self.tableViewForCouple.delegate = self
+        // Default Tab만 bottomLine 보여줄 것
+        self.calendarView.bottomLineView2.isHidden = true
+        self.calendarView.textForTab2.alpha = 0.2
+        self.tableViewForAnniversary.isHidden = true
         
-        self.tableViewForCouple.register(TableViewCellForCalendar.self, forCellReuseIdentifier: "Cell")
-        self.tableViewForCouple.backgroundColor = UIColor.clear
-        
-        self.tableViewForCouple.separatorColor = .white
-        self.tableViewForCouple.separatorStyle = .singleLine
-        
-        self.view.addSubview(self.tableViewForCouple)
+        createTableViewForCouple()
+        createTableViewForAnniversary()
         
         updateAutoLayout()
     }
@@ -50,18 +47,84 @@ class CalendarViewController: UIViewController {
         calendarView.backgroundColor = .black
         calendarView.alpha = 0.9
         calendarView.btnForArrowDown.addTarget(self, action: #selector(arrowDownBtnAction), for: .touchUpInside)
+        calendarView.btnForTab1.addTarget(self, action: #selector(btnActionForTab1), for: .touchUpInside)
+        calendarView.btnForTab2.addTarget(self, action: #selector(btnActionForTab2), for: .touchUpInside)
         
         self.view.addSubview(calendarView)
     }
     
+    @objc func btnActionForTab1(){
+        
+        calendarView.textForTab1.alpha = 1.0
+        calendarView.textForTab2.alpha = 0.2
+        
+        calendarView.bottomLineView1.isHidden = false
+        calendarView.bottomLineView2.isHidden = true
+        
+        self.tableViewForCouple.isHidden = false
+        self.tableViewForAnniversary.isHidden = true
+    }
+    
+    @objc func btnActionForTab2(){
+        
+        calendarView.textForTab2.alpha = 1.0
+        calendarView.textForTab1.alpha = 0.2
+        
+        calendarView.bottomLineView1.isHidden = true
+        calendarView.bottomLineView2.isHidden = false
+        
+        self.tableViewForCouple.isHidden = true
+        self.tableViewForAnniversary.isHidden = false
+    }
+    
+    func createTableViewForCouple() {
+        
+        // TableView 생성 시작
+        self.tableViewForCouple.dataSource = self
+        self.tableViewForCouple.delegate = self
+        
+        self.tableViewForCouple.register(TableViewCellForCalendar.self, forCellReuseIdentifier: "CellForCouple")
+        self.tableViewForCouple.backgroundColor = UIColor.clear
+        
+        self.tableViewForCouple.tag = 1 // 커플 탭 태그는 1로 지정
+        
+        self.tableViewForCouple.separatorColor = .white
+        self.tableViewForCouple.separatorStyle = .singleLine
+        
+        self.view.addSubview(self.tableViewForCouple)
+    }
+    
+    func createTableViewForAnniversary() {
+
+        // TableView 생성 시작
+        self.tableViewForAnniversary.dataSource = self
+        self.tableViewForAnniversary.delegate = self
+        
+        self.tableViewForAnniversary.register(TableViewCellForAnniversary.self, forCellReuseIdentifier: "CellForAnniversary")
+        self.tableViewForAnniversary.backgroundColor = UIColor.clear
+        
+        self.tableViewForAnniversary.tag = 2 // 기념일 탭 태그는 2로 지정
+        
+        self.tableViewForAnniversary.separatorColor = .white
+        self.tableViewForAnniversary.separatorStyle = .singleLine
+        
+        self.view.addSubview(self.tableViewForAnniversary)
+        
+    }
+
     func updateAutoLayout() {
         
-        tableViewForCouple.snp.makeConstraints { make in
-            make.top.equalTo(calendarView.topTitleContainerView.snp.bottom).offset(5)
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(calendarView.btnForArrowDown.snp.top)
-        }
+            tableViewForCouple.snp.makeConstraints { make in
+                make.top.equalTo(calendarView.stackViewForTabs.snp.bottom).offset(5)
+                make.left.right.equalToSuperview()
+                make.bottom.equalTo(calendarView.btnForArrowDown.snp.top)
+            }
         
+            tableViewForAnniversary.snp.makeConstraints { make in
+                make.top.equalTo(calendarView.stackViewForTabs.snp.bottom).offset(5)
+                make.left.right.equalToSuperview()
+                make.bottom.equalTo(calendarView.btnForArrowDown.snp.top)
+            }
     }
     
     @objc func arrowDownBtnAction(){
@@ -75,21 +138,52 @@ extension CalendarViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cDataCenter.strCountDays.count
+        
+        if tableView.tag == 1 {
+            
+            return cDataCenter.strCountDays.count
+        
+        }else if tableView.tag == 2{
+            
+            return cDataCenter.nameOfAnniversaryDay.count
+        }else {
+            
+            return 10
+        }
+
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = TableViewCellForCalendar(style: .default, reuseIdentifier: "Cell")
         
-        cell.countDay.text = cDataCenter.strCountDays[indexPath.row]
-        cell.countedDate.text = cDataCenter.strDate[indexPath.row]
-        cell.countedDday.text = cDataCenter.strDday[indexPath.row]
-        
-        cell.backgroundColor = UIColor.clear
-        
-        return cell
+        if tableView.tag == 1 {
+            let cellForCoupleTable = TableViewCellForCalendar(style: .default, reuseIdentifier: "CellForCouple")
+            
+            cellForCoupleTable.countDay.text = cDataCenter.strCountDays[indexPath.row]
+            cellForCoupleTable.countedDate.text = cDataCenter.strDate[indexPath.row]
+            cellForCoupleTable.countedDday.text = cDataCenter.strDday[indexPath.row]
+            
+            cellForCoupleTable.backgroundColor = UIColor.clear
+            
+            return cellForCoupleTable
+            
+        } else if tableView.tag == 2{
+            
+            let cellForAnniversaryTable = TableViewCellForAnniversary(style: .default, reuseIdentifier: "CellForAnniversary")
+            
+            cellForAnniversaryTable.textLbForView1.text = cDataCenter.nameOfAnniversaryDay[indexPath.row]
+            cellForAnniversaryTable.textLbForView2.text = cDataCenter.dateOfAnniversaryDay[indexPath.row]
+            
+            cellForAnniversaryTable.backgroundColor = UIColor.clear
+            
+            return cellForAnniversaryTable
+            
+        } else {
+            
+            return UITableViewCell()
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,6 +198,5 @@ extension CalendarViewController: UITableViewDelegate{
     // table cell 선택시 선택된 상태로 남아 있지 않도록 설정
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(cDataCenter.strCountDays[indexPath.row])
     }
 }
