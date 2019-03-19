@@ -13,10 +13,9 @@ class MainViewController: UIViewController {
     @IBOutlet weak var backgroundImg: UIImageView!
     
     let mainView = MainView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         nameChangeObserver()
         createUI()
     }
@@ -41,8 +40,8 @@ class MainViewController: UIViewController {
         mainView.settingBtn.addTarget(self, action: #selector(settingBtnAction), for: .touchUpInside)
         mainView.arrowBtn.addTarget(self, action: #selector(arrowBtnAction), for: .touchUpInside)
         
-        mainView.btnForChangeNameImg1.addTarget(self, action: #selector(changeNameOrImg), for: .touchUpInside)
-        mainView.btnForChangeNameImg2.addTarget(self, action: #selector(changeNameOrImg), for: .touchUpInside)
+        mainView.btnForChangeNameImg1.addTarget(self, action: #selector(changeNameOrImgAction), for: .touchUpInside)
+        mainView.btnForChangeNameImg2.addTarget(self, action: #selector(changeNameOrImgAction), for: .touchUpInside)
         
         // 계산된 날짜 가져오기 (만나지 얼마나 됐는지)
         self.calDateText()
@@ -50,10 +49,10 @@ class MainViewController: UIViewController {
     }
     
     /// 이름 또는 프로필 사진 변경 팝업 VC 버튼 Action
-    @objc func changeNameOrImg(sender: UIButton){
+    /// ChangeNameAndImg VC 이동
+    @objc func changeNameOrImgAction(sender: UIButton){
 
         print(sender.tag)
-        
         let nameAndImgVC = NameAndImgChangeViewController(btnTag: sender.tag)
         nameAndImgVC.modalPresentationStyle = .overCurrentContext
         nameAndImgVC.modalTransitionStyle = .crossDissolve

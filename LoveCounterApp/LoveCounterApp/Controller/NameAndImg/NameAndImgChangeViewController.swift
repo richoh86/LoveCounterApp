@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Photos
 
-class NameAndImgChangeViewController: UIViewController {
+class NameAndImgChangeViewController: UIViewController{
     
     let nameAndImgChangeView = NameAndImgChangeView()
     
@@ -24,7 +25,7 @@ class NameAndImgChangeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        dismissVCReg()
+//        dismissVCReg()
     }
     
     private func dismissVCReg() {
@@ -63,8 +64,33 @@ class NameAndImgChangeViewController: UIViewController {
     }
     
     @objc func changeImgAction(){
-        if let tag = btnTag {
-            print("프로필사진변경",tag)
+        
+        let photos = PHPhotoLibrary.authorizationStatus()
+        if photos == .notDetermined {
+            PHPhotoLibrary.requestAuthorization { (status) in
+                if status == .authorized {
+                    if let tag = self.btnTag {
+                        print("프로필사진변경",tag)
+                        let imagePickerController = UIImagePickerController()
+                        imagePickerController.delegate = self
+                        imagePickerController.sourceType = .photoLibrary
+                        self.present(imagePickerController, animated: true, completion: nil)
+                    }
+                }else{
+                    let alertVC = UIAlertController(title: "권한요청확인", message: "앨범 접근권한이 없으면\n프로필 사진 변경을 할 수 없습니다", preferredStyle: UIAlertController.Style.alert)
+                    let action1 = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action1) in})
+                    alertVC.addAction(action1)
+                    self.present(alertVC, animated: true, completion: nil)
+                }
+            }
+        }else{
+            if let tag = self.btnTag {
+                print("프로필사진변경",tag)
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.delegate = self
+                imagePickerController.sourceType = .photoLibrary
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
         }
     }
     
@@ -82,3 +108,25 @@ class NameAndImgChangeViewController: UIViewController {
         }
     }
 }
+
+// MARK: - UIImagePickerControllerDelegate
+extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
+ 
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        print(info[.originalImage])
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("이미지 선택 취소")
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+// MARK: - UINavigationControllerDelegate
+extension NameAndImgChangeViewController: UINavigationControllerDelegate {
+   
+}
+
