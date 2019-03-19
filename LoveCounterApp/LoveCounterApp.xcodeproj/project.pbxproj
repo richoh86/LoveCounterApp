@@ -104,13 +104,10 @@
 		7948909B2231FABF00013884 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7948909E2232013E00013884 /* FirstUserView.swift */,
-				7933FD402238D6C400EB4276 /* MainView.swift */,
-				79C5A5DE223B48E000B8D199 /* CalendarView.swift */,
-				7908A6B3223D21C2001DED45 /* TableViewCellForCalendar.swift */,
-				79267D28223E201000DA3840 /* TableViewCellForAnniversary.swift */,
-				7916D771223F3837002AD8C6 /* NameAndImgChangeView.swift */,
-				79EA3A20223F6C3900417EC4 /* NameChangeView.swift */,
+				79DBA5F92240B8E000F29C3F /* FirstUser */,
+				79DBA5FA2240B8FE00F29C3F /* Main */,
+				79DBA5FB2240B91500F29C3F /* Calendar */,
+				79DBA5FC2240B95700F29C3F /* NameAndImg */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -118,13 +115,10 @@
 		7948909C2231FAC900013884 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				79274C242230F9D4005F1F2D /* FirstUseViewController1.swift */,
-				794890A02232233700013884 /* FirstUseViewController2.swift */,
-				794890A22232233A00013884 /* FirstUseViewController3.swift */,
-				7933FD3E2238D66800EB4276 /* MainViewController.swift */,
-				79C5A5DC223B44E400B8D199 /* CalendarViewController.swift */,
-				7916D76F223F3436002AD8C6 /* NameAndImgChangeViewController.swift */,
-				79EA3A1E223F6C2000417EC4 /* NameChangeViewController.swift */,
+				79DBA5FD2240B9AE00F29C3F /* FirstUse */,
+				79DBA5FE2240B9BE00F29C3F /* Main */,
+				79DBA5FF2240B9C800F29C3F /* Calendar */,
+				79DBA6002240B9DA00F29C3F /* NameAndImg */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -135,6 +129,76 @@
 				79C5A5E0223B7DDC00B8D199 /* CalenderDataCenter.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		79DBA5F92240B8E000F29C3F /* FirstUser */ = {
+			isa = PBXGroup;
+			children = (
+				7948909E2232013E00013884 /* FirstUserView.swift */,
+			);
+			path = FirstUser;
+			sourceTree = "<group>";
+		};
+		79DBA5FA2240B8FE00F29C3F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7933FD402238D6C400EB4276 /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		79DBA5FB2240B91500F29C3F /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				79C5A5DE223B48E000B8D199 /* CalendarView.swift */,
+				7908A6B3223D21C2001DED45 /* TableViewCellForCalendar.swift */,
+				79267D28223E201000DA3840 /* TableViewCellForAnniversary.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		79DBA5FC2240B95700F29C3F /* NameAndImg */ = {
+			isa = PBXGroup;
+			children = (
+				7916D771223F3837002AD8C6 /* NameAndImgChangeView.swift */,
+				79EA3A20223F6C3900417EC4 /* NameChangeView.swift */,
+			);
+			path = NameAndImg;
+			sourceTree = "<group>";
+		};
+		79DBA5FD2240B9AE00F29C3F /* FirstUse */ = {
+			isa = PBXGroup;
+			children = (
+				79274C242230F9D4005F1F2D /* FirstUseViewController1.swift */,
+				794890A02232233700013884 /* FirstUseViewController2.swift */,
+				794890A22232233A00013884 /* FirstUseViewController3.swift */,
+			);
+			path = FirstUse;
+			sourceTree = "<group>";
+		};
+		79DBA5FE2240B9BE00F29C3F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7933FD3E2238D66800EB4276 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		79DBA5FF2240B9C800F29C3F /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				79C5A5DC223B44E400B8D199 /* CalendarViewController.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		79DBA6002240B9DA00F29C3F /* NameAndImg */ = {
+			isa = PBXGroup;
+			children = (
+				7916D76F223F3436002AD8C6 /* NameAndImgChangeViewController.swift */,
+				79EA3A1E223F6C2000417EC4 /* NameChangeViewController.swift */,
+			);
+			path = NameAndImg;
 			sourceTree = "<group>";
 		};
 		AC22E383E098CC6B251282D6 /* Pods */ = {
