@@ -35,7 +35,6 @@ class NameAndImgChangeViewController: UIViewController {
 //        }
         
 //        NotificationCenter.default.addObserver(self, selector: #selector(cancelAction), name: NSNotification.Name(rawValue: "dismissNameAndImgVC"), object: nil)
-        
     }
     
     private func commonInit(){
@@ -58,6 +57,8 @@ class NameAndImgChangeViewController: UIViewController {
             nameChangeVC.modalPresentationStyle = .overCurrentContext
             nameChangeVC.modalTransitionStyle = .coverVertical
             self.present(nameChangeVC, animated: true, completion: nil)
+            
+            
         }
     }
     

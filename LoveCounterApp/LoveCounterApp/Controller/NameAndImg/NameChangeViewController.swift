@@ -53,14 +53,12 @@ class NameChangeViewController: UIViewController {
             }
         }
         // NameAndImgChangeVC를 없애고 MainVC로 돌아갈 수 있도록.. dismiss가 작동하지 않음..ㅜ
+        // UIWindow에 접근해서 해당 VC를 삭제할 수 있을 것으로 보임.. 일단 보류
+        
 //        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dismissNameAndImgVC"), object: nil)
+        
         self.dismiss(animated: true)
     }
-    
-//    @objc func cancelWriteName(){
-//        nameChangeView.textFieldForName.resignFirstResponder()
-//        self.dismiss(animated: true, completion: nil)
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardDidShowNotification, object: nil)
