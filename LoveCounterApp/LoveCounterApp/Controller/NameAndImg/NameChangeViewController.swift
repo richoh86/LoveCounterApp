@@ -70,7 +70,9 @@ class NameChangeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        getUserDefaultNameForTextField()
+        
         view.backgroundColor = .black
         view.addSubview(nameChangeView)
         btnContainerView.addSubview(completeBtn)
@@ -78,6 +80,21 @@ class NameChangeViewController: UIViewController {
         
         updateAutoLayout()
         nameChangeView.textFieldForName.becomeFirstResponder()
+    }
+    
+    /// User가 이미 입력한 이름 정보가 있다면 수정시 원래 이름을 텍스트 필드에 보여준다
+    private func getUserDefaultNameForTextField() {
+        // Do any additional setup after loading the view.
+        
+        if let tag = self.btnTag {
+            if tag == 1{
+                guard let name1 = UserDefaults.standard.string(forKey: "name1") else {return}
+                self.nameChangeView.textFieldForName.text = name1
+            }else{
+                guard let name2 = UserDefaults.standard.string(forKey: "name2") else {return}
+                self.nameChangeView.textFieldForName.text = name2
+            }
+        }
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
