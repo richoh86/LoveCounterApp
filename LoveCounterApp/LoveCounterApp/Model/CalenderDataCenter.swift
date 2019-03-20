@@ -59,12 +59,10 @@ class CalenderDataCenter {
     var dDayOfAnniversaryDay: [String] = []
     
     init() {
-        
         calCountDays()
         dateCal()
         
         dateCalForAnniversaryDay()
-        
     }
     
     /// "커플" 탭 함수
@@ -116,6 +114,7 @@ class CalenderDataCenter {
     
     /// "기념일" 탭 함수
     /// 기념일 날짜 계산하는 함수
+    /// 기념일 날짜 D-Day 계산하는 로직 추가
     func dateCalForAnniversaryDay() {
         
         // 1. 본인생일과 내꺼생일을 UserDefault에서 가져와서 String 값으로 넣어준다
@@ -148,6 +147,23 @@ class CalenderDataCenter {
         dateOfAnniversaryDay.append("\(strCurYear) 12월 25일")
         
         print(dateOfAnniversaryDay.count)
+        
+        // 4. 현재로 부터 기념일까지 D-Day 계산 로직
+        let dateFormatter3 = DateFormatter()
+        dateFormatter3.dateFormat = "yyyy년 MM월 dd일"
+        
+        for date in dateOfAnniversaryDay{
+            if let anniversaryDate = dateFormatter3.date(from: date) {
+                let intervals = anniversaryDate.timeIntervalSince(curDate)
+                let days = Int(intervals / 86400)
+               
+                if days > 0 {
+                    dDayOfAnniversaryDay.append("D-\(days)")
+                }else{
+                    dDayOfAnniversaryDay.append("D+\(-days)")
+                }
+            }
+        }
     }
 }
 extension Date {
