@@ -13,15 +13,59 @@ class MainViewController: UIViewController {
     @IBOutlet weak var backgroundImg: UIImageView!
     
     let mainView = MainView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        getProfileImgFileFromDocumentDirectory()
+        imageChangeObserver()
         nameChangeObserver()
         createUI()
     }
     
+    private func getProfileImgFileFromDocumentDirectory() {
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        
+        if let dirPath = paths.first {
+            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("profileImg1.png")
+            let image = UIImage(contentsOfFile: imageURL.path)
+            self.mainView.circleViewForPic1.image = nil
+            self.mainView.circleViewForPic1.image = image
+        }else{
+            self.mainView.circleViewForPic1.image = nil
+        }
+        
+        if let dirPath = paths.first {
+            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("profileImg2.png")
+            let image = UIImage(contentsOfFile: imageURL.path)
+            self.mainView.circleViewForPic2.image = nil
+            self.mainView.circleViewForPic2.image = image
+        }else{
+            self.mainView.circleViewForPic2.image = nil
+        }
+    }
+    
+    func imageChangeObserver(){
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "imageChange"), object: nil, queue: nil) { (noti) in
+            
+            if let image1 = noti.userInfo?["image1"] as? UIImage{
+                print("image1 호출",image1)
+                self.mainView.circleViewForPic1.image = image1
+            }
+            
+            if let image2 = noti.userInfo?["image2"] as? UIImage{
+                print("image2 호출", image2)
+                self.mainView.circleViewForPic2.image = image2
+            }
+        }
+        
+    }
+    
     func nameChangeObserver(){
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "nameChange"), object: nil, queue: nil) { (noti) in
             if let name1 = noti.userInfo?["name1"] as? String{
                 print(name1)
@@ -41,8 +85,8 @@ class MainViewController: UIViewController {
         mainView.settingBtn.addTarget(self, action: #selector(settingBtnAction), for: .touchUpInside)
         mainView.arrowBtn.addTarget(self, action: #selector(arrowBtnAction), for: .touchUpInside)
         
-        mainView.btnForChangeNameImg1.addTarget(self, action: #selector(changeNameOrImg), for: .touchUpInside)
-        mainView.btnForChangeNameImg2.addTarget(self, action: #selector(changeNameOrImg), for: .touchUpInside)
+        mainView.btnForChangeNameImg1.addTarget(self, action: #selector(changeNameOrImgAction), for: .touchUpInside)
+        mainView.btnForChangeNameImg2.addTarget(self, action: #selector(changeNameOrImgAction), for: .touchUpInside)
         
         // 계산된 날짜 가져오기 (만나지 얼마나 됐는지)
         self.calDateText()
@@ -50,10 +94,10 @@ class MainViewController: UIViewController {
     }
     
     /// 이름 또는 프로필 사진 변경 팝업 VC 버튼 Action
-    @objc func changeNameOrImg(sender: UIButton){
+    /// ChangeNameAndImg VC 이동
+    @objc func changeNameOrImgAction(sender: UIButton){
 
         print(sender.tag)
-        
         let nameAndImgVC = NameAndImgChangeViewController(btnTag: sender.tag)
         nameAndImgVC.modalPresentationStyle = .overCurrentContext
         nameAndImgVC.modalTransitionStyle = .crossDissolve
@@ -113,6 +157,7 @@ class MainViewController: UIViewController {
         let shapeLayer = mainView.createShapeLayer()
         mainView.shapeLayer.position.x = self.view.center.x
         mainView.shapeLayer.position.y = self.view.center.y - 70
+//        mainView.shapeLayer.borderColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
         self.view.layer.addSublayer(shapeLayer)
     }
     
@@ -120,5 +165,10 @@ class MainViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "imageChange"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "nameChange"), object: nil)
+    }
+    
 }
