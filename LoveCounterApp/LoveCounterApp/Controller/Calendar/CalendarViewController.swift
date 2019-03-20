@@ -173,7 +173,8 @@ extension CalendarViewController: UITableViewDataSource {
             let cellForAnniversaryTable = TableViewCellForAnniversary(style: .default, reuseIdentifier: "CellForAnniversary")
             
             cellForAnniversaryTable.textLbForView1.text = cDataCenter.nameOfAnniversaryDay[indexPath.row]
-            cellForAnniversaryTable.textLbForView2.text = cDataCenter.dateOfAnniversaryDay[indexPath.row]
+            cellForAnniversaryTable.textLb1ForStackView.text = cDataCenter.dateOfAnniversaryDay[indexPath.row]
+            cellForAnniversaryTable.textLb2ForStackView.text = cDataCenter.dDayOfAnniversaryDay[indexPath.row]
             
             cellForAnniversaryTable.backgroundColor = UIColor.clear
             
