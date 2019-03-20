@@ -16,11 +16,56 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        getProfileImgFileFromDocumentDirectory()
+        imageChangeObserver()
         nameChangeObserver()
         createUI()
     }
     
+    private func getProfileImgFileFromDocumentDirectory() {
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        
+        if let dirPath = paths.first {
+            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("profileImg1.png")
+            let image = UIImage(contentsOfFile: imageURL.path)
+            self.mainView.circleViewForPic1.image = nil
+            self.mainView.circleViewForPic1.image = image
+        }else{
+            self.mainView.circleViewForPic1.image = nil
+        }
+        
+        if let dirPath = paths.first {
+            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("profileImg2.png")
+            let image = UIImage(contentsOfFile: imageURL.path)
+            self.mainView.circleViewForPic2.image = nil
+            self.mainView.circleViewForPic2.image = image
+        }else{
+            self.mainView.circleViewForPic2.image = nil
+        }
+    }
+    
+    func imageChangeObserver(){
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "imageChange"), object: nil, queue: nil) { (noti) in
+            
+            if let image1 = noti.userInfo?["image1"] as? UIImage{
+                print("image1 호출",image1)
+                self.mainView.circleViewForPic1.image = image1
+            }
+            
+            if let image2 = noti.userInfo?["image2"] as? UIImage{
+                print("image2 호출", image2)
+                self.mainView.circleViewForPic2.image = image2
+            }
+        }
+        
+    }
+    
     func nameChangeObserver(){
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "nameChange"), object: nil, queue: nil) { (noti) in
             if let name1 = noti.userInfo?["name1"] as? String{
                 print(name1)
@@ -112,6 +157,7 @@ class MainViewController: UIViewController {
         let shapeLayer = mainView.createShapeLayer()
         mainView.shapeLayer.position.x = self.view.center.x
         mainView.shapeLayer.position.y = self.view.center.y - 70
+//        mainView.shapeLayer.borderColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
         self.view.layer.addSublayer(shapeLayer)
     }
     
@@ -119,5 +165,10 @@ class MainViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "imageChange"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "nameChange"), object: nil)
+    }
+    
 }

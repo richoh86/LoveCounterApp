@@ -28,7 +28,7 @@ class MainView: UIView {
         view.backgroundColor = .clear
         view.clipsToBounds = true
         view.layer.cornerRadius = 50
-        view.image = UIImage(named: "profileSample1")
+        view.image = nil
         return view
     }()
     
@@ -39,7 +39,7 @@ class MainView: UIView {
         view.backgroundColor = .clear
         view.clipsToBounds = true
         view.layer.cornerRadius = 50
-        view.image = UIImage(named: "profileSample2")
+        view.image = nil
         return view
     }()
     
@@ -132,6 +132,7 @@ class MainView: UIView {
         
         shapeLayer.path = circlarPath.cgPath
         shapeLayer.strokeColor = UIColor.white.cgColor
+//        shapeLayer.strokeColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
         shapeLayer.lineWidth = 10
         shapeLayer.fillColor = .none
         shapeLayer.position = CGPoint(x: self.bounds.width/2, y: 350)
