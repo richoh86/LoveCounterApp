@@ -140,19 +140,13 @@ extension CalendarViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableView.tag == 1 {
-            
             return cDataCenter.strCountDays.count
-        
         }else if tableView.tag == 2{
-            
             return cDataCenter.nameOfAnniversaryDay.count
         }else {
-            
             return 10
         }
-
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
