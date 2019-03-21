@@ -118,6 +118,12 @@ class MainViewController: UIViewController {
     @objc func settingBtnAction(){
         print("setting button pushed!!")
         // 설정 페이지 넘어가는 부분
+        
+        let settingVC = SettingsViewController()
+        settingVC.modalPresentationStyle = .overFullScreen
+        settingVC.modalTransitionStyle = .crossDissolve
+        self.present(settingVC, animated: true, completion: nil)
+        
     }
     
     /// 유저가 입력한 연인이된날(선택날짜)을 기준으로 현재까지 날짜를 계산하여 화면에 보여주는 함수

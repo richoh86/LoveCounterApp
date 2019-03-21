@@ -215,13 +215,16 @@ class MainView: UIView {
         
         imgSetting.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(50)
-            make.right.equalToSuperview().inset(15)
+            make.right.equalToSuperview().inset(10)
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
         
         settingBtn.snp.makeConstraints { make in
-            make.top.bottom.left.right.equalTo(imgSetting)
+//            make.top.bottom.left.right.equalTo(imgSetting)
+            make.center.equalTo(imgSetting)
+            make.width.equalTo(50)
+            make.height.equalTo(50)
         }
         
         // 임시주석처리: 오류나는부분
