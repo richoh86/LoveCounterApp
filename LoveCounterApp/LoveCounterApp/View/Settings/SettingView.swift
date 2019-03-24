@@ -43,13 +43,13 @@ class SettingView: UIView {
         return btn
     }()
     
-    // MARK: - section 3개를 담을 수 있는 stackView
-    let stackViewForAllSection: UIStackView = {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.distribution = .fillProportionally
-        return view
-    }()
+//    // MARK: - section 3개를 담을 수 있는 stackView
+//    let stackViewForAllSection: UIStackView = {
+//        let view = UIStackView()
+//        view.axis = .vertical
+//        view.distribution = .fillProportionally
+//        return view
+//    }()
     
     // MARK: - 기본 설정 뷰
     let section1StackView: UIStackView = {
@@ -79,6 +79,12 @@ class SettingView: UIView {
         return view
     }()
     
+    let btnForTitle1ViewInSection1: UIButton = {
+        let btn = UIButton()
+        btn.tag = 101
+        return btn
+    }()
+    
     let title1ForSection1: UILabel = {
         let text = UILabel()
         text.text = "연인이 된 날짜"
@@ -105,6 +111,12 @@ class SettingView: UIView {
         return view
     }()
     
+    let btnForTitle2ViewInSection1: UIButton = {
+        let btn = UIButton()
+        btn.tag = 102
+        return btn
+    }()
+    
     let title2ForSection1: UILabel = {
         let text = UILabel()
         text.text = "내꺼 생일"
@@ -129,6 +141,12 @@ class SettingView: UIView {
     let title3View: UIView = {
         let view = UIView()
         return view
+    }()
+    
+    let btnForTitle3ViewInSection1: UIButton = {
+        let btn = UIButton()
+        btn.tag = 103
+        return btn
     }()
     
     let title3ForSection1: UILabel = {
@@ -184,6 +202,12 @@ class SettingView: UIView {
         return view
     }()
     
+    let btnForTitle1ViewInSection2: UIButton = {
+        let btn = UIButton()
+        btn.tag = 201
+        return btn
+    }()
+    
     let title1ForSection2: UILabel = {
         let text = UILabel()
         text.text = "푸쉬 알람"
@@ -203,6 +227,12 @@ class SettingView: UIView {
         let line = UIView()
         line.backgroundColor = .white
         return line
+    }()
+    
+    let btnForTitle2ViewInSection2: UIButton = {
+        let btn = UIButton()
+        btn.tag = 202
+        return btn
     }()
     
     let title2ViewForSection2: UIView = {
@@ -259,6 +289,12 @@ class SettingView: UIView {
         return view
     }()
     
+    let btnForTitle1ViewInSection3: UIButton = {
+        let btn = UIButton()
+        btn.tag = 301
+        return btn
+    }()
+    
     let title1ForSection3: UILabel = {
         let text = UILabel()
         text.text = "문의하기"
@@ -283,6 +319,12 @@ class SettingView: UIView {
     let title2ViewForSection3: UIView = {
         let view = UIView()
         return view
+    }()
+    
+    let btnForTitle2ViewInSection3: UIButton = {
+        let btn = UIButton()
+        btn.tag = 302
+        return btn
     }()
     
     let title2ForSection3: UILabel = {
@@ -335,11 +377,19 @@ class SettingView: UIView {
         return line
     }()
     
+//    var btnTag: Int?
+    
     // MARK: - initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
+    
+//    convenience init(btnTag: Int){
+//        self.init()
+//        self.btnTag = btnTag
+//        commonInit()
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -380,6 +430,11 @@ class SettingView: UIView {
         title3View.addSubview(indicatorImg3)
         title3View.addSubview(bottomLineView3)
         
+        // 각 타이틀 별로 버튼 뷰 넣어줄 것
+        title1View.addSubview(btnForTitle1ViewInSection1)
+        title2View.addSubview(btnForTitle2ViewInSection1)
+        title3View.addSubview(btnForTitle3ViewInSection1)
+        
         section1StackView.addArrangedSubview(sectionTitleView)
         section1StackView.addArrangedSubview(title1View)
         section1StackView.addArrangedSubview(title2View)
@@ -398,6 +453,10 @@ class SettingView: UIView {
         title2ViewForSection2.addSubview(title2ForSection2)
         title2ViewForSection2.addSubview(indicatorImg2ForSection2)
         title2ViewForSection2.addSubview(bottomLineView2ForSection2)
+        
+        // 하트 이미지 버튼 뷰
+        title1ViewForSection2.addSubview(btnForTitle1ViewInSection2)
+        title2ViewForSection2.addSubview(btnForTitle2ViewInSection2)
         
         section2StackView.addArrangedSubview(section2TitleView)
         section2StackView.addArrangedSubview(title1ViewForSection2)
@@ -420,6 +479,10 @@ class SettingView: UIView {
         title3ViewForSection3.addSubview(title3ForSection3)
         title3ViewForSection3.addSubview(versionLbForSection3)
         title3ViewForSection3.addSubview(bottomLineView3ForSection3)
+        
+        // 버튼 뷰
+        title1ViewForSection3.addSubview(btnForTitle1ViewInSection3)
+        title2ViewForSection3.addSubview(btnForTitle2ViewInSection3)
         
         section3StackView.addArrangedSubview(section3TitleView)
         section3StackView.addArrangedSubview(title1ViewForSection3)
@@ -470,6 +533,18 @@ class SettingView: UIView {
             make.top.equalTo(topTitleContainerView.snp.bottom).offset(30)
             make.width.equalToSuperview()
             make.height.equalTo(200)
+        }
+        
+        btnForTitle1ViewInSection1.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        btnForTitle2ViewInSection1.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        btnForTitle3ViewInSection1.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         bottomLineView1.snp.makeConstraints { make in
@@ -551,6 +626,18 @@ class SettingView: UIView {
             make.height.equalTo(150)
         }
         
+        btnForTitle1ViewInSection2.snp.makeConstraints { make in
+            make.width.equalTo(70)
+            make.height.equalTo(50)
+            make.center.equalTo(indicatorImg1ForSection2)
+        }
+        
+        btnForTitle2ViewInSection2.snp.makeConstraints { make in
+            make.width.equalTo(70)
+            make.height.equalTo(50)
+            make.center.equalTo(indicatorImg2ForSection2)
+        }
+        
         bottomLineView1ForSection2.snp.makeConstraints { make in
             make.width.equalToSuperview().offset(-20)
             make.height.equalTo(0.5)
@@ -606,6 +693,14 @@ class SettingView: UIView {
             make.top.equalTo(section2StackView.snp.bottom).offset(20)
             make.width.equalToSuperview()
             make.height.equalTo(200)
+        }
+        
+        btnForTitle1ViewInSection3.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        btnForTitle2ViewInSection3.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         bottomLineView1ForSection3.snp.makeConstraints { make in

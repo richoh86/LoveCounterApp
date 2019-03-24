@@ -58,7 +58,9 @@ class NameAndImgChangeViewController: UIViewController{
         
         let photos = PHPhotoLibrary.authorizationStatus()
         if photos == .notDetermined {
-            PHPhotoLibrary.requestAuthorization { (status) in
+            
+            DispatchQueue.main.async {
+                PHPhotoLibrary.requestAuthorization { (status) in
                 if status == .authorized {
                     if let tag = self.btnTag {
                         print("프로필사진변경",tag)
@@ -74,13 +76,17 @@ class NameAndImgChangeViewController: UIViewController{
                     self.present(alertVC, animated: true, completion: nil)
                 }
             }
+         }
+            
         }else{
             if let tag = self.btnTag {
                 print("프로필사진변경",tag)
                 let imagePickerController = UIImagePickerController()
                 imagePickerController.delegate = self
                 imagePickerController.sourceType = .photoLibrary
-                self.present(imagePickerController, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.present(imagePickerController, animated: true, completion: nil)
+                }
             }
         }
     }

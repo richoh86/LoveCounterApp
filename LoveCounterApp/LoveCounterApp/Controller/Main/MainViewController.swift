@@ -16,8 +16,8 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         getProfileImgFileFromDocumentDirectory()
+        countedDayAndDateTextChangeObserver()
         imageChangeObserver()
         nameChangeObserver()
         createUI()
@@ -44,6 +44,27 @@ class MainViewController: UIViewController {
             self.mainView.circleViewForPic2.image = image
         }else{
             self.mainView.circleViewForPic2.image = nil
+        }
+    }
+    
+    func countedDayAndDateTextChangeObserver(){
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "countDayAndDateTextChange"), object: nil, queue: nil) { noti in
+            
+            if let dateText = noti.userInfo?["dateText"] as? String {
+                print("날짜",dateText)
+                self.mainView.topTitle.text =
+                "\(dateText)!\n우리의 사랑은 시작되었다."
+            }
+            
+            if let countedDay = noti.userInfo?["countedDay"] as? Int {
+                print(countedDay)
+                
+                if countedDay >= 0 {
+                    self.mainView.textLb.text = "\(countedDay + 1)일"
+                }else{
+                    self.mainView.textLb.text = "\(-(countedDay - 1))일"
+                }
+            }
         }
     }
     
@@ -151,11 +172,13 @@ class MainViewController: UIViewController {
             print("\(days) 차이.")
             
             // 연인이 된 날짜 첫날은 1일로 보기 때문에 차이 값에서 1을 더 해준다
-            if days > 0 {
-                mainView.textLb.text = "+\(days + 1)일"
+            // 차이가 0인 경우 무조건 1일로 맞춰준다
+            if days >= 0 {
+                mainView.textLb.text = "\(days + 1)일"
             }else{
                 mainView.textLb.text = "\(-(days - 1))일"
             }
+            
         }
     }
     
@@ -173,6 +196,7 @@ class MainViewController: UIViewController {
     }
     
     deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "countDayAndDateTextChange"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "imageChange"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "nameChange"), object: nil)
     }

@@ -18,6 +18,7 @@
 		79274C2D2230F9D5005F1F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79274C2B2230F9D5005F1F2D /* LaunchScreen.storyboard */; };
 		7933FD3F2238D66800EB4276 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7933FD3E2238D66800EB4276 /* MainViewController.swift */; };
 		7933FD412238D6C400EB4276 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7933FD402238D6C400EB4276 /* MainView.swift */; };
+		793670872244CFE800185E97 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793670862244CFE800185E97 /* DatePickerView.swift */; };
 		7948909F2232013E00013884 /* FirstUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7948909E2232013E00013884 /* FirstUserView.swift */; };
 		794890A12232233700013884 /* FirstUseViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794890A02232233700013884 /* FirstUseViewController2.swift */; };
 		794890A32232233A00013884 /* FirstUseViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794890A22232233A00013884 /* FirstUseViewController3.swift */; };
@@ -46,6 +47,7 @@
 		79274C2E2230F9D5005F1F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7933FD3E2238D66800EB4276 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7933FD402238D6C400EB4276 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		793670862244CFE800185E97 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		7948909E2232013E00013884 /* FirstUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUserView.swift; sourceTree = "<group>"; };
 		794890A02232233700013884 /* FirstUseViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseViewController2.swift; sourceTree = "<group>"; };
 		794890A22232233A00013884 /* FirstUseViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseViewController3.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				79EA3A48224335A1002A441A /* SettingView.swift */,
+				793670862244CFE800185E97 /* DatePickerView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				79EA3A1F223F6C2000417EC4 /* NameChangeViewController.swift in Sources */,
 				79C5A5E1223B7DDC00B8D199 /* CalenderDataCenter.swift in Sources */,
 				79274C252230F9D4005F1F2D /* FirstUseViewController1.swift in Sources */,
+				793670872244CFE800185E97 /* DatePickerView.swift in Sources */,
 				7933FD412238D6C400EB4276 /* MainView.swift in Sources */,
 				794890A12232233700013884 /* FirstUseViewController2.swift in Sources */,
 				79274C232230F9D4005F1F2D /* AppDelegate.swift in Sources */,
