@@ -78,26 +78,40 @@ class FirstUseViewController1: UIViewController {
         
         // 현재 날짜
         let currentDate = Date()
-        // 현재 날짜 String으로 가져오기
-        let strCurDate = dateFormatter1.string(from: currentDate)
-        // 현재 날짜 다시 포맷에 맞게 date 로 타입 변환
-        let curDate = dateFormatter1.date(from: strCurDate)!
-        // 연인이 된 날짜 String -> Date
-        let selDate = dateFormatter1.date(from: strDateForSpinnerUIBox!)!
         
         // UserDefault 저장
-        UserDefaults.standard.set(selDate, forKey: "selDate")
+        UserDefaults.standard.set(selectedDate, forKey: "selDate")
         
-        // 연인이 된 날짜로 부터 현재 날짜까지 차이 계산
-        let interval = selDate.timeIntervalSince(curDate)
-        // 연인이 된 날짜와 현재 날짜의 차이 계산 값
-        let days = Int(interval / 86400)
-        print("\(days) 차이.")
+        let calendar = Calendar.current
+        let date1 = calendar.startOfDay(for: selectedDate)
+        let date2 = calendar.startOfDay(for: currentDate)
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+
+        guard let days = components.day else {return}
         
         if days >= 0 {
             firstUserView.textLb.text = "\(days + 1)일"
         }else{
-            firstUserView.textLb.text = "\(-days + 1)일"
+//            firstUserView.textLb.text = "\(-days + 1)일"
+            let action1 = UIAlertAction(title: "예", style: .default) { (action) in
+                
+                // Spinner의 선택 날짜를 현재 날짜로 변경
+                let currentDate = Date()
+                self.firstUserView.dateSpinner.setDate(currentDate, animated: true)
+                
+                // 선택된 시간 String 값 변환
+                let strCurrentDate = dateFormatter1.string(from: currentDate)
+                self.strDateForSpinnerUIBox = strCurrentDate
+                
+                // Spinner UI Box 안에 보여주는 날짜 현재 날짜로 변경
+                self.firstUserView.dateTextLb.text = strCurrentDate
+                
+            }
+            let alertVC = UIAlertController(title: "날짜확인", message: "오늘 날짜 이후로는 설정할 수 없습니다!", preferredStyle: UIAlertController.Style.alert)
+            
+            alertVC.addAction(action1)
+            self.present(alertVC, animated: true, completion: nil)
+
         }
         
 //        let calendar = Calendar.current

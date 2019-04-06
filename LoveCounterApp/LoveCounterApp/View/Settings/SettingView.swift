@@ -68,7 +68,7 @@ class SettingView: UIView {
         let title = UILabel()
         title.text = "기본 설정"
         title.textColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
-        title.font = UIFont.boldSystemFont(ofSize: 19)
+        title.font = UIFont.boldSystemFont(ofSize: 16)
         title.textAlignment = .left
         return title
     }()
@@ -190,7 +190,7 @@ class SettingView: UIView {
         let title = UILabel()
         title.text = "알림 설정"
         title.textColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
-        title.font = UIFont.boldSystemFont(ofSize: 19)
+        title.font = UIFont.boldSystemFont(ofSize: 16)
         title.textAlignment = .left
         return title
     }()
@@ -278,7 +278,7 @@ class SettingView: UIView {
         let title = UILabel()
         title.text = "Love Counter"
         title.textColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
-        title.font = UIFont.boldSystemFont(ofSize: 19)
+        title.font = UIFont.boldSystemFont(ofSize: 16)
         title.textAlignment = .left
         return title
     }()
