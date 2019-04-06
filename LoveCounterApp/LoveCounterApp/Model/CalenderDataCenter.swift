@@ -85,29 +85,86 @@ class CalenderDataCenter {
     func dateCal(){
         
         let date = Date()
+        var strOfselectedDate = ""
+        var strOfselectedDateForYear = ""
+        var year = 0
+        
+        let dateFormatter = DateFormatter()
+        let dateFormatterForYear = DateFormatter()
+        let dateFormatterAll = DateFormatter()
+        dateFormatter.dateFormat = "MM월 dd일"
+        dateFormatterForYear.dateFormat = "YYYY년"
+        dateFormatterAll.dateFormat = "YYYY년 MM월 dd일"
+        
+        if let selectedDate = UserDefaults.standard.value(forKey: "selDate") as? Date {
+            print("지금", selectedDate)
+            strOfselectedDate = dateFormatter.string(from: selectedDate)
+            
+            print("지금", strOfselectedDate)
+            strOfselectedDateForYear = dateFormatterForYear.string(from: selectedDate)
+            
+            year = Int(strOfselectedDateForYear.dropLast())!
+            
+            print("지금", year)
+        }
+        
         for i in countDays {
             
-            // 계산된 날짜 텍스트
-            let strDate = date.changeDaysBy(days: i)
-            self.strDate.append(strDate)
+            // 1주년 단위 계산된 날짜 텍스트
+            if i % 365 == 0 {
+                
+                let strDate = "\(year+1)년 "+strOfselectedDate
+                self.strDate.append(strDate)
+                year += 1
+                print("now", strDate)
+                // 계산된 날짜 Date 타입 (아래 현재날짜로부터 얼마나 남았는지 계산하기 위한 값)   
+                if let dateYealy = dateFormatterAll.date(from: strDate) {
+                    print("now", dateYealy)
+                    let dateY = dateYealy.getDateAfterForYealyDateCount(days: 1, yealyDate: dateYealy)
+                    print("now", dateY)
+                    self.dateDate.append(dateY)
+                }
+                
+            // 100,200,... 계산된 날짜 텍스트
+            }else{
+                let strDate = date.changeDaysBy(days: i)
+                self.strDate.append(strDate)
+                
+                // 계산된 날짜 Date 타입 (아래 현재날짜로부터 얼마나 남았는지 계산하기 위한 값)
+                let calculatedDay = date.getDateAfter(days: i)
+                self.dateDate.append(calculatedDay)
+            }
             
-            // 계산된 날짜 Date 타입 (아래 현재날짜로부터 얼마나 남았는지 계산하기 위한 값)
-            let calculatedDay = date.getDateAfter(days: i)
-            self.dateDate.append(calculatedDay)
+            
         }
         
         // 현재 날짜부터 100일로 계산된 날짜까지 얼마나 남았는지 계산하고 값
         for date in dateDate {
+            
             // 현재 날짜
             let currentDate = Date()
-            // 현재날짜로 부터 해당 기념일까지 남은 날짜 계산
-            let interval = date.timeIntervalSince(currentDate)
-            let days = Int(interval / 86400)
+            let calendar = Calendar.current
+            let date1 = calendar.startOfDay(for: date)
+            let date2 = calendar.startOfDay(for: currentDate)
+            let components = calendar.dateComponents([.day], from: date2, to: date1)
+            guard let days = components.day else {return}
             
+            // 오늘 날짜보다 미래인 경우
             if days > 0 {
-                strDday.append("D-\(days)")
+                let days1 = days - 1
+                if days1 == 0 {
+                    strDday.append("D-Day!")
+                }else{
+                    strDday.append("D-\(days - 1)")
+                }
+            // 오늘 날짜와 동일한 경우
+            }else if days == 0 {
+                strDday.append("D-Day")
+            // 오늘 날짜보다 과거인 경우
             }else{
-                strDday.append("D+\(-days)")
+                print("days < 0", days)
+                let days1 = days - 1
+                strDday.append("D+\(-days1)")
             }
         }
     }
@@ -154,14 +211,39 @@ class CalenderDataCenter {
         
         for date in dateOfAnniversaryDay{
             if let anniversaryDate = dateFormatter3.date(from: date) {
-                let intervals = anniversaryDate.timeIntervalSince(curDate)
-                let days = Int(intervals / 86400)
-               
+                
+                let currentDate = Date()
+                
+                let calendar = Calendar.current
+                let date1 = calendar.startOfDay(for: anniversaryDate)
+                let date2 = calendar.startOfDay(for: currentDate)
+                let components = calendar.dateComponents([.day], from: date2, to: date1)
+                
+                guard let days = components.day else {return}
+                
+                // 현재 날짜보다 과거인 경우
                 if days > 0 {
-                    dDayOfAnniversaryDay.append("D-\(days)")
+                    print("days > 0", days)
+                    print("currentDay", date2)
+                    print("anniversaryDay", date1)
+                    dDayOfAnniversaryDay.append("D-\(days - 1)")
+                // 현재 날짜와 동일한 경우
+                }else if days == 0 {
+                    dDayOfAnniversaryDay.append("D-Day")
+                // 현재 날짜보다 미래인 경우
                 }else{
-                    dDayOfAnniversaryDay.append("D+\(-days)")
+                    print("days < 0", days)
+                    let days1 = days - 1
+                    dDayOfAnniversaryDay.append("D+\(-days1)")
                 }
+//                let intervals = anniversaryDate.timeIntervalSince(curDate)
+//                let days = Int(intervals / 86400)
+//
+//                if days > 0 {
+//                    dDayOfAnniversaryDay.append("D-\(days)")
+//                }else{
+//                    dDayOfAnniversaryDay.append("D+\(-days)")
+//                }
             }
         }
     }
@@ -177,6 +259,7 @@ extension Date {
         if let selectedDate = UserDefaults.standard.value(forKey: "selDate") as? Date{
             var dateComponents = DateComponents()
             dateComponents.day = days - 1
+//            dateComponents.day = days
             let resultDate = Calendar.current.date(byAdding: dateComponents, to: selectedDate)!
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy년 MM월 dd일"
@@ -210,5 +293,16 @@ extension Date {
             let currentDate = Date()
             return currentDate
         }
+    }
+    
+    /// 연인이된 날짜로부터 1주년 단위 날짜 만들기 함수
+    ///
+    /// - Parameter days: N일
+    /// - Returns: 결과 날짜 Date 타입
+    func getDateAfterForYealyDateCount(days : Int, yealyDate: Date) -> Date {
+            var dateComponents = DateComponents()
+            dateComponents.day = days
+            let resultDate = Calendar.current.date(byAdding: dateComponents, to: yealyDate)!
+            return resultDate
     }
 }

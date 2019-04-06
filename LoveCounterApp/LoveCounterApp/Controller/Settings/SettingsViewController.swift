@@ -8,11 +8,17 @@
 
 import UIKit
 import SnapKit
+import MessageUI
+import StoreKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     let settingsView = SettingView()
     var datePickerView: DatePickerView?
+    var mailVC: MFMailComposeViewController?
+    
+    var pushAlarmBool = false
+    var pushAlarmForBirthAndAnniBool = false
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -42,6 +48,36 @@ class SettingsViewController: UIViewController {
         // "알람 설정" 버튼 액션 설정
         settingsView.btnForTitle1ViewInSection2.addTarget(self, action: #selector(pushAlarmStateChangeBtn), for: .touchUpInside)
         settingsView.btnForTitle2ViewInSection2.addTarget(self, action: #selector(pushAlarmForBirthDayAndAnniversaryDayChangeBtn), for: .touchUpInside)
+        
+        // 푸시 알람 설정 상태값
+        let pushAlarmBool = UserDefaults.standard.bool(forKey: "pushAlarm")
+
+        print(pushAlarmBool, "pushAlarm UserDefault")
+        
+        if pushAlarmBool != false {
+            self.pushAlarmBool = pushAlarmBool
+        }
+
+        if self.pushAlarmBool { // true
+            settingsView.indicatorImg1ForSection2.alpha = 1.0
+        }else{ // false
+            settingsView.indicatorImg1ForSection2.alpha = 0.3
+        }
+        
+        // 생일 & 기념일 알람 설정 상태값
+        let bAAlarmBool = UserDefaults.standard.bool(forKey: "pushAlarmForBirthAndAnniBool")
+
+        print(bAAlarmBool, "bAAlarmBool UserDefault")
+        
+        if bAAlarmBool != false {
+            self.pushAlarmForBirthAndAnniBool = bAAlarmBool
+        }
+        
+        if self.pushAlarmForBirthAndAnniBool {
+            settingsView.indicatorImg2ForSection2.alpha = 1.0
+        }else{
+            settingsView.indicatorImg2ForSection2.alpha = 0.3
+        }
         
         // "LoveCounter" 버튼 설정
         settingsView.btnForTitle1ViewInSection3.addTarget(self, action: #selector(askActionBtn), for: .touchUpInside)
@@ -124,17 +160,54 @@ class SettingsViewController: UIViewController {
         if btnTag == 101 {
             print("101 태그 버튼 확인!!",btnTag)
             
-            // 1. UserDefault 저장
-            UserDefaults.standard.set(selDate, forKey: "selDate")
-            
-            // 2. 현재 메인 화면상 날짜 및 카운트 데이 변경 로직 추가 필요
             let strSelDate = dateFormatter.string(from: selDate)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "countDayAndDateTextChange"), object: nil, userInfo: ["dateText": strSelDate])
+//            let intervals = curDate.timeIntervalSince(selDate)
             
-            let intervals = curDate.timeIntervalSince(selDate)
-            let days = Int(intervals/86400)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "countDayAndDateTextChange"), object: nil, userInfo: ["countedDay": days])
-        
+            let calendar = Calendar.current
+            let date1 = calendar.startOfDay(for: selDate)
+            let date2 = calendar.startOfDay(for: curDate)
+            
+            print(date1)
+            print(date2)
+            
+            var components = calendar.dateComponents([.day, .hour, .minute, .second], from: date1, to: date2)
+            
+//            components.setValue(00, for: Calendar.Component.hour)
+//            components.setValue(00, for: Calendar.Component.minute)
+//            components.setValue(00, for: Calendar.Component.second)
+            
+//            var days = Int(intervals / 86400)s
+            
+//            // 0 보다 큰 경우, 1을 더해준다
+//            if intervals.truncatingRemainder(dividingBy: 86400) > 0 {
+//                days = days + 1
+//            }
+            
+            // 하루 차이는 계산되지 않음.....ㅜㅜㅜ hours를 00:00으로 설정하는법을 찾을 것
+            // 위 startOfDay(for: Date)가 시작 시간으로 만들어줌
+            var days = 0
+            if let day = components.day {
+                days = day + 1
+            }
+            
+            // 날짜 차이가 0보다 작은 경우 메세지를 띄어준다
+            if days < 0 {
+                let action1 = UIAlertAction(title: "예", style: UIAlertAction.Style.default)
+                let alertVC = UIAlertController(title: "날짜확인", message: "오늘 날짜 이후로는 설정할 수 없습니다!", preferredStyle: UIAlertController.Style.alert)
+                alertVC.addAction(action1)
+                self.present(alertVC, animated: true, completion: nil)
+            
+            // 날짜 차이가 0보다 크거나 0인 경우 날짜를 저장하고 옵저버를 작동시킨다
+            }else{
+//                print("intervals", intervals, "현재시간", curDate, "선택한시간", selDate)
+//                print("Notification days 차이:",days)
+
+                UserDefaults.standard.set(selDate, forKey: "selDate")
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "countDayAndDateTextChange"), object: nil, userInfo: ["dateText": strSelDate])
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "countDayAndDateTextChange"), object: nil, userInfo: ["countedDay": days])
+            }
+
         // 내꺼 생일 날짜 변경
         }else if btnTag == 102 {
             UserDefaults.standard.set(selDate, forKey: "LoveBirthDay")
@@ -147,22 +220,66 @@ class SettingsViewController: UIViewController {
         self.datePickerView?.removeFromSuperview()
     }
     
-    // 알림 설정
+    // 푸쉬 알림 설정
     @objc func pushAlarmStateChangeBtn() {
-        print("push alarm change")
+        
+        self.pushAlarmBool = !self.pushAlarmBool
+        
+        if self.pushAlarmBool { // 알람 설정 ON: True
+            self.settingsView.indicatorImg1ForSection2.alpha = 1.0
+            print("push alarm ON!!")
+            
+            // 알람설정 권한 상태가 허용된 상태인지 확인하고 요청하는 화면을 보여준다...
+            
+        }else{ // 알람 설정 OFF: False
+            self.settingsView.indicatorImg1ForSection2.alpha = 0.3
+            print("push alarm OFF!!")
+        }
+        
+        UserDefaults.standard.set(pushAlarmBool, forKey: "pushAlarm")
+//        print("push alarm change")
     }
     
+    // 생일 & 기념일 알림 설정
     @objc func pushAlarmForBirthDayAndAnniversaryDayChangeBtn() {
-        print("push alarm for Birth and Anni change!!")
+        
+        self.pushAlarmForBirthAndAnniBool = !self.pushAlarmForBirthAndAnniBool
+        
+        if self.pushAlarmForBirthAndAnniBool {
+            self.settingsView.indicatorImg2ForSection2.alpha = 1.0
+            print("push alarm for Birth and Anni ON!!")
+            
+            // 알람설정 권한 상태가 허용된 상태인지 확인하고 요청하는 화면을 보여준다...
+            
+        }else{
+            self.settingsView.indicatorImg2ForSection2.alpha = 0.3
+            print("push alarm for Birth and Anni OFF!!")
+        }
+        
+        UserDefaults.standard.set(pushAlarmForBirthAndAnniBool, forKey: "pushAlarmForBirthAndAnniBool")
+//        print("push alarm for Birth and Anni change!!")
     }
     
     // LoveCounter 설정
     @objc func askActionBtn(){
         print("문의하기 로우 클릭!!")
+        guard MFMailComposeViewController.canSendMail() else {return}
+        print("메일 뷰 보기 성공!!")
+       
+        mailVC = MFMailComposeViewController()
+        mailVC?.mailComposeDelegate = self
+        mailVC?.setToRecipients(["wsoh1986@gmail.com"])
+        
+        self.present(mailVC!, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        mailVC?.dismiss(animated: true, completion: nil)
     }
     
     @objc func reviewActionBtn(){
         print("리뷰 남기기 클릭!!")
+        SKStoreReviewController.requestReview()
     }
 
     private func updateAutoLayout(){
@@ -173,3 +290,6 @@ class SettingsViewController: UIViewController {
     }
 
 }
+    
+
+

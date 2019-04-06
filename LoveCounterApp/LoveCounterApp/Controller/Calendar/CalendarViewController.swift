@@ -92,6 +92,8 @@ class CalendarViewController: UIViewController {
         self.tableViewForCouple.separatorStyle = .singleLine
         
         self.view.addSubview(self.tableViewForCouple)
+        
+//        self.tableViewForCouple.scrollToRow(at: tableViewForCouple.indexPath(for:), at: UITableView.ScrollPosition(rawValue: 10), animated: true)
     }
     
     func createTableViewForAnniversary() {
@@ -156,7 +158,14 @@ extension CalendarViewController: UITableViewDataSource {
             
             cellForCoupleTable.countDay.text = cDataCenter.strCountDays[indexPath.row]
             cellForCoupleTable.countedDate.text = cDataCenter.strDate[indexPath.row]
+            
             cellForCoupleTable.countedDday.text = cDataCenter.strDday[indexPath.row]
+            if cDataCenter.strDday[indexPath.row].contains("+"){
+                cellForCoupleTable.countDay.alpha = 0.2
+                cellForCoupleTable.countedDate.alpha = 0.2
+                cellForCoupleTable.countedDday.alpha = 0.2
+                cellForCoupleTable.bottomLineView.alpha = 0.2
+            }
             
             cellForCoupleTable.backgroundColor = UIColor.clear
             
@@ -169,6 +178,12 @@ extension CalendarViewController: UITableViewDataSource {
             cellForAnniversaryTable.textLbForView1.text = cDataCenter.nameOfAnniversaryDay[indexPath.row]
             cellForAnniversaryTable.textLb1ForStackView.text = cDataCenter.dateOfAnniversaryDay[indexPath.row]
             cellForAnniversaryTable.textLb2ForStackView.text = cDataCenter.dDayOfAnniversaryDay[indexPath.row]
+            if cDataCenter.dDayOfAnniversaryDay[indexPath.row].contains("+"){
+                cellForAnniversaryTable.textLbForView1.alpha = 0.2
+                cellForAnniversaryTable.textLb1ForStackView.alpha = 0.2
+                cellForAnniversaryTable.textLb2ForStackView.alpha = 0.2
+                cellForAnniversaryTable.bottomLineView.alpha = 0.2
+            }
             
             cellForAnniversaryTable.backgroundColor = UIColor.clear
             
@@ -184,6 +199,7 @@ extension CalendarViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
+    
 }
 
 

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import UserNotifications
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     @IBOutlet weak var backgroundImg: UIImageView!
     
@@ -21,6 +22,28 @@ class MainViewController: UIViewController {
         imageChangeObserver()
         nameChangeObserver()
         createUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // Push Alarm 권한 요청 및 설정
+        let center = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.sound, .alert]
+        
+        center.requestAuthorization(options: options) { (granted, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                print(granted)
+                // 권한 요청 허용시 알림 설정을 모두 켜준다
+                UserDefaults.standard.set(granted, forKey: "pushAlarm")
+                UserDefaults.standard.set(granted, forKey: "pushAlarmForBirthAndAnniBool")
+            }
+        }
+        center.delegate = self
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound, .badge])
     }
     
     private func getProfileImgFileFromDocumentDirectory() {
@@ -58,12 +81,13 @@ class MainViewController: UIViewController {
             
             if let countedDay = noti.userInfo?["countedDay"] as? Int {
                 print(countedDay)
-                
                 if countedDay >= 0 {
-                    self.mainView.textLb.text = "\(countedDay + 1)일"
-                }else{
-                    self.mainView.textLb.text = "\(-(countedDay - 1))일"
+                    self.mainView.textLb.text = "\(countedDay)일"
                 }
+                
+//                else{
+//                    self.mainView.textLb.text = "\(-countedDay + 1)일"
+//                }
             }
         }
     }
@@ -152,33 +176,18 @@ class MainViewController: UIViewController {
         
         // 선택된 날짜 (연인이 된 날짜) 앱 처음 실행시 입력값 UserDefault에서 가져온다
         if let selectedDate = UserDefaults.standard.value(forKey: "selDate") as? Date {
-            // Date 포맷은 yyyy.MM.dd
-            let dateFormatter1 = DateFormatter()
-            dateFormatter1.dateFormat = "yyyy.MM.dd"
-            // 선택된 시간 String 값을 변환
-            let strSelectedDate = dateFormatter1.string(from: selectedDate)
+            
             // 현재 날짜
             let currentDate = Date()
-            // 현재 날짜 String으로 가져오기
-            let strCurDate = dateFormatter1.string(from: currentDate)
-            // 현재 날짜 다시 포맷에 맞게 date 로 타입 변환
-            let curDate = dateFormatter1.date(from: strCurDate)!
-            // 연인이 된 날짜 String -> Date
-            let selDate = dateFormatter1.date(from: strSelectedDate)!
-            // 연인이 된 날짜로 부터 현재 날짜까지 차이 계산
-            let interval = selDate.timeIntervalSince(curDate)
-            // 연인이 된 날짜와 현재 날짜의 차이 계산 값
-            let days = Int(interval / 86400)
-            print("\(days) 차이.")
+            let calendar = NSCalendar.current
+            let date1 = calendar.startOfDay(for: selectedDate)
+            let date2 = calendar.startOfDay(for: currentDate)
+            let components = calendar.dateComponents([.day], from: date1, to: date2)
             
-            // 연인이 된 날짜 첫날은 1일로 보기 때문에 차이 값에서 1을 더 해준다
-            // 차이가 0인 경우 무조건 1일로 맞춰준다
-            if days >= 0 {
-                mainView.textLb.text = "\(days + 1)일"
-            }else{
-                mainView.textLb.text = "\(-(days - 1))일"
+            if let numberOfDay = components.day {
+                // 연인이 된 날짜도 1일로 카운트하기 때문에 날짜 차이값에서 1을 더해준다
+                mainView.textLb.text = "\(numberOfDay + 1)일"
             }
-            
         }
     }
     
