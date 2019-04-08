@@ -53,8 +53,6 @@ class FirstUseViewController3: UIViewController {
     }
     
     @objc func completeBtnAction(){
-
-        print("완료")
         
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") else {return}
         // 첫번째 사용인지 확인하는 Bool 값: true가 설정되면 앱 실행시 FirstUseVC들은 실행되지 않는다
@@ -93,7 +91,6 @@ class FirstUseViewController3: UIViewController {
     }
     
     @objc func cancelBtnAction(){
-        print("취소")
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             self.firstUserView.dateSpinnerUIbox.frame = CGRect(x: 0, y: self.firstUserView.bounds.height, width: self.firstUserView.bounds.width, height: self.firstUserView.bounds.height*(3/5))

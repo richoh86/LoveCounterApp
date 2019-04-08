@@ -96,12 +96,12 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     // 기본 설정
     @objc func coupleDateChangeBtn(sender: UIButton){
         
-        print("연인이 된 날짜 로우 클릭!!")
         print(sender.tag)
         datePickerView = DatePickerView(btnTag: sender.tag)
         if let date = UserDefaults.standard.value(forKey: "selDate") as? Date{
             datePickerView?.datePickerView.date = date
         }
+        
         // datePickerView 완료 버튼 설정
         datePickerView?.completeBtn.addTarget(self, action: #selector(removeDatePickerViewAndSaveDate), for: .touchUpInside)
         guard let view = datePickerView else {return}
@@ -113,7 +113,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     @objc func yourBirthDayChangeBtn(sender: UIButton){
-        print("내꺼 생일 날짜 변경 로우 클릭!!")
         print(sender.tag)
         datePickerView = DatePickerView(btnTag: sender.tag)
         if let date = UserDefaults.standard.value(forKey: "LoveBirthDay") as? Date{
@@ -130,8 +129,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     @objc func myBirthDayChangeBtn(sender: UIButton){
-        print("본인 생일 날짜 변경 로우 클릭!!")
-        print(sender.tag)
         datePickerView = DatePickerView(btnTag: sender.tag)
         if let date = UserDefaults.standard.value(forKey: "myBirthDay") as? Date{
             datePickerView?.datePickerView.date = date
@@ -158,10 +155,8 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         
         // 연인이 된 날짜 변경 로직 (버튼 태그: 101)
         if btnTag == 101 {
-            print("101 태그 버튼 확인!!",btnTag)
             
             let strSelDate = dateFormatter.string(from: selDate)
-//            let intervals = curDate.timeIntervalSince(selDate)
             
             let calendar = Calendar.current
             let date1 = calendar.startOfDay(for: selDate)
@@ -172,17 +167,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
             
             var components = calendar.dateComponents([.day, .hour, .minute, .second], from: date1, to: date2)
             
-//            components.setValue(00, for: Calendar.Component.hour)
-//            components.setValue(00, for: Calendar.Component.minute)
-//            components.setValue(00, for: Calendar.Component.second)
-            
-//            var days = Int(intervals / 86400)s
-            
-//            // 0 보다 큰 경우, 1을 더해준다
-//            if intervals.truncatingRemainder(dividingBy: 86400) > 0 {
-//                days = days + 1
-//            }
-            
             // 하루 차이는 계산되지 않음.....ㅜㅜㅜ hours를 00:00으로 설정하는법을 찾을 것
             // 위 startOfDay(for: Date)가 시작 시간으로 만들어줌
             var days = 0
@@ -191,7 +175,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
             }
             
             // 날짜 차이가 0보다 작은 경우 메세지를 띄어준다
-            if days < 0 {
+            if days <= 0 {
                 let action1 = UIAlertAction(title: "예", style: UIAlertAction.Style.default)
                 let alertVC = UIAlertController(title: "날짜확인", message: "오늘 날짜 이후로는 설정할 수 없습니다!", preferredStyle: UIAlertController.Style.alert)
                 alertVC.addAction(action1)
@@ -199,9 +183,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
             
             // 날짜 차이가 0보다 크거나 0인 경우 날짜를 저장하고 옵저버를 작동시킨다
             }else{
-//                print("intervals", intervals, "현재시간", curDate, "선택한시간", selDate)
-//                print("Notification days 차이:",days)
-
                 UserDefaults.standard.set(selDate, forKey: "selDate")
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "countDayAndDateTextChange"), object: nil, userInfo: ["dateText": strSelDate])
@@ -237,7 +218,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         }
         
         UserDefaults.standard.set(pushAlarmBool, forKey: "pushAlarm")
-//        print("push alarm change")
     }
     
     // 생일 & 기념일 알림 설정
@@ -257,14 +237,12 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         }
         
         UserDefaults.standard.set(pushAlarmForBirthAndAnniBool, forKey: "pushAlarmForBirthAndAnniBool")
-//        print("push alarm for Birth and Anni change!!")
     }
     
     // LoveCounter 설정
+    /// 문의하기
     @objc func askActionBtn(){
-        print("문의하기 로우 클릭!!")
         guard MFMailComposeViewController.canSendMail() else {return}
-        print("메일 뷰 보기 성공!!")
        
         mailVC = MFMailComposeViewController()
         mailVC?.mailComposeDelegate = self
@@ -277,11 +255,12 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         mailVC?.dismiss(animated: true, completion: nil)
     }
     
+    /// 리뷰 남기기
     @objc func reviewActionBtn(){
-        print("리뷰 남기기 클릭!!")
         SKStoreReviewController.requestReview()
     }
 
+    /// 레이아웃설정
     private func updateAutoLayout(){
         
         settingsView.snp.makeConstraints { make in

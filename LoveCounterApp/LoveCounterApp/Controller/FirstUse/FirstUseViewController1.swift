@@ -113,20 +113,11 @@ class FirstUseViewController1: UIViewController {
             self.present(alertVC, animated: true, completion: nil)
 
         }
-        
-//        let calendar = Calendar.current
-//        let dateGap = calendar.dateComponents([.year,.month,.day,.hour], from: curDate, to: selDate)
-//
-//        if case let (y?, m?, d?, h?) = (dateGap.year, dateGap.month, dateGap.day, dateGap.hour)
-//        {
-//            print("\(y)년 \(m)개월 \(d)일 \(h)시간 후")
-//        }
         hideDateViewWithAnimation()
         
     }
     
     @objc func cancelBtnAction(){
-        print("취소")
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             
