@@ -36,7 +36,6 @@ class NameChangeViewController: UIViewController {
     }
     
     @objc func nameWritecompleted(sender: UIButton) {
-        print("이름 변경 완료")
         nameChangeView.textFieldForName.resignFirstResponder()
         if let tag = btnTag{
             guard let strName = nameChangeView.textFieldForName.text else {return}
@@ -44,19 +43,12 @@ class NameChangeViewController: UIViewController {
                 UserDefaults.standard.set(strName, forKey: "name1")
                 let userInfo = [ "name1": strName ]
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nameChange"), object: nil, userInfo: userInfo)
-                print("1번 이름 변경 시도")
             }else if tag == 2{
                 UserDefaults.standard.set(strName, forKey: "name2")
                 let userInfo = [ "name2": strName ]
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nameChange"), object: nil, userInfo: userInfo)
-                print("2번 이름 변경 시도")
             }
         }
-        // NameAndImgChangeVC를 없애고 MainVC로 돌아갈 수 있도록.. dismiss가 작동하지 않음..ㅜ
-        // UIWindow에 접근해서 해당 VC를 삭제할 수 있을 것으로 보임.. 일단 보류
-        
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dismissNameAndImgVC"), object: nil)
-        
         self.dismiss(animated: true)
     }
     
@@ -102,7 +94,6 @@ class NameChangeViewController: UIViewController {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-            print(keyboardHeight)
             
             btnContainerView.snp.makeConstraints { make in
                 make.width.equalToSuperview()

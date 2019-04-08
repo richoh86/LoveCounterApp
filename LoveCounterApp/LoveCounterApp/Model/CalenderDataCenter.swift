@@ -92,20 +92,16 @@ class CalenderDataCenter {
         let dateFormatter = DateFormatter()
         let dateFormatterForYear = DateFormatter()
         let dateFormatterAll = DateFormatter()
+        
         dateFormatter.dateFormat = "MM월 dd일"
         dateFormatterForYear.dateFormat = "YYYY년"
         dateFormatterAll.dateFormat = "YYYY년 MM월 dd일"
         
         if let selectedDate = UserDefaults.standard.value(forKey: "selDate") as? Date {
-            print("지금", selectedDate)
             strOfselectedDate = dateFormatter.string(from: selectedDate)
-            
-            print("지금", strOfselectedDate)
             strOfselectedDateForYear = dateFormatterForYear.string(from: selectedDate)
             
             year = Int(strOfselectedDateForYear.dropLast())!
-            
-            print("지금", year)
         }
         
         for i in countDays {
@@ -116,12 +112,10 @@ class CalenderDataCenter {
                 let strDate = "\(year+1)년 "+strOfselectedDate
                 self.strDate.append(strDate)
                 year += 1
-                print("now", strDate)
                 // 계산된 날짜 Date 타입 (아래 현재날짜로부터 얼마나 남았는지 계산하기 위한 값)   
                 if let dateYealy = dateFormatterAll.date(from: strDate) {
-                    print("now", dateYealy)
+                    
                     let dateY = dateYealy.getDateAfterForYealyDateCount(days: 1, yealyDate: dateYealy)
-                    print("now", dateY)
                     self.dateDate.append(dateY)
                 }
                 
@@ -162,7 +156,6 @@ class CalenderDataCenter {
                 strDday.append("D-Day")
             // 오늘 날짜보다 과거인 경우
             }else{
-                print("days < 0", days)
                 let days1 = days - 1
                 strDday.append("D+\(-days1)")
             }
@@ -186,14 +179,12 @@ class CalenderDataCenter {
         if let myBirthDay = UserDefaults.standard.value(forKey: "myBirthDay") as? Date {
             let strMyBirthDay = dateFormatter1.string(from: myBirthDay)
             dateOfAnniversaryDay.append(strCurYear+" "+strMyBirthDay)
-            print("초기저장본인생일",myBirthDay)
         
         }
         
         if let loveBirthDay = UserDefaults.standard.value(forKey: "LoveBirthDay") as? Date {
             let strloveBirthDay = dateFormatter1.string(from: loveBirthDay)
             dateOfAnniversaryDay.append(strCurYear+" "+strloveBirthDay)
-            print("초기저장내꺼생일",loveBirthDay)
         }
         
         // 2. 나머지 기념일들은 현재 연도를 year에 넣어주고 나머지 날짜들을 넣어준다
@@ -202,8 +193,6 @@ class CalenderDataCenter {
         }
         // 3. 크리스마스 12월 25일 추가
         dateOfAnniversaryDay.append("\(strCurYear) 12월 25일")
-        
-        print(dateOfAnniversaryDay.count)
         
         // 4. 현재로 부터 기념일까지 D-Day 계산 로직
         let dateFormatter3 = DateFormatter()
@@ -223,27 +212,15 @@ class CalenderDataCenter {
                 
                 // 현재 날짜보다 과거인 경우
                 if days > 0 {
-                    print("days > 0", days)
-                    print("currentDay", date2)
-                    print("anniversaryDay", date1)
                     dDayOfAnniversaryDay.append("D-\(days - 1)")
                 // 현재 날짜와 동일한 경우
                 }else if days == 0 {
                     dDayOfAnniversaryDay.append("D-Day")
                 // 현재 날짜보다 미래인 경우
                 }else{
-                    print("days < 0", days)
                     let days1 = days - 1
                     dDayOfAnniversaryDay.append("D+\(-days1)")
                 }
-//                let intervals = anniversaryDate.timeIntervalSince(curDate)
-//                let days = Int(intervals / 86400)
-//
-//                if days > 0 {
-//                    dDayOfAnniversaryDay.append("D-\(days)")
-//                }else{
-//                    dDayOfAnniversaryDay.append("D+\(-days)")
-//                }
             }
         }
     }

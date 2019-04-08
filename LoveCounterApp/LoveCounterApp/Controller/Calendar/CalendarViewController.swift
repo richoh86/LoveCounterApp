@@ -93,7 +93,8 @@ class CalendarViewController: UIViewController {
         
         self.view.addSubview(self.tableViewForCouple)
         
-//        self.tableViewForCouple.scrollToRow(at: tableViewForCouple.indexPath(for:), at: UITableView.ScrollPosition(rawValue: 10), animated: true)
+//        let ip = IndexPath(row: 20, section: 0)
+//        self.tableViewForCouple.scrollToRow(at: ip, at: .top, animated: true)
     }
     
     func createTableViewForAnniversary() {
@@ -164,8 +165,8 @@ extension CalendarViewController: UITableViewDataSource {
                 cellForCoupleTable.countDay.alpha = 0.2
                 cellForCoupleTable.countedDate.alpha = 0.2
                 cellForCoupleTable.countedDday.alpha = 0.2
-                cellForCoupleTable.bottomLineView.alpha = 0.2
             }
+            cellForCoupleTable.bottomLineView.alpha = 0.2
             
             cellForCoupleTable.backgroundColor = UIColor.clear
             
@@ -182,9 +183,8 @@ extension CalendarViewController: UITableViewDataSource {
                 cellForAnniversaryTable.textLbForView1.alpha = 0.2
                 cellForAnniversaryTable.textLb1ForStackView.alpha = 0.2
                 cellForAnniversaryTable.textLb2ForStackView.alpha = 0.2
-                cellForAnniversaryTable.bottomLineView.alpha = 0.2
             }
-            
+            cellForAnniversaryTable.bottomLineView.alpha = 0.2
             cellForAnniversaryTable.backgroundColor = UIColor.clear
             
             return cellForAnniversaryTable

@@ -63,7 +63,6 @@ class NameAndImgChangeViewController: UIViewController{
                 PHPhotoLibrary.requestAuthorization { (status) in
                 if status == .authorized {
                     if let tag = self.btnTag {
-                        print("프로필사진변경",tag)
                         let imagePickerController = UIImagePickerController()
                         imagePickerController.delegate = self
                         imagePickerController.sourceType = .photoLibrary
@@ -80,7 +79,6 @@ class NameAndImgChangeViewController: UIViewController{
             
         }else{
             if let tag = self.btnTag {
-                print("프로필사진변경",tag)
                 let imagePickerController = UIImagePickerController()
                 imagePickerController.delegate = self
                 imagePickerController.sourceType = .photoLibrary
@@ -93,7 +91,6 @@ class NameAndImgChangeViewController: UIViewController{
     
     /// 돌아가기 액션
     @objc func cancelAction(){
-        print("돌아가기")
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -135,7 +132,6 @@ extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
                     let fileName = getDocumentsDirectory().appendingPathComponent("profileImg1.png")
                     try? data.write(to: fileName)
                 }
-                print("image1 변경 post")
                 self.dismiss(animated: true, completion: nil)
                 
             // 두번째 이미지일 경우
@@ -148,7 +144,6 @@ extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
                     let fileName = getDocumentsDirectory().appendingPathComponent("profileImg2.png")
                     try? data.write(to: fileName)
                     
-                print("image2 변경 post")
                 self.dismiss(animated: true, completion: nil)
             }
         }
@@ -156,7 +151,6 @@ extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
 }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("이미지 선택 취소")
         self.dismiss(animated: true, completion: nil)
     }
     

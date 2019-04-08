@@ -87,7 +87,6 @@ class FirstUseViewController2: UIViewController {
     }
     
     @objc func cancelBtnAction(){
-        print("취소")
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             

@@ -74,7 +74,6 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "countDayAndDateTextChange"), object: nil, queue: nil) { noti in
             
             if let dateText = noti.userInfo?["dateText"] as? String {
-                print("날짜",dateText)
                 self.mainView.topTitle.text =
                 "\(dateText)!\n우리의 사랑은 시작되었다."
             }
@@ -82,12 +81,14 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
             if let countedDay = noti.userInfo?["countedDay"] as? Int {
                 print(countedDay)
                 if countedDay >= 0 {
-                    self.mainView.textLb.text = "\(countedDay)일"
+                    
+                    // 1,2,3.. 주년의 경우 텍스트를 바꿔서 보여준다
+                    if countedDay % 366 == 0{
+                        self.mainView.textLb.text = "\(countedDay / 366)주년"
+                    }else{
+                        self.mainView.textLb.text = "\(countedDay)일"
+                    }
                 }
-                
-//                else{
-//                    self.mainView.textLb.text = "\(-countedDay + 1)일"
-//                }
             }
         }
     }
@@ -97,12 +98,10 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "imageChange"), object: nil, queue: nil) { (noti) in
             
             if let image1 = noti.userInfo?["image1"] as? UIImage{
-                print("image1 호출",image1)
                 self.mainView.circleViewForPic1.image = image1
             }
             
             if let image2 = noti.userInfo?["image2"] as? UIImage{
-                print("image2 호출", image2)
                 self.mainView.circleViewForPic2.image = image2
             }
         }
@@ -113,11 +112,9 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "nameChange"), object: nil, queue: nil) { (noti) in
             if let name1 = noti.userInfo?["name1"] as? String{
-                print(name1)
                 self.mainView.name1.text = name1
             }
             if let name2 = noti.userInfo?["name2"] as? String{
-                print(name2)
                 self.mainView.name2.text = name2
             }
         }
@@ -152,8 +149,7 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     /// CalenderVC 이동
     @objc func arrowBtnAction(){
-        
-        print("아래 화살표 버튼 pushed!!")
+    
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let calendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarViewController")
         calendarVC.modalPresentationStyle = .overFullScreen
@@ -161,7 +157,6 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
     }
     
     @objc func settingBtnAction(){
-        print("setting button pushed!!")
         // 설정 페이지 넘어가는 부분
         
         let settingVC = SettingsViewController()
@@ -185,8 +180,14 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
             let components = calendar.dateComponents([.day], from: date1, to: date2)
             
             if let numberOfDay = components.day {
-                // 연인이 된 날짜도 1일로 카운트하기 때문에 날짜 차이값에서 1을 더해준다
-                mainView.textLb.text = "\(numberOfDay + 1)일"
+                
+                let days = numberOfDay + 1
+                if days % 366 == 0 {
+                    mainView.textLb.text = "\(days / 366)주년"
+                }else{
+                    // 연인이 된 날짜도 1일로 카운트하기 때문에 날짜 차이값에서 1을 더해준다
+                    mainView.textLb.text = "\(numberOfDay + 1)일"
+                }
             }
         }
     }
