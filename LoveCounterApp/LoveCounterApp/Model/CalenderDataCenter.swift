@@ -194,6 +194,9 @@ class CalenderDataCenter {
         // 3. 크리스마스 12월 25일 추가
         dateOfAnniversaryDay.append("\(strCurYear) 12월 25일")
         
+        // 기념일 푸쉬 알람을 위한 저장
+        UserDefaults.standard.set(dateOfAnniversaryDay, forKey: "dateOfAnniversaryDay")
+        
         // 4. 현재로 부터 기념일까지 D-Day 계산 로직
         let dateFormatter3 = DateFormatter()
         dateFormatter3.dateFormat = "yyyy년 MM월 dd일"
