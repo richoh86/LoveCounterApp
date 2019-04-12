@@ -130,14 +130,15 @@ class FirstUseViewController1: UIViewController {
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             self.firstUserView.dateSpinnerUIbox.backgroundColor = .white
-            self.firstUserView.dateSpinnerUIbox.frame = CGRect(x: 0, y: self.firstUserView.bounds.height*(3/5), width: self.firstUserView.bounds.width, height: self.firstUserView.bounds.height*(3/5))
+            self.firstUserView.dateSpinnerUIbox.frame =
+//                CGRect(x: 0, y: self.firstUserView.bounds.height*(3/5), width: self.firstUserView.bounds.width, height: self.firstUserView.bounds.height*(3/5))
+            CGRect(x: 0, y: self.firstUserView.bounds.height - 320, width: self.firstUserView.bounds.width, height: 320)
         })
     }
     
     private func hideDateViewWithAnimation(){
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-            
             self.firstUserView.dateSpinnerUIbox.frame = CGRect(x: 0, y: self.firstUserView.bounds.height, width: self.firstUserView.bounds.width, height: self.firstUserView.bounds.height*(3/5))
             
         })

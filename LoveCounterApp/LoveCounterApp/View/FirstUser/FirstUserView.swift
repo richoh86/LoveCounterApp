@@ -138,7 +138,7 @@ class FirstUserView: UIView {
     
     func showDateSpinnerUIBox() {
         
-        dateSpinnerUIbox.frame = CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: self.bounds.height*(3/5))
+        dateSpinnerUIbox.frame = CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: 320 ) //  self.bounds.height*(3/5)
         dateSpinnerUIbox.backgroundColor = .white
         
         addSubview(dateSpinnerUIbox)
@@ -210,7 +210,7 @@ class FirstUserView: UIView {
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
 //            make.topMargin.equalTo(130)
-            make.top.equalTo(self.snp.top).offset(150)
+            make.top.equalTo(self.snp.top).offset(80)
         }
         
         textLb.snp.makeConstraints { make in
