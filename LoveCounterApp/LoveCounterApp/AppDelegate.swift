@@ -46,8 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        // 푸쉬 알람 설정이 켜져있는 경우만 등록
-        guard let pushAlarm = UserDefaults.standard.value(forKey: "pushAlarm") as? Bool, pushAlarm == true else {return}
+        
         
             // 알람설정 공통 로직
             // 현재 등록되어 있는 모든 알람을 모두 삭제하고
@@ -56,6 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
             center.removeAllDeliveredNotifications()
             center.removeAllPendingNotificationRequests()
+        
+        // 푸쉬 알람 설정이 켜져있는 경우만 등록
+        guard let pushAlarm = UserDefaults.standard.value(forKey: "pushAlarm") as? Bool, pushAlarm == true else {return}
         
 //            center.removeDeliveredNotifications(withIdentifiers: ["content"])
 //            center.removePendingNotificationRequests(withIdentifiers: ["content"])
