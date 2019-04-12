@@ -63,6 +63,7 @@ class NameAndImgChangeViewController: UIViewController{
                 PHPhotoLibrary.requestAuthorization { (status) in
                 if status == .authorized {
                     if let tag = self.btnTag {
+                        print(tag)
                         let imagePickerController = UIImagePickerController()
                         imagePickerController.delegate = self
                         imagePickerController.sourceType = .photoLibrary
@@ -79,6 +80,7 @@ class NameAndImgChangeViewController: UIViewController{
             
         }else{
             if let tag = self.btnTag {
+                print(tag)
                 let imagePickerController = UIImagePickerController()
                 imagePickerController.delegate = self
                 imagePickerController.sourceType = .photoLibrary
