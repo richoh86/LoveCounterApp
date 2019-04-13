@@ -364,7 +364,8 @@ class SettingView: UIView {
     
     let versionLbForSection3: UILabel = {
         let version = UILabel()
-        version.text = "1.0.0" // 버전 관리 plist에서 가져올 것
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
+        version.text = appVersion
         version.textColor = .white
         version.font = UIFont.boldSystemFont(ofSize: 19)
         version.textAlignment = .right
