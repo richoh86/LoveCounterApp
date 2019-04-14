@@ -19,6 +19,8 @@ class FirstUseViewController1: UIViewController {
     var strDateForSpinnerUIBox: String?
     var strSelectedDayForCount: String?
     
+    var selectedDate: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -49,8 +51,21 @@ class FirstUseViewController1: UIViewController {
     @objc func nextBtnAction(){
         
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "FirstUseViewController2") else {return}
-        self.navigationController?.pushViewController(vc, animated: true)
+       
+        // 날짜 선택 박스에서 날짜를 선택한 경우
+        if let selectedDate = selectedDate{
+            self.navigationController?.pushViewController(vc, animated: true)
         
+        }else{ // 날짜 선택 박스에서 날짜 선택을 하지 않고 바로 넘어가는 경우
+            
+            // 날짜 선택 박스를 통해서 만약 날짜를 선택하지 않았다면
+            // 화면상에 표시된 날짜 그대로 저장해준다
+            let date = firstUserView.dateSpinner.date
+            UserDefaults.standard.set(date, forKey: "selDate")
+            
+            // 완료 후 바로 다음 화면으로 이동
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func selectDateSelectionBtn(){
@@ -67,7 +82,11 @@ class FirstUseViewController1: UIViewController {
     @objc func completeSelectDate(){
         
         // 선택된 날짜 (연인이 된 날짜)
-        let selectedDate = firstUserView.dateSpinner.date
+        selectedDate = firstUserView.dateSpinner.date
+        
+        // selectedDate가 값이 있을 때만 아래 코드 수행
+        guard let selectedDate = selectedDate else { return }
+        
         // Date 포맷은 yyyy.MM.dd
         let dateFormatter1 = DateFormatter()
         dateFormatter1.dateFormat = "yyyy.MM.dd"
