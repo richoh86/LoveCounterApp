@@ -18,6 +18,8 @@ class FirstUseViewController3: UIViewController {
     let firstUserView = FirstUserView()
     var strDate: String?
     
+    var date: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -55,10 +57,20 @@ class FirstUseViewController3: UIViewController {
     @objc func completeBtnAction(){
         
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") else {return}
-        // 첫번째 사용인지 확인하는 Bool 값: true가 설정되면 앱 실행시 FirstUseVC들은 실행되지 않는다
-        UserDefaults.standard.set( true, forKey: "firstUseBool")
-        self.present(vc, animated: true)
-
+        
+        if let date = date {
+            // 첫번째 사용인지 확인하는 Bool 값: true가 설정되면 앱 실행시 FirstUseVC들은 실행되지 않는다
+            UserDefaults.standard.set( true, forKey: "firstUseBool")
+            self.present(vc, animated: true)
+        }else{
+            
+            let sDate = firstUserView.dateSpinner.date
+            UserDefaults.standard.set(sDate, forKey: "LoveBirthDay")
+            
+            // 첫번째 사용인지 확인하는 Bool 값: true가 설정되면 앱 실행시 FirstUseVC들은 실행되지 않는다
+            UserDefaults.standard.set( true, forKey: "firstUseBool")
+            self.present(vc, animated: true)
+        }
     }
     
     @objc func selectDateSelectionBtn(){
@@ -74,7 +86,9 @@ class FirstUseViewController3: UIViewController {
     
     @objc func completeSelectDate(){
         
-        let date = firstUserView.dateSpinner.date
+        date = firstUserView.dateSpinner.date
+        guard let date = date else {return}
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         strDate = dateFormatter.string(from: date)

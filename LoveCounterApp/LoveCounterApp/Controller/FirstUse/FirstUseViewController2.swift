@@ -18,6 +18,8 @@ class FirstUseViewController2: UIViewController {
     let firstUserView = FirstUserView()
     var strDate: String?
     
+    var date: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -53,7 +55,15 @@ class FirstUseViewController2: UIViewController {
     @objc func nextBtnAction(){
         
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "FirstUseViewController3") else {return}
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if let date = date{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            
+            let sDate = firstUserView.dateSpinner.date
+            UserDefaults.standard.set(sDate, forKey: "myBirthDay")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
     }
     
@@ -70,7 +80,9 @@ class FirstUseViewController2: UIViewController {
     
     @objc func completeSelectDate(){
         
-        let date = firstUserView.dateSpinner.date
+        date = firstUserView.dateSpinner.date
+        guard let date = date else {return}
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         strDate = dateFormatter.string(from: date)
