@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import DeviceKit
 
 class NameAndImgChangeViewController: UIViewController{
     
@@ -48,8 +49,6 @@ class NameAndImgChangeViewController: UIViewController{
             nameChangeVC.modalPresentationStyle = .overCurrentContext
             nameChangeVC.modalTransitionStyle = .coverVertical
             self.present(nameChangeVC, animated: true, completion: nil)
-            
-            
         }
     }
     
@@ -61,22 +60,22 @@ class NameAndImgChangeViewController: UIViewController{
             
             DispatchQueue.main.async {
                 PHPhotoLibrary.requestAuthorization { (status) in
-                if status == .authorized {
-                    if let tag = self.btnTag {
-                        print(tag)
-                        let imagePickerController = UIImagePickerController()
-                        imagePickerController.delegate = self
-                        imagePickerController.sourceType = .photoLibrary
-                        self.present(imagePickerController, animated: true, completion: nil)
+                    if status == .authorized {
+                        if let tag = self.btnTag {
+                            print(tag)
+                            let imagePickerController = UIImagePickerController()
+                            imagePickerController.delegate = self
+                            imagePickerController.sourceType = .photoLibrary
+                            self.present(imagePickerController, animated: true, completion: nil)
+                        }
+                    }else{
+                        let alertVC = UIAlertController(title: "권한요청확인", message: "앨범 접근권한이 없으면\n프로필 사진 변경을 할 수 없습니다", preferredStyle: UIAlertController.Style.alert)
+                        let action1 = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action1) in})
+                        alertVC.addAction(action1)
+                        self.present(alertVC, animated: true, completion: nil)
                     }
-                }else{
-                    let alertVC = UIAlertController(title: "권한요청확인", message: "앨범 접근권한이 없으면\n프로필 사진 변경을 할 수 없습니다", preferredStyle: UIAlertController.Style.alert)
-                    let action1 = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action1) in})
-                    alertVC.addAction(action1)
-                    self.present(alertVC, animated: true, completion: nil)
                 }
             }
-         }
             
         }else{
             if let tag = self.btnTag {
@@ -98,17 +97,28 @@ class NameAndImgChangeViewController: UIViewController{
     
     func updateAutoLayout(){
         
-        nameAndImgChangeView.snp.makeConstraints { make in
-            make.width.equalToSuperview().offset(-100)
-            make.height.equalToSuperview().offset(-650)
-            make.center.equalToSuperview()
+        let device = UIDevice.current
+        
+        if device.name == "iPhone 6"
+            || device.name == "iPhone 6s" || device.name == "iPhone 6 Plus"
+            || device.name == "iPhone 6s Plus" || device.name == "iPhone 7" || device.name == "iPhone 7" || device.name == "iPhone 7 Plus" || device.name == "iPhone 8" || device.name == "iPhone 8 Plus" || device.name == "iPhone SE" {
+            
+            nameAndImgChangeView.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+            
+        }else{
+            nameAndImgChangeView.snp.makeConstraints { make in
+                make.width.equalToSuperview().offset(-100)
+                make.height.equalToSuperview().offset(-650)
+                make.center.equalToSuperview()
+            }
         }
     }
 }
 
 // MARK: - UIImagePickerControllerDelegate
 extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
- 
     
     /// Get DocumentDirectory Path
     ///
@@ -136,7 +146,7 @@ extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
                 }
                 self.dismiss(animated: true, completion: nil)
                 
-            // 두번째 이미지일 경우
+                // 두번째 이미지일 경우
             }else if tag == 2 {
                 let userInfo = [ "image2": image ]
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "imageChange"), object: nil, userInfo: userInfo)
@@ -146,11 +156,11 @@ extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
                     let fileName = getDocumentsDirectory().appendingPathComponent("profileImg2.png")
                     try? data.write(to: fileName)
                     
-                self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
-}
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
@@ -160,6 +170,6 @@ extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
 
 // MARK: - UINavigationControllerDelegate
 extension NameAndImgChangeViewController: UINavigationControllerDelegate {
-   
+    
 }
 

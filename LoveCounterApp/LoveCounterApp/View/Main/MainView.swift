@@ -8,6 +8,7 @@
 
 import Foundation
 import SnapKit
+import DeviceKit
 
 class MainView: UIView {
     
@@ -64,6 +65,8 @@ class MainView: UIView {
     let arrowImg = UIImageView()
     let arrowBtn = UIButton()
     
+    let device = UIDevice.current
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -103,7 +106,12 @@ class MainView: UIView {
         topTitle.numberOfLines = 2
         topTitle.textColor = UIColor.white
         topTitle.textAlignment = .justified
-        topTitle.font = UIFont.boldSystemFont(ofSize: 25)
+
+        if device.name == "iPhone 5s"{
+            topTitle.font = UIFont.boldSystemFont(ofSize: 20)
+        }else{
+            topTitle.font = UIFont.boldSystemFont(ofSize: 25)
+        }
         
         topTitle.layer.shadowColor = UIColor.black.cgColor
         topTitle.layer.shadowRadius = 1.0
@@ -221,7 +229,6 @@ class MainView: UIView {
         }
         
         settingBtn.snp.makeConstraints { make in
-//            make.top.bottom.left.right.equalTo(imgSetting)
             make.center.equalTo(imgSetting)
             make.width.equalTo(50)
             make.height.equalTo(50)
@@ -235,11 +242,33 @@ class MainView: UIView {
 //            make.bottom.equalTo(textLb).offset(150)
 //        }
         
-        topTitle.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(80)
-            make.left.equalToSuperview().offset(20)
-            make.width.greaterThanOrEqualTo(100)
-            make.height.greaterThanOrEqualTo(100)
+        if device.name == "iPhone 6"
+            || device.name == "iPhone 6s" || device.name == "iPhone 6 Plus"
+            || device.name == "iPhone 6s Plus" || device.name == "iPhone 7" || device.name == "iPhone 7" || device.name == "iPhone 7 Plus" || device.name == "iPhone 8" || device.name == "iPhone 8 Plus" {
+        
+            topTitle.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(50)
+                make.left.equalToSuperview().offset(20)
+                make.width.greaterThanOrEqualTo(100)
+                make.height.greaterThanOrEqualTo(100)
+            }
+            
+        }else if device.name == "iPhone 5s" || device.name == "iPhone SE"{
+                
+            topTitle.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(25)
+                make.left.equalToSuperview().offset(20)
+                make.width.greaterThanOrEqualTo(100)
+                make.height.greaterThanOrEqualTo(100)
+            }
+            
+        }else{
+            topTitle.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(80)
+                make.left.equalToSuperview().offset(20)
+                make.width.greaterThanOrEqualTo(100)
+                make.height.greaterThanOrEqualTo(100)
+            }
         }
         
         textLb.snp.makeConstraints { make in

@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import MessageUI
 import StoreKit
+import UserNotifications
 
 class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
@@ -17,8 +18,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     var datePickerView: DatePickerView?
     var mailVC: MFMailComposeViewController?
     
-    var pushAlarmBool = false
-    var pushAlarmForBirthAndAnniBool = false
+    let center = UNUserNotificationCenter.current()
+    var pushAlarmBool: Bool?
+    var pushAlarmForBirthAndAnniBool: Bool?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -49,35 +51,32 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         settingsView.btnForTitle1ViewInSection2.addTarget(self, action: #selector(pushAlarmStateChangeBtn), for: .touchUpInside)
         settingsView.btnForTitle2ViewInSection2.addTarget(self, action: #selector(pushAlarmForBirthDayAndAnniversaryDayChangeBtn), for: .touchUpInside)
         
-        // 푸시 알람 설정 상태값
+        // 푸쉬알람 설정 후 앱 종료한 후에 다시 들어가서 확인해보면 셋팅한 상태대로 화면에 보이지 않음
+        // 확인필요!!
+        
+        // 여기서는 저장된 값이 나오지 않음
         let pushAlarmBool = UserDefaults.standard.bool(forKey: "pushAlarm")
-
-        print(pushAlarmBool, "pushAlarm UserDefault")
+        let pushAlarmForBirthAndAnniBool = UserDefaults.standard.bool(forKey: "pushAlarmForBirthAndAnniBool")
         
-        if pushAlarmBool != false {
-            self.pushAlarmBool = pushAlarmBool
-        }
-
-        if self.pushAlarmBool { // true
-            settingsView.indicatorImg1ForSection2.alpha = 1.0
-        }else{ // false
-            settingsView.indicatorImg1ForSection2.alpha = 0.3
-        }
+            print(pushAlarmBool, "pushAlarm UserDefault")
+            print(pushAlarmForBirthAndAnniBool, "bAAlarmBool UserDefault")
         
-        // 생일 & 기념일 알람 설정 상태값
-        let bAAlarmBool = UserDefaults.standard.bool(forKey: "pushAlarmForBirthAndAnniBool")
-
-        print(bAAlarmBool, "bAAlarmBool UserDefault")
+            if pushAlarmBool { // true
+                settingsView.indicatorImg1ForSection2.alpha = 1.0
+            }else{ // false
+                settingsView.indicatorImg1ForSection2.alpha = 0.3
+            }
         
-        if bAAlarmBool != false {
-            self.pushAlarmForBirthAndAnniBool = bAAlarmBool
-        }
+            if pushAlarmForBirthAndAnniBool { // true
+                settingsView.indicatorImg2ForSection2.alpha = 1.0
+            }else{ // false
+                settingsView.indicatorImg2ForSection2.alpha = 0.3
+            }
         
-        if self.pushAlarmForBirthAndAnniBool {
-            settingsView.indicatorImg2ForSection2.alpha = 1.0
-        }else{
-            settingsView.indicatorImg2ForSection2.alpha = 0.3
-        }
+        self.pushAlarmBool = pushAlarmBool
+        self.pushAlarmForBirthAndAnniBool = pushAlarmForBirthAndAnniBool
+        
+        print("self.pushAlarmBool",self.pushAlarmBool,"pushAlarmForBirthAndAnniBool", pushAlarmForBirthAndAnniBool)
         
         // "LoveCounter" 버튼 설정
         settingsView.btnForTitle1ViewInSection3.addTarget(self, action: #selector(askActionBtn), for: .touchUpInside)
@@ -90,6 +89,12 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     // 나가기 버튼
     @objc func exitBtnAction(){
+        
+//        if let pAlarm = self.pushAlarmBool, let pAnniAlarm = self.pushAlarmForBirthAndAnniBool{
+//            UserDefaults.standard.set(pAlarm, forKey: "pushAlarm")
+//            UserDefaults.standard.set(pAnniAlarm, forKey: "pushAlarmForBirthAndAnniBool")
+//        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -204,39 +209,114 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     // 푸쉬 알림 설정
     @objc func pushAlarmStateChangeBtn() {
         
-        self.pushAlarmBool = !self.pushAlarmBool
+        self.pushAlarmBool = !self.pushAlarmBool!
         
-        if self.pushAlarmBool { // 알람 설정 ON: True
-            self.settingsView.indicatorImg1ForSection2.alpha = 1.0
-            print("push alarm ON!!")
-            
+        if self.pushAlarmBool! { // 알람 설정 ON: True
             // 알람설정 권한 상태가 허용된 상태인지 확인하고 요청하는 화면을 보여준다...
-            
+            let options: UNAuthorizationOptions = [.sound, .alert, .badge]
+            center.requestAuthorization(options: options) { (granted, error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                }else{
+                    print(granted)
+                    
+                    if granted == false {
+                        
+                        let alertVC = UIAlertController(title: "알림설정", message: "설정 -> 알림 -> 러브카운터 -> 알림허용 스위치를 On으로 변경해주세요!", preferredStyle: UIAlertController.Style.alert)
+                        let action1 = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action) in
+                             self.pushAlarmBool = !self.pushAlarmBool!
+                        })
+                        
+                        alertVC.addAction(action1)
+                        self.present(alertVC, animated: true, completion: nil)
+                    }else{
+                        DispatchQueue.main.sync {
+//                            self.pushAlarmBool = !self.pushAlarmBool!
+                            self.settingsView.indicatorImg1ForSection2.alpha = 1.0
+                            print("push alarm ON!!")
+                            UserDefaults.standard.set(true, forKey: "pushAlarm")
+                        }
+                    }
+    
+                }
+            }
+    
         }else{ // 알람 설정 OFF: False
-            self.settingsView.indicatorImg1ForSection2.alpha = 0.3
-            print("push alarm OFF!!")
+
+            DispatchQueue.main.async {
+                // 1. 푸쉬 알람 설정 해제
+                self.settingsView.indicatorImg1ForSection2.alpha = 0.3
+                print("push alarm OFF!!")
+                UserDefaults.standard.set(false, forKey: "pushAlarm")
+            }
+            
+//            let alertVC = UIAlertController(title: "알림설정", message: "푸쉬알람이 설정안되면\n생일 및 기념일 알람도 자동으로 꺼집니다", preferredStyle: UIAlertController.Style.alert)
+//            let action1 = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { (action) in
+//                DispatchQueue.main.async {
+//
+//                    // 1. 푸쉬 알람 설정 해제
+//                    self.settingsView.indicatorImg1ForSection2.alpha = 0.3
+//                    print("push alarm OFF!!")
+//                    UserDefaults.standard.set(false, forKey: "pushAlarm")
+//
+//                    // 2. 생일 및 기념일 알람 해제
+//                    self.settingsView.indicatorImg2ForSection2.alpha = 0.3
+//                    print("push alarm for Birth and Anni OFF!!")
+//                    UserDefaults.standard.set(false, forKey: "pushAlarmForBirthAndAnniBool")
+//                    // 2. 생일 및 기념일 알람 해제 불 값도 바꿔준다
+//                    self.pushAlarmForBirthAndAnniBool = !self.pushAlarmForBirthAndAnniBool!
+//                }
+//            }
+//
+//            alertVC.addAction(action1)
+//            self.present(alertVC, animated: true, completion: nil)
         }
-        
-        UserDefaults.standard.set(pushAlarmBool, forKey: "pushAlarm")
     }
     
     // 생일 & 기념일 알림 설정
     @objc func pushAlarmForBirthDayAndAnniversaryDayChangeBtn() {
         
-        self.pushAlarmForBirthAndAnniBool = !self.pushAlarmForBirthAndAnniBool
+        self.pushAlarmForBirthAndAnniBool = !self.pushAlarmForBirthAndAnniBool!
         
-        if self.pushAlarmForBirthAndAnniBool {
-            self.settingsView.indicatorImg2ForSection2.alpha = 1.0
-            print("push alarm for Birth and Anni ON!!")
-            
-            // 알람설정 권한 상태가 허용된 상태인지 확인하고 요청하는 화면을 보여준다...
-            
+        if self.pushAlarmForBirthAndAnniBool! {
+//             알람설정 권한 상태가 허용된 상태인지 확인하고 요청하는 화면을 보여준다...
+            let options: UNAuthorizationOptions = [.sound, .alert, .badge]
+            center.requestAuthorization(options: options) { (granted, error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                }else{
+                    print(granted)
+                    if granted == false {
+                        let alertVC = UIAlertController(title: "알림설정", message: "설정 -> 알림 -> 러브카운터 ->\n알림허용 스위치를 On으로 변경해주세요!", preferredStyle: UIAlertController.Style.alert)
+                        let action1 = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action) in
+                            self.pushAlarmForBirthAndAnniBool = !self.pushAlarmForBirthAndAnniBool!
+                        })
+                        alertVC.addAction(action1)
+                        self.present(alertVC, animated: true, completion: nil)
+                        
+                    }else{
+                        
+                        DispatchQueue.main.async {
+                            self.settingsView.indicatorImg2ForSection2.alpha = 1.0
+                            print("push alarm for Birth and Anni ON!!")
+                            // 알림상태가 허용된것으로 확인되면 true값으로 변경해준다
+                            UserDefaults.standard.set(true, forKey: "pushAlarmForBirthAndAnniBool")
+                        }
+                    }
+                }
+            }
+
         }else{
-            self.settingsView.indicatorImg2ForSection2.alpha = 0.3
-            print("push alarm for Birth and Anni OFF!!")
+            
+            DispatchQueue.main.async {
+                self.settingsView.indicatorImg2ForSection2.alpha = 0.3
+                print("push alarm for Birth and Anni OFF!!")
+                UserDefaults.standard.set(false, forKey: "pushAlarmForBirthAndAnniBool")
+//                self.pushAlarmForBirthAndAnniBool = !self.pushAlarmForBirthAndAnniBool!
+            }
         }
         
-        UserDefaults.standard.set(pushAlarmForBirthAndAnniBool, forKey: "pushAlarmForBirthAndAnniBool")
+//        UserDefaults.standard.set(pushAlarmForBirthAndAnniBool, forKey: "pushAlarmForBirthAndAnniBool")
     }
     
     // LoveCounter 설정
@@ -260,6 +340,10 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         SKStoreReviewController.requestReview()
     }
 
+    override func viewWillLayoutSubviews() {
+        settingsView.scrollView.contentSize = CGSize(width: self.accessibilityFrame.width, height: 820)
+    }
+    
     /// 레이아웃설정
     private func updateAutoLayout(){
         
