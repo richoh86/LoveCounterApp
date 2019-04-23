@@ -60,7 +60,7 @@ class FirstUseViewController3: UIViewController {
         
         if let date = date {
             // 첫번째 사용인지 확인하는 Bool 값: true가 설정되면 앱 실행시 FirstUseVC들은 실행되지 않는다
-            UserDefaults.standard.set( true, forKey: "firstUseBool")
+//            UserDefaults.standard.set( true, forKey: "firstUseBool")
             self.present(vc, animated: true)
         }else{
             

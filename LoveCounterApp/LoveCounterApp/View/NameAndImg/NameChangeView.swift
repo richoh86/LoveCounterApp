@@ -30,21 +30,6 @@ class NameChangeView: UIView {
         return tf
     }()
     
-//    let btnContainerView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
-//        return view
-//    }()
-//    
-//    let completeBtn: UIButton = {
-//        let btn = UIButton()
-//        btn.setTitle("완료", for: .normal)
-//        btn.titleLabel?.textColor = .white
-//        btn.titleLabel?.textAlignment = .center
-//        btn.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-//        return btn
-//    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -62,8 +47,6 @@ class NameChangeView: UIView {
     private func addSubviews(){
         addSubview(textLabel)
         addSubview(textFieldForName)
-//        btnContainerView.addSubview(completeBtn)
-//        addSubview(btnContainerView)
     }
     
     private func autoLayout() {
@@ -81,16 +64,6 @@ class NameChangeView: UIView {
             make.width.equalTo(320)
             make.height.equalTo(70)
         }
-        
-//        btnContainerView.snp.makeConstraints { make in
-//            make.width.equalToSuperview()
-//            make.height.equalTo(55)
-//            make.bottom.equalToSuperview().offset(-291)
-//        }
-//
-//        completeBtn.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
         
     }
     

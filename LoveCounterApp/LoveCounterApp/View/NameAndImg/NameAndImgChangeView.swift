@@ -8,13 +8,15 @@
 
 import UIKit
 import SnapKit
+import DeviceKit
 
 class NameAndImgChangeView: UIView {
     
     let containerView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
+        view.backgroundColor = .white
         return view
     }()
     
@@ -32,7 +34,7 @@ class NameAndImgChangeView: UIView {
     }()
     
     let textLb1: UILabel = {
-       let text = UILabel()
+        let text = UILabel()
         text.text = "이름 변경"
         text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         text.textAlignment = .center
@@ -112,13 +114,31 @@ class NameAndImgChangeView: UIView {
         
         containerView.addSubview(stackView)
         addSubview(containerView)
-//        addSubview(stackView)
     }
     
     private func updateAutoLayout() {
         
-        containerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        let device = UIDevice.current
+        
+        // 이름, 이미지 변경 UI 박스 깨지는 기기들만 수정 분기
+        // 가로 세로 길이를 정해주고 뷰 컨트롤러 가운데 위치하도록 수정
+        if device.name == "iPhone 6"
+            || device.name == "iPhone 6s" || device.name == "iPhone 6 Plus"
+            || device.name == "iPhone 6s Plus" || device.name == "iPhone 7" || device.name == "iPhone 7" || device.name == "iPhone 7 Plus" || device.name == "iPhone 8" || device.name == "iPhone 8 Plus" || device.name == "iPhone SE" {
+            
+            containerView.snp.makeConstraints { (make) in
+                
+                make.width.equalTo(220)
+                make.height.equalTo(240)
+                make.center.equalToSuperview()
+            }
+            
+        }else{
+            
+            containerView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+            
         }
         
         stackView.snp.makeConstraints { make in
@@ -147,5 +167,4 @@ class NameAndImgChangeView: UIView {
             make.edges.equalToSuperview()
         }
     }
-
 }

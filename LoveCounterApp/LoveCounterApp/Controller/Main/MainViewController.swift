@@ -25,9 +25,19 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        let firstUseBool = UserDefaults.standard.bool(forKey: "firstUseBool")
+
+        print("앱첫사용?",firstUseBool)
+
+        // 앱이 첫 사용일때만 요청한다
+        guard firstUseBool == false else {return}
+        
+        print("권한요청중!===> 여기서 무조건 바뀐다!! 아래에서 무조건 true로 저장되는 듯")
+        
         // Push Alarm 권한 요청 및 설정
         let center = UNUserNotificationCenter.current()
-        let options: UNAuthorizationOptions = [.sound, .alert]
+        let options: UNAuthorizationOptions = [.sound, .alert, .badge]
         
         center.requestAuthorization(options: options) { (granted, error) in
             if let err = error {
@@ -40,6 +50,10 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
             }
         }
         center.delegate = self
+        
+        // 메인VC가 가장 처음에 호출되었을때 true 값을 호출
+        // 따라서, 푸쉬알람 권한 요청은 가장 처음에 한번만 한다
+        UserDefaults.standard.set( true, forKey: "firstUseBool")
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

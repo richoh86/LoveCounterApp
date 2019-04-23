@@ -10,10 +10,22 @@ import UIKit
 
 class SettingView: UIView {
 
-    var topTitleContainerView: UIStackView = {
-        let topTitleContainerView = UIStackView()
-        topTitleContainerView.axis = .horizontal
-        topTitleContainerView.distribution = .fillProportionally
+    let scrollView: UIScrollView = {
+        let scv = UIScrollView()
+        return scv
+    }()
+    
+    // StackView => UIView로 변경
+//    var topTitleContainerView: UIStackView = {
+//        let topTitleContainerView = UIStackView()
+//        topTitleContainerView.axis = .horizontal
+//        topTitleContainerView.distribution = .fillProportionally
+//        return topTitleContainerView
+//    }()
+    
+    // StackView => UIView로 변경 (텍스트만 배치)
+    var topTitleContainerView: UIView = {
+        let topTitleContainerView = UIView()
         return topTitleContainerView
     }()
     
@@ -25,9 +37,9 @@ class SettingView: UIView {
     
     let titleLb: UILabel = {
         let titleLb = UILabel()
-        titleLb.text = "SETTINGS"
+        titleLb.text = "설정"
         titleLb.textColor = .white
-        titleLb.textAlignment = .right
+        titleLb.textAlignment = .center
         titleLb.font = UIFont.boldSystemFont(ofSize: 19)
         return titleLb
     }()
@@ -378,19 +390,11 @@ class SettingView: UIView {
         return line
     }()
     
-//    var btnTag: Int?
-    
     // MARK: - initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
-    
-//    convenience init(btnTag: Int){
-//        self.init()
-//        self.btnTag = btnTag
-//        commonInit()
-//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -408,12 +412,18 @@ class SettingView: UIView {
         self.alpha = 0.8
         
         // 상단 타이틀 + 우측 나가기 버튼 ----------->
-        topTitleContainerView.addArrangedSubview(settingImgView)
-        topTitleContainerView.addArrangedSubview(titleLb)
+//        topTitleContainerView.addArrangedSubview(settingImgView)
+//        topTitleContainerView.addArrangedSubview(titleLb)
         
-        addSubview(topTitleContainerView)
-        addSubview(exitBtnImg)
-        addSubview(exitBtn)
+        // UIView로 settingViewImage 사이즈 컨트롤 해보기
+        // 사이즈가 조절이 안돼서 그냥 텍스트만 넣는 것으로 변경
+//        topTitleContainerView.addSubview(settingImgView)
+        topTitleContainerView.addSubview(titleLb)
+        
+        scrollView.addSubview(topTitleContainerView)
+        scrollView.addSubview(exitBtnImg)
+        scrollView.addSubview(exitBtn)
+        
         // <------------ 상단 타이틀 + 우측 나가기 버튼
         
         // 기본 설정 ---------------------------->
@@ -441,7 +451,7 @@ class SettingView: UIView {
         section1StackView.addArrangedSubview(title2View)
         section1StackView.addArrangedSubview(title3View)
 
-        addSubview(section1StackView)
+        scrollView.addSubview(section1StackView)
         // <----------------------------  기본 설정
         
         // 알림 설정 ---------------------------->
@@ -463,7 +473,7 @@ class SettingView: UIView {
         section2StackView.addArrangedSubview(title1ViewForSection2)
         section2StackView.addArrangedSubview(title2ViewForSection2)
         
-        addSubview(section2StackView)
+        scrollView.addSubview(section2StackView)
         // <---------------------------- 알림 설정
     
         // Love Counter ----------------------->
@@ -490,22 +500,40 @@ class SettingView: UIView {
         section3StackView.addArrangedSubview(title2ViewForSection3)
         section3StackView.addArrangedSubview(title3ViewForSection3)
         
-        addSubview(section3StackView)
+        scrollView.addSubview(section3StackView)
         //  <----------------------- Love Counter
+        
+        addSubview(scrollView)
     }
     
     private func updateAutoLayout(){
         
+        scrollView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        
         topTitleContainerView.snp.makeConstraints { make in
             make.width.equalTo(130)
             make.height.equalTo(30)
-            make.centerY.equalTo(exitBtnImg)
+            make.top.equalTo(10)
             make.centerX.equalToSuperview()
         }
         
+        // 타이틀 텍스트 "설정"만 입력 아이콘 이미지 삭제
+        titleLb.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+ 
         exitBtnImg.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(50)
-            make.right.equalToSuperview().inset(10)
+
+            // iphone6 - 8 기기에서 적용 안됨
+//            make.top.equalToSuperview().inset(50)
+//            make.right.equalToSuperview().inset(10)
+            
+            // 위 코드를 아래 코드로 대체
+            make.centerY.equalTo(topTitleContainerView)
+            make.right.equalTo(self.snp.right).inset(10)
+            
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
@@ -516,12 +544,6 @@ class SettingView: UIView {
             make.height.equalTo(50)
         }
         
-//        stackViewForAllSection.snp.makeConstraints { make in
-//            make.top.equalTo(topTitleContainerView).offset(-20)
-//            make.width.equalToSuperview()
-//            make.bottom.equalToSuperview().offset(-20)
-//        }
-        
         // 기본 설정 ---------------------------->
         section1Title.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -531,7 +553,7 @@ class SettingView: UIView {
         }
         
         section1StackView.snp.makeConstraints { make in
-            make.top.equalTo(topTitleContainerView.snp.bottom).offset(30)
+            make.top.equalTo(topTitleContainerView.snp.bottom).offset(10)
             make.width.equalToSuperview()
             make.height.equalTo(200)
         }
