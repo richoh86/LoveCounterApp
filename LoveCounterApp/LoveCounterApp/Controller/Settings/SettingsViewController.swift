@@ -76,8 +76,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         self.pushAlarmBool = pushAlarmBool
         self.pushAlarmForBirthAndAnniBool = pushAlarmForBirthAndAnniBool
         
-        print("self.pushAlarmBool",self.pushAlarmBool,"pushAlarmForBirthAndAnniBool", pushAlarmForBirthAndAnniBool)
-        
         // "LoveCounter" 버튼 설정
         settingsView.btnForTitle1ViewInSection3.addTarget(self, action: #selector(askActionBtn), for: .touchUpInside)
         settingsView.btnForTitle2ViewInSection3.addTarget(self, action: #selector(reviewActionBtn), for: .touchUpInside)
@@ -89,11 +87,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     // 나가기 버튼
     @objc func exitBtnAction(){
-        
-//        if let pAlarm = self.pushAlarmBool, let pAnniAlarm = self.pushAlarmForBirthAndAnniBool{
-//            UserDefaults.standard.set(pAlarm, forKey: "pushAlarm")
-//            UserDefaults.standard.set(pAnniAlarm, forKey: "pushAlarmForBirthAndAnniBool")
-//        }
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -153,6 +146,11 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         
         guard let selDate = datePickerView?.datePickerView.date else {return}
         guard let btnTag = datePickerView?.btnTag else {return}
+        
+        // 위젯 설정용 날짜 저장
+        // 2019.04.25 OHWS
+        let widgetUd = UserDefaults(suiteName: "group.LoveCounter.widget")
+        widgetUd?.set(selDate, forKey: "selDate")
         
         let curDate = Date()
         let dateFormatter = DateFormatter()
@@ -341,7 +339,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
 
     override func viewWillLayoutSubviews() {
-        settingsView.scrollView.contentSize = CGSize(width: self.accessibilityFrame.width, height: 820)
+        settingsView.scrollView.contentSize = CGSize(width: self.accessibilityFrame.width, height: 900)
     }
     
     /// 레이아웃설정

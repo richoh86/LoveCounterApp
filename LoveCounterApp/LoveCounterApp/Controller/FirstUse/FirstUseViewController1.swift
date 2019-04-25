@@ -63,6 +63,11 @@ class FirstUseViewController1: UIViewController {
             let date = firstUserView.dateSpinner.date
             UserDefaults.standard.set(date, forKey: "selDate")
             
+            // 위젯 설정용 날짜 저장
+            // 2019.04.25 OHWS
+            let widgetUd = UserDefaults(suiteName: "group.LoveCounter.widget")
+            widgetUd?.set(date, forKey: "selDate")
+            
             // 완료 후 바로 다음 화면으로 이동
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -100,6 +105,11 @@ class FirstUseViewController1: UIViewController {
         
         // UserDefault 저장
         UserDefaults.standard.set(selectedDate, forKey: "selDate")
+        
+        // 위젯 설정용 날짜 저장
+        // 2019.04.25 OHWS
+        let widgetUd = UserDefaults(suiteName: "group.LoveCounter.widget")
+        widgetUd?.set(selectedDate, forKey: "selDate")
         
         let calendar = Calendar.current
         let date1 = calendar.startOfDay(for: selectedDate)
