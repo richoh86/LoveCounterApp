@@ -22,6 +22,13 @@
 		7948909F2232013E00013884 /* FirstUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7948909E2232013E00013884 /* FirstUserView.swift */; };
 		794890A12232233700013884 /* FirstUseViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794890A02232233700013884 /* FirstUseViewController2.swift */; };
 		794890A32232233A00013884 /* FirstUseViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794890A22232233A00013884 /* FirstUseViewController3.swift */; };
+		7950D24D22715BD1001B443E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7950D24C22715BD1001B443E /* NotificationCenter.framework */; };
+		7950D25022715BD1001B443E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7950D24F22715BD1001B443E /* TodayViewController.swift */; };
+		7950D25322715BD1001B443E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7950D25122715BD1001B443E /* MainInterface.storyboard */; };
+		7950D25722715BD1001B443E /* LoveCounterWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7950D24B22715BD1001B443E /* LoveCounterWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7950D25C22715E42001B443E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7950D25122715BD1001B443E /* MainInterface.storyboard */; };
+		7950D25D22716AAB001B443E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7950D24F22715BD1001B443E /* TodayViewController.swift */; };
+		7950D2602271821F001B443E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79274C292230F9D5005F1F2D /* Assets.xcassets */; };
 		795574B5224216BD00A0C83A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795574B4224216BD00A0C83A /* SettingsViewController.swift */; };
 		79C5A5DD223B44E400B8D199 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5A5DC223B44E400B8D199 /* CalendarViewController.swift */; };
 		79C5A5DF223B48E000B8D199 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5A5DE223B48E000B8D199 /* CalendarView.swift */; };
@@ -31,6 +38,30 @@
 		79EA3A49224335A1002A441A /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EA3A48224335A1002A441A /* SettingView.swift */; };
 		C33360A236A44B004EB79BD1 /* Pods_LoveCounterApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C68CC37133AB2B32EC53C8 /* Pods_LoveCounterApp.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7950D25522715BD1001B443E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 79274C172230F9D4005F1F2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7950D24A22715BD1001B443E;
+			remoteInfo = LoveCounterWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7950D25B22715BD1001B443E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7950D25722715BD1001B443E /* LoveCounterWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		62C68CC37133AB2B32EC53C8 /* Pods_LoveCounterApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveCounterApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +82,13 @@
 		7948909E2232013E00013884 /* FirstUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUserView.swift; sourceTree = "<group>"; };
 		794890A02232233700013884 /* FirstUseViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseViewController2.swift; sourceTree = "<group>"; };
 		794890A22232233A00013884 /* FirstUseViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseViewController3.swift; sourceTree = "<group>"; };
+		7950D24B22715BD1001B443E /* LoveCounterWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LoveCounterWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7950D24C22715BD1001B443E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		7950D24F22715BD1001B443E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		7950D25222715BD1001B443E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		7950D25422715BD1001B443E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7950D25E22716BB5001B443E /* LoveCounterWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LoveCounterWidget.entitlements; sourceTree = "<group>"; };
+		7950D25F22716BED001B443E /* LoveCounterApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LoveCounterApp.entitlements; sourceTree = "<group>"; };
 		795574B4224216BD00A0C83A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		79C5A5DC223B44E400B8D199 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		79C5A5DE223B48E000B8D199 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -71,6 +109,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7950D24822715BD1001B443E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7950D24D22715BD1001B443E /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				79274C212230F9D4005F1F2D /* LoveCounterApp */,
+				7950D24E22715BD1001B443E /* LoveCounterWidget */,
 				79274C202230F9D4005F1F2D /* Products */,
 				AC22E383E098CC6B251282D6 /* Pods */,
 				B834C3A5BED3472CA1B5A5CB /* Frameworks */,
@@ -88,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				79274C1F2230F9D4005F1F2D /* LoveCounterApp.app */,
+				7950D24B22715BD1001B443E /* LoveCounterWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +143,7 @@
 		79274C212230F9D4005F1F2D /* LoveCounterApp */ = {
 			isa = PBXGroup;
 			children = (
+				7950D25F22716BED001B443E /* LoveCounterApp.entitlements */,
 				7948909D2231FAD000013884 /* Model */,
 				7948909B2231FABF00013884 /* View */,
 				7948909C2231FAC900013884 /* Controller */,
@@ -137,6 +186,17 @@
 				79C5A5E0223B7DDC00B8D199 /* CalenderDataCenter.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7950D24E22715BD1001B443E /* LoveCounterWidget */ = {
+			isa = PBXGroup;
+			children = (
+				7950D25E22716BB5001B443E /* LoveCounterWidget.entitlements */,
+				7950D24F22715BD1001B443E /* TodayViewController.swift */,
+				7950D25122715BD1001B443E /* MainInterface.storyboard */,
+				7950D25422715BD1001B443E /* Info.plist */,
+			);
+			path = LoveCounterWidget;
 			sourceTree = "<group>";
 		};
 		795574B32242160D00A0C83A /* Settings */ = {
@@ -239,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				62C68CC37133AB2B32EC53C8 /* Pods_LoveCounterApp.framework */,
+				7950D24C22715BD1001B443E /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -255,15 +316,34 @@
 				79274C1C2230F9D4005F1F2D /* Frameworks */,
 				79274C1D2230F9D4005F1F2D /* Resources */,
 				AB31207491D9AEFF563D7431 /* [CP] Embed Pods Frameworks */,
+				7950D25B22715BD1001B443E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7950D25622715BD1001B443E /* PBXTargetDependency */,
 			);
 			name = LoveCounterApp;
 			productName = LoveCounterApp;
 			productReference = 79274C1F2230F9D4005F1F2D /* LoveCounterApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7950D24A22715BD1001B443E /* LoveCounterWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7950D25822715BD1001B443E /* Build configuration list for PBXNativeTarget "LoveCounterWidget" */;
+			buildPhases = (
+				7950D24722715BD1001B443E /* Sources */,
+				7950D24822715BD1001B443E /* Frameworks */,
+				7950D24922715BD1001B443E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LoveCounterWidget;
+			productName = LoveCounterWidget;
+			productReference = 7950D24B22715BD1001B443E /* LoveCounterWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -271,13 +351,26 @@
 		79274C172230F9D4005F1F2D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "richard oh";
 				TargetAttributes = {
 					79274C1E2230F9D4005F1F2D = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					7950D24A22715BD1001B443E = {
+						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -295,6 +388,7 @@
 			projectRoot = "";
 			targets = (
 				79274C1E2230F9D4005F1F2D /* LoveCounterApp */,
+				7950D24A22715BD1001B443E /* LoveCounterWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -305,8 +399,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				79274C2D2230F9D5005F1F2D /* LaunchScreen.storyboard in Resources */,
+				7950D25C22715E42001B443E /* MainInterface.storyboard in Resources */,
 				79274C2A2230F9D5005F1F2D /* Assets.xcassets in Resources */,
 				79274C282230F9D4005F1F2D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7950D24922715BD1001B443E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7950D2602271821F001B443E /* Assets.xcassets in Resources */,
+				7950D25322715BD1001B443E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +482,7 @@
 				794890A12232233700013884 /* FirstUseViewController2.swift in Sources */,
 				79274C232230F9D4005F1F2D /* AppDelegate.swift in Sources */,
 				7916D772223F3837002AD8C6 /* NameAndImgChangeView.swift in Sources */,
+				7950D25D22716AAB001B443E /* TodayViewController.swift in Sources */,
 				79C5A5DF223B48E000B8D199 /* CalendarView.swift in Sources */,
 				7933FD3F2238D66800EB4276 /* MainViewController.swift in Sources */,
 				795574B5224216BD00A0C83A /* SettingsViewController.swift in Sources */,
@@ -388,7 +493,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7950D24722715BD1001B443E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7950D25022715BD1001B443E /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7950D25622715BD1001B443E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7950D24A22715BD1001B443E /* LoveCounterWidget */;
+			targetProxy = 7950D25522715BD1001B443E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		79274C262230F9D4005F1F2D /* Main.storyboard */ = {
@@ -405,6 +526,14 @@
 				79274C2C2230F9D5005F1F2D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7950D25122715BD1001B443E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7950D25222715BD1001B443E /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -530,7 +659,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EFFE6A37D8236F503A20937D /* Pods-LoveCounterApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LoveCounterApp/LoveCounterApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K2G8UU4QYX;
@@ -552,7 +683,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B0FC2498124851B8B85D0E3E /* Pods-LoveCounterApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LoveCounterApp/LoveCounterApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K2G8UU4QYX;
@@ -565,6 +698,50 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.richard.LoveCounterApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7950D25922715BD1001B443E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LoveCounterWidget/LoveCounterWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2G8UU4QYX;
+				INFOPLIST_FILE = LoveCounterWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.richard.LoveCounterApp.LoveCounterWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7950D25A22715BD1001B443E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LoveCounterWidget/LoveCounterWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2G8UU4QYX;
+				INFOPLIST_FILE = LoveCounterWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.richard.LoveCounterApp.LoveCounterWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -587,6 +764,15 @@
 			buildConfigurations = (
 				79274C322230F9D5005F1F2D /* Debug */,
 				79274C332230F9D5005F1F2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7950D25822715BD1001B443E /* Build configuration list for PBXNativeTarget "LoveCounterWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7950D25922715BD1001B443E /* Debug */,
+				7950D25A22715BD1001B443E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -192,7 +192,7 @@ class MainView: UIView {
         if let name1  = UserDefaults.standard.value(forKey: "name1") as? String{
             self.name1.text = name1
         }else{
-            name1.text = "이름"
+            name1.text = "본인이름"
         }
         name1.textAlignment = .center
         name1.textColor = .white
@@ -201,7 +201,7 @@ class MainView: UIView {
         if let name2  = UserDefaults.standard.value(forKey: "name2") as? String{
             self.name2.text = name2
         }else{
-            name2.text = "이름"
+            name2.text = "내꺼이름"
         }
         name2.textAlignment = .center
         name2.textColor = .white

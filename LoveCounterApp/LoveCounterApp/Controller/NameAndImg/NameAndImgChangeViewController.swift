@@ -118,7 +118,7 @@ class NameAndImgChangeViewController: UIViewController{
 }
 
 // MARK: - UIImagePickerControllerDelegate
-extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
+extension NameAndImgChangeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     /// Get DocumentDirectory Path
     ///
@@ -140,9 +140,23 @@ extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "imageChange"), object: nil, userInfo: userInfo)
                 
                 // documentDirectory에 이미지 파일 쓰기
+                // 위젯용 디렉토리에도 파일쓰기 추가 2019.04.26 OHWS
                 if let data = image.pngData() {
+                    
+                    // 1.원래 디렉토리에 파일 쓰기
                     let fileName = getDocumentsDirectory().appendingPathComponent("profileImg1.png")
                     try? data.write(to: fileName)
+                    
+                    // 2.위젯을 위한 디렉토리에 파일 쓰기 추가 2019.04.26 OHWS
+                    let fileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.LoveCounter.widget")
+                    if let imageURL1 = fileURL?.appendingPathComponent("profileImg1.png"){
+                        
+                        let image1 = UIImage(data: data)
+                        if let image1Compressed = image1?.jpegData(compressionQuality: 0.1){
+                            try? image1Compressed.write(to: imageURL1)
+                        }
+                    }
+                    
                 }
                 self.dismiss(animated: true, completion: nil)
                 
@@ -153,11 +167,22 @@ extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
                 
                 // documentDirectory에 이미지 파일 쓰기
                 if let data = image.pngData() {
+                    
+                    // 1.원래 디렉토리에 파일 쓰기
                     let fileName = getDocumentsDirectory().appendingPathComponent("profileImg2.png")
                     try? data.write(to: fileName)
                     
-                    self.dismiss(animated: true, completion: nil)
+                    // 2.위젯을 위한 디렉토리에 파일 쓰기 추가 2019.04.26 OHWS
+                    let fileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.LoveCounter.widget")
+                    if let imageURL2 = fileURL?.appendingPathComponent("profileImg2.png"){
+                        
+                        let image2 = UIImage(data: data)
+                        if let image2Compressed = image2?.jpegData(compressionQuality: 0.1){
+                            try? image2Compressed.write(to: imageURL2)
+                        }
+                    }
                 }
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -165,11 +190,5 @@ extension NameAndImgChangeViewController: UIImagePickerControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-}
-
-// MARK: - UINavigationControllerDelegate
-extension NameAndImgChangeViewController: UINavigationControllerDelegate {
-    
 }
 

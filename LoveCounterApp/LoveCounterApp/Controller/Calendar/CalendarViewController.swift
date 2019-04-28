@@ -15,7 +15,7 @@ class CalendarViewController: UIViewController {
     let tableViewForCouple = UITableView()
     let tableViewForAnniversary = UITableView()
     let cDataCenter = CalenderDataCenter()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -75,6 +75,13 @@ class CalendarViewController: UIViewController {
         
         self.tableViewForCouple.isHidden = true
         self.tableViewForAnniversary.isHidden = false
+        
+        // 하트이미지가 들어간 index row를 가장 top에서 보여준다
+        if let index = cDataCenter.aHeartIndex {
+            let ip = IndexPath(row: index , section: 0)
+            self.tableViewForAnniversary.scrollToRow(at: ip, at: .top, animated: true)
+        }
+        
     }
     
     func createTableViewForCouple() {
@@ -93,8 +100,11 @@ class CalendarViewController: UIViewController {
         
         self.view.addSubview(self.tableViewForCouple)
         
-//        let ip = IndexPath(row: 20, section: 0)
-//        self.tableViewForCouple.scrollToRow(at: ip, at: .top, animated: true)
+        // 하트이미지가 들어간 index row를 가장 top에서 보여준다
+        if let index = cDataCenter.heartIndex {
+            let ip = IndexPath(row: index , section: 0)
+            self.tableViewForCouple.scrollToRow(at: ip, at: .top, animated: true)
+        }
     }
     
     func createTableViewForAnniversary() {
@@ -113,6 +123,11 @@ class CalendarViewController: UIViewController {
         
         self.view.addSubview(self.tableViewForAnniversary)
         
+//        // 하트이미지가 들어간 index row를 가장 top에서 보여준다
+//        if let index = cDataCenter.aHeartIndex {
+//            let ip = IndexPath(row: index , section: 0)
+//            self.tableViewForAnniversary.scrollToRow(at: ip, at: .top, animated: true)
+//        }
     }
 
     func updateAutoLayout() {
@@ -152,12 +167,18 @@ extension CalendarViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
+
         if tableView.tag == 1 {
             let cellForCoupleTable = TableViewCellForCalendar(style: .default, reuseIdentifier: "CellForCouple")
             
             cellForCoupleTable.countDay.text = cDataCenter.strCountDays[indexPath.row]
+            
+            if cDataCenter.heartIndex == indexPath.row {
+                cellForCoupleTable.heartImage.isHidden = false
+            }else{
+                cellForCoupleTable.heartImage.isHidden = true
+            }
+            
             cellForCoupleTable.countedDate.text = cDataCenter.strDate[indexPath.row]
             
             cellForCoupleTable.countedDday.text = cDataCenter.strDday[indexPath.row]
@@ -177,6 +198,13 @@ extension CalendarViewController: UITableViewDataSource {
             let cellForAnniversaryTable = TableViewCellForAnniversary(style: .default, reuseIdentifier: "CellForAnniversary")
             
             cellForAnniversaryTable.textLbForView1.text = cDataCenter.nameOfAnniversaryDay[indexPath.row]
+            
+            if cDataCenter.aHeartIndex == indexPath.row {
+                cellForAnniversaryTable.heartImage.isHidden = false
+            }else{
+                cellForAnniversaryTable.heartImage.isHidden = true
+            }
+            
             cellForAnniversaryTable.textLb1ForStackView.text = cDataCenter.dateOfAnniversaryDay[indexPath.row]
             cellForAnniversaryTable.textLb2ForStackView.text = cDataCenter.dDayOfAnniversaryDay[indexPath.row]
             if cDataCenter.dDayOfAnniversaryDay[indexPath.row].contains("+"){

@@ -30,6 +30,13 @@ class TableViewCellForCalendar: UITableViewCell {
         return label
     }()
     
+    // 하트이미지 셀에 삽입 2019.4.26 OHWS
+    let heartImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "icons8-love-filled-100.png")
+        return image
+    }()
+    
     let stackViewForview2: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .fillEqually
@@ -71,6 +78,8 @@ class TableViewCellForCalendar: UITableViewCell {
         self.stackView.axis = .horizontal
         
         view1.addSubview(countDay)
+        // 하트이미지 셀에 삽입 2019.4.26 OHWS
+        view1.addSubview(heartImage)
         
         stackViewForview2.addArrangedSubview(countedDate)
         stackViewForview2.addArrangedSubview(countedDday)
@@ -88,6 +97,14 @@ class TableViewCellForCalendar: UITableViewCell {
     
     
     func updateAutoLayout(){
+        
+        // 하트이미지 셀에 삽입 2019.4.26 OHWS
+        heartImage.snp.makeConstraints {
+            $0.left.equalTo(countDay.snp.right)
+            $0.width.equalTo(25)
+            $0.height.equalTo(25)
+            $0.centerY.equalTo(countDay.snp.centerY)
+        }
         
         bottomLineView.snp.makeConstraints { make in
             make.height.equalTo(0.5)
