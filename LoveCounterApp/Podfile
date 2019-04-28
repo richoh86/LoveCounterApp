@@ -7,7 +7,7 @@ target 'LoveCounterApp' do
 
   # Pods for LoveCounterApp
   pod 'DeviceKit', '~> 2.0'
-  pod 'SnapKit', '~> 4.0.0'
+  pod 'SnapKit'
   
   #pod 'RxSwift'
   #pod 'RxCocoa'
