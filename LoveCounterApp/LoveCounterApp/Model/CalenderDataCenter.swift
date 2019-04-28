@@ -18,6 +18,8 @@ class CalenderDataCenter {
     var countDays: [Int] = []
     // 1. String Value 100일,200일.. + 1주년, 2주년 ..
     var strCountDays: [String] = []
+    // 하트이미지 삽입 로우 계산
+    var heartIndex: Int?
     
     // countDays의 날짜를 연인이 된 날짜에 더한 날짜 date
     var dateDate: [Date] = []
@@ -26,6 +28,9 @@ class CalenderDataCenter {
     
     // 3. D-Day 현재날짜로 부터 몇일 남았는지 계산한 값
     var strDday: [String] = []
+    
+    var dDay: [Int] = []
+    var dDayPlus: [Int] = []
     
     // ---------------------------- //
     //  "기념일" 탭2                   //
@@ -57,6 +62,10 @@ class CalenderDataCenter {
     
     // 3. 현재 날짜로 부터 기념일까지 남은 기간 D-day 계산 값
     var dDayOfAnniversaryDay: [String] = []
+    
+    var aDday: [Int] = []
+    var aDdayPlus: [Int] = []
+    var aHeartIndex: Int?
     
     init() {
         calCountDays()
@@ -141,6 +150,7 @@ class CalenderDataCenter {
             let date1 = calendar.startOfDay(for: date)
             let date2 = calendar.startOfDay(for: currentDate)
             let components = calendar.dateComponents([.day], from: date2, to: date1)
+            
             guard let days = components.day else {return}
             
             // 오늘 날짜보다 미래인 경우
@@ -148,16 +158,41 @@ class CalenderDataCenter {
                 let days1 = days - 1
                 if days1 == 0 {
                     strDday.append("D-Day!")
+                    dDay.append(days1)
                 }else{
                     strDday.append("D-\(days - 1)")
+                    dDay.append(days - 1)
                 }
             // 오늘 날짜와 동일한 경우
             }else if days == 0 {
                 strDday.append("D-Day")
+                dDay.append(days)
             // 오늘 날짜보다 과거인 경우
             }else{
                 let days1 = days - 1
                 strDday.append("D+\(-days1)")
+                dDay.append(days1)
+            }
+        }
+    
+        // 날짜 중에서 0과 양수 값만 남긴다
+        for (index, d) in dDay.enumerated(){
+           print("원석", index, d)
+            if d >= 0 {
+                dDayPlus.append(d)
+            }
+        }
+        
+        // 0과 양수 값 중에서 가장 작은 최소값을 구해서 index를 저장한다
+        if let minNum = dDayPlus.min(){
+            print("최소값", minNum)
+            let str = "D-\(minNum)"
+            if strDday.contains(str){
+                let index = strDday.firstIndex(of: str)
+                heartIndex = index
+            }else{
+                let index = strDday.firstIndex(of: "D-Day!")
+                heartIndex = index
             }
         }
     }
@@ -216,14 +251,38 @@ class CalenderDataCenter {
                 // 현재 날짜보다 과거인 경우
                 if days > 0 {
                     dDayOfAnniversaryDay.append("D-\(days - 1)")
+                    aDday.append(days - 1)
                 // 현재 날짜와 동일한 경우
                 }else if days == 0 {
                     dDayOfAnniversaryDay.append("D-Day")
+                    aDday.append(days)
                 // 현재 날짜보다 미래인 경우
                 }else{
                     let days1 = days - 1
                     dDayOfAnniversaryDay.append("D+\(-days1)")
+                    aDday.append(days1)
                 }
+            }
+        }
+        
+        // 날짜 중에서 0과 양수 값만 남긴다
+        for (index, d) in aDday.enumerated(){
+            print("원석", index, d)
+            if d >= 0 {
+                aDdayPlus.append(d)
+            }
+        }
+        
+        // 0과 양수 값 중에서 가장 작은 최소값을 구해서 index를 저장한다
+        if let minNum = aDdayPlus.min(){
+            print("최소값", minNum)
+            let str = "D-\(minNum)"
+            if dDayOfAnniversaryDay.contains(str){
+                let index = dDayOfAnniversaryDay.firstIndex(of: str)
+                aHeartIndex = index
+            }else{
+                let index = dDayOfAnniversaryDay.firstIndex(of: "D-Day")
+                aHeartIndex = index
             }
         }
     }

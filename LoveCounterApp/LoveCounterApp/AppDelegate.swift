@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // 앱이 시작되면 뱃지 넘버는 사라진다
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         // LaunchScreen 2초간 보여줄 것
         Thread.sleep(forTimeInterval: 2)
         

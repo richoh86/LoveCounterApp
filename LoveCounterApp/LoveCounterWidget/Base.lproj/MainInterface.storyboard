@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +12,7 @@
         <!--Today View Controller-->
         <scene sceneID="cwh-vc-ff4">
             <objects>
-                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="LoveCounterWidget" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="LoveCounterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,33 +26,39 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pF7-EP-eea">
                                 <rect key="frame" x="125" y="-6.5" width="60" height="60"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-compact-camera-100" translatesAutoresizingMaskIntoConstraints="NO" id="rGc-cf-GtR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V03-i7-Skj">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                    </imageView>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="rGc-cf-GtR" firstAttribute="height" secondItem="pF7-EP-eea" secondAttribute="height" id="20Z-LJ-Fkb"/>
-                                    <constraint firstItem="rGc-cf-GtR" firstAttribute="centerX" secondItem="pF7-EP-eea" secondAttribute="centerX" id="Kcl-sS-krC"/>
+                                    <constraint firstItem="V03-i7-Skj" firstAttribute="top" secondItem="pF7-EP-eea" secondAttribute="top" id="0XU-7M-G35"/>
+                                    <constraint firstAttribute="trailing" secondItem="V03-i7-Skj" secondAttribute="trailing" id="9EP-aH-hgw"/>
+                                    <constraint firstAttribute="bottom" secondItem="V03-i7-Skj" secondAttribute="bottom" id="AYb-Wm-cg4"/>
                                     <constraint firstAttribute="height" constant="60" id="RhQ-eK-kxM"/>
-                                    <constraint firstItem="rGc-cf-GtR" firstAttribute="centerY" secondItem="pF7-EP-eea" secondAttribute="centerY" id="V0K-rh-ndG"/>
+                                    <constraint firstItem="V03-i7-Skj" firstAttribute="leading" secondItem="pF7-EP-eea" secondAttribute="leading" id="XZT-qE-CTb"/>
                                     <constraint firstAttribute="width" constant="60" id="bOQ-nX-ib2"/>
-                                    <constraint firstItem="rGc-cf-GtR" firstAttribute="width" secondItem="pF7-EP-eea" secondAttribute="width" id="ksi-na-puB"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F94-Of-rv3">
                                 <rect key="frame" x="240" y="-6.5" width="60" height="60"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-compact-camera-100" translatesAutoresizingMaskIntoConstraints="NO" id="RSJ-m1-Hic">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoB-3a-gks">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                    </imageView>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="5r9-Uo-GDZ"/>
-                                    <constraint firstItem="RSJ-m1-Hic" firstAttribute="centerX" secondItem="F94-Of-rv3" secondAttribute="centerX" id="EEm-GP-ZLi"/>
-                                    <constraint firstItem="RSJ-m1-Hic" firstAttribute="width" secondItem="F94-Of-rv3" secondAttribute="width" id="FZY-Ar-AkQ"/>
+                                    <constraint firstItem="SoB-3a-gks" firstAttribute="top" secondItem="F94-Of-rv3" secondAttribute="top" id="IT7-V4-vdw"/>
                                     <constraint firstAttribute="width" constant="60" id="N9V-wg-jrr"/>
-                                    <constraint firstItem="RSJ-m1-Hic" firstAttribute="height" secondItem="F94-Of-rv3" secondAttribute="height" id="NEe-Ou-v6b"/>
-                                    <constraint firstItem="RSJ-m1-Hic" firstAttribute="centerY" secondItem="F94-Of-rv3" secondAttribute="centerY" id="Yhn-dW-3oj"/>
+                                    <constraint firstAttribute="trailing" secondItem="SoB-3a-gks" secondAttribute="trailing" id="PA0-ru-Y6c"/>
+                                    <constraint firstItem="SoB-3a-gks" firstAttribute="leading" secondItem="F94-Of-rv3" secondAttribute="leading" id="bqV-i5-Wfn"/>
+                                    <constraint firstAttribute="bottom" secondItem="SoB-3a-gks" secondAttribute="bottom" id="uNz-Ob-lRz"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-love-filled-main" translatesAutoresizingMaskIntoConstraints="NO" id="hNP-SO-Y9V">
@@ -91,8 +96,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="37"/>
                     <connections>
-                        <outlet property="profile1" destination="rGc-cf-GtR" id="fmw-KC-JnC"/>
-                        <outlet property="profile2" destination="RSJ-m1-Hic" id="Oow-t1-CGF"/>
+                        <outlet property="name1" destination="V03-i7-Skj" id="ihz-6i-pib"/>
+                        <outlet property="name2" destination="SoB-3a-gks" id="BQC-QJ-NBn"/>
                         <outlet property="profileView1" destination="pF7-EP-eea" id="Wd9-8D-DKZ"/>
                         <outlet property="profileView2" destination="F94-Of-rv3" id="7r5-0N-vcU"/>
                         <outlet property="textLb" destination="DNk-fy-648" id="PoA-df-77o"/>
@@ -104,7 +109,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icons8-compact-camera-100" width="45" height="34"/>
         <image name="icons8-love-filled-main" width="46" height="40"/>
     </resources>
 </document>

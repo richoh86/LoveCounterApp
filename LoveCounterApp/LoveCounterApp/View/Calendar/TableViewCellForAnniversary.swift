@@ -33,6 +33,13 @@ class TableViewCellForAnniversary: UITableViewCell {
         return text
     }()
     
+    // 하트이미지 셀에 삽입 2019.4.26 OHWS
+    let heartImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "icons8-love-filled-100.png")
+        return image
+    }()
+    
     let view2 = UIView()
     
     let stackView: UIStackView = {
@@ -69,6 +76,10 @@ class TableViewCellForAnniversary: UITableViewCell {
     override func layoutSubviews() {
         
         self.view1.addSubview(textLbForView1)
+        
+        // 하트이미지 셀에 삽입 2019.4.26 OHWS
+        self.view1.addSubview(heartImage)
+        
         self.stackView.addArrangedSubview(textLb1ForStackView)
         self.stackView.addArrangedSubview(textLb2ForStackView)
         self.view2.addSubview(stackView)
@@ -100,6 +111,14 @@ class TableViewCellForAnniversary: UITableViewCell {
             make.height.greaterThanOrEqualTo(55)
             make.left.equalToSuperview().offset(10)
             make.centerY.equalToSuperview()
+        }
+        
+        // 하트이미지 셀에 삽입 2019.4.26 OHWS
+        heartImage.snp.makeConstraints {
+            $0.left.equalTo(textLbForView1.snp.right)
+            $0.width.equalTo(25)
+            $0.height.equalTo(25)
+            $0.centerY.equalTo(textLbForView1.snp.centerY)
         }
         
         stackView.snp.makeConstraints { make in

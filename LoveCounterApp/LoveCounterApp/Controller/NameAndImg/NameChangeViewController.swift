@@ -41,10 +41,16 @@ class NameChangeViewController: UIViewController {
             guard let strName = nameChangeView.textFieldForName.text else {return}
             if tag == 1{
                 UserDefaults.standard.set(strName, forKey: "name1")
+                // 이름 입력/변경시 위젯의 이름도 변경
+                // 2019.04.28 OHWS
+                UserDefaults.init(suiteName: "group.LoveCounter.widget")?.set(strName, forKey: "name1")
                 let userInfo = [ "name1": strName ]
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nameChange"), object: nil, userInfo: userInfo)
             }else if tag == 2{
                 UserDefaults.standard.set(strName, forKey: "name2")
+                // 이름 입력/변경시 위젯의 이름도 변경
+                // 2019.04.28 OHWS
+                UserDefaults.init(suiteName: "group.LoveCounter.widget")?.set(strName, forKey: "name2")
                 let userInfo = [ "name2": strName ]
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nameChange"), object: nil, userInfo: userInfo)
             }
