@@ -154,7 +154,8 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         
         let curDate = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+//        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+            dateFormatter.dateFormat = "yyyy ▪︎ M ▪︎ d"
         
         // 연인이 된 날짜 변경 로직 (버튼 태그: 101)
         if btnTag == 101 {
@@ -180,7 +181,8 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
             // 날짜 차이가 0보다 작은 경우 메세지를 띄어준다
             if days <= 0 {
                 let action1 = UIAlertAction(title: "예", style: UIAlertAction.Style.default)
-                let alertVC = UIAlertController(title: "날짜확인", message: "오늘 날짜 이후로는 설정할 수 없습니다!", preferredStyle: UIAlertController.Style.alert)
+//                let alertVC = UIAlertController(title: "날짜확인", message: "오늘 날짜 이후로는 설정할 수 없습니다!", preferredStyle: UIAlertController.Style.alert)
+                let alertVC = UIAlertController(title: "DateCheck", message: "can't select date after today!", preferredStyle: UIAlertController.Style.alert)
                 alertVC.addAction(action1)
                 self.present(alertVC, animated: true, completion: nil)
             
@@ -220,8 +222,10 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
                     
                     if granted == false {
                         
-                        let alertVC = UIAlertController(title: "알림설정", message: "설정 -> 알림 -> 러브카운터 -> 알림허용 스위치를 On으로 변경해주세요!", preferredStyle: UIAlertController.Style.alert)
-                        let action1 = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action) in
+//                        let alertVC = UIAlertController(title: "알림설정", message: "설정 -> 알림 -> 러브카운터 -> 알림허용 스위치를 On으로 변경해주세요!", preferredStyle: UIAlertController.Style.alert)
+                        let alertVC = UIAlertController(title: "NotificationSetting", message: "Settings -> Notification -> HAEALIM -> Turn on notification alarm switch ", preferredStyle: UIAlertController.Style.alert)
+                        
+                        let action1 = UIAlertAction(title: "confirm", style: UIAlertAction.Style.default, handler: { (action) in
                              self.pushAlarmBool = !self.pushAlarmBool!
                         })
                         
@@ -285,8 +289,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
                 }else{
                     print(granted)
                     if granted == false {
-                        let alertVC = UIAlertController(title: "알림설정", message: "설정 -> 알림 -> 러브카운터 ->\n알림허용 스위치를 On으로 변경해주세요!", preferredStyle: UIAlertController.Style.alert)
-                        let action1 = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action) in
+//                        let alertVC = UIAlertController(title: "알림설정", message: "설정 -> 알림 -> 러브카운터 ->\n알림허용 스위치를 On으로 변경해주세요!", preferredStyle: UIAlertController.Style.alert)
+                        let alertVC = UIAlertController(title: "NotificationSetting", message: "Settings -> Notification -> HAEALIM -> Turn on notification alarm switch ", preferredStyle: UIAlertController.Style.alert)
+                        let action1 = UIAlertAction(title: "confirm", style: UIAlertAction.Style.default, handler: { (action) in
                             self.pushAlarmForBirthAndAnniBool = !self.pushAlarmForBirthAndAnniBool!
                         })
                         alertVC.addAction(action1)
@@ -324,7 +329,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
        
         mailVC = MFMailComposeViewController()
         mailVC?.mailComposeDelegate = self
-        mailVC?.setToRecipients(["wsoh1986@gmail.com"])
+        mailVC?.setToRecipients(["richohios@gmail.com"])
         
         self.present(mailVC!, animated: true, completion: nil)
     }

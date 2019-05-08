@@ -115,7 +115,7 @@ class TableViewCellForAnniversary: UITableViewCell {
         
         // 하트이미지 셀에 삽입 2019.4.26 OHWS
         heartImage.snp.makeConstraints {
-            $0.left.equalTo(textLbForView1.snp.right)
+            $0.left.equalTo(textLbForView1.snp.right).offset(5)
             $0.width.equalTo(25)
             $0.height.equalTo(25)
             $0.centerY.equalTo(textLbForView1.snp.centerY)

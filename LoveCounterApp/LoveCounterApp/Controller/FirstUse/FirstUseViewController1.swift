@@ -119,10 +119,10 @@ class FirstUseViewController1: UIViewController {
         guard let days = components.day else {return}
         
         if days >= 0 {
-            firstUserView.textLb.text = "\(days + 1)일"
+            firstUserView.textLb.text = "\(days + 1) D"
         }else{
 //            firstUserView.textLb.text = "\(-days + 1)일"
-            let action1 = UIAlertAction(title: "예", style: .default) { (action) in
+            let action1 = UIAlertAction(title: "YES", style: .default) { (action) in
                 
                 // Spinner의 선택 날짜를 현재 날짜로 변경
                 let currentDate = Date()
@@ -136,7 +136,10 @@ class FirstUseViewController1: UIViewController {
                 self.firstUserView.dateTextLb.text = strCurrentDate
                 
             }
-            let alertVC = UIAlertController(title: "날짜확인", message: "오늘 날짜 이후로는 설정할 수 없습니다!", preferredStyle: UIAlertController.Style.alert)
+//            let alertVC = UIAlertController(title: "날짜확인", message: "오늘 날짜 이후로는 설정할 수 없습니다!", preferredStyle: UIAlertController.Style.alert)
+            
+            // 영문버젼으로 변경!
+            let alertVC = UIAlertController(title: "DateCheck", message: "can't select date after today!", preferredStyle: UIAlertController.Style.alert)
             
             alertVC.addAction(action1)
             self.present(alertVC, animated: true, completion: nil)

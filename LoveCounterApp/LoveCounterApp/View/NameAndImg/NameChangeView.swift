@@ -13,7 +13,8 @@ class NameChangeView: UIView {
     
     let textLabel: UILabel = {
         let textLb = UILabel()
-        textLb.text = "이름을 입력해주세요!"
+//        textLb.text = "이름을 입력해주세요!"
+        textLb.text = "Type your name!"
         textLb.textColor = .white
         textLb.textAlignment = .center
         textLb.font = UIFont.systemFont(ofSize: 20)

@@ -37,7 +37,8 @@ class SettingView: UIView {
     
     let titleLb: UILabel = {
         let titleLb = UILabel()
-        titleLb.text = "설정"
+//        titleLb.text = "설정"
+        titleLb.text = "Setting"
         titleLb.textColor = .white
         titleLb.textAlignment = .center
         titleLb.font = UIFont.boldSystemFont(ofSize: 19)
@@ -78,7 +79,7 @@ class SettingView: UIView {
     
     let section1Title: UILabel = {
         let title = UILabel()
-        title.text = "기본 설정"
+        title.text = "Basic Setting"
         title.textColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
         title.font = UIFont.boldSystemFont(ofSize: 16)
         title.textAlignment = .left
@@ -99,9 +100,10 @@ class SettingView: UIView {
     
     let title1ForSection1: UILabel = {
         let text = UILabel()
-        text.text = "연인이 된 날짜"
+//        text.text = "연인이 된 날짜"
+        text.text = "Date that became a couple"
         text.textColor = .white
-        text.font = UIFont.boldSystemFont(ofSize: 19)
+        text.font = UIFont.boldSystemFont(ofSize: 16)
         text.textAlignment = .left
         return text
     }()
@@ -131,9 +133,10 @@ class SettingView: UIView {
     
     let title2ForSection1: UILabel = {
         let text = UILabel()
-        text.text = "내꺼 생일"
+//        text.text = "내꺼 생일"
+        text.text = "Lover's Birthday Date"
         text.textColor = .white
-        text.font = UIFont.boldSystemFont(ofSize: 19)
+        text.font = UIFont.boldSystemFont(ofSize: 16)
         text.textAlignment = .left
         return text
     }()
@@ -163,9 +166,10 @@ class SettingView: UIView {
     
     let title3ForSection1: UILabel = {
         let text = UILabel()
-        text.text = "본인 생일"
+//        text.text = "본인 생일"
+        text.text = "My Birthday Date"
         text.textColor = .white
-        text.font = UIFont.boldSystemFont(ofSize: 19)
+        text.font = UIFont.boldSystemFont(ofSize: 16)
         text.textAlignment = .left
         return text
     }()
@@ -200,7 +204,8 @@ class SettingView: UIView {
     // 섹션 타이틀 텍스트
     let section2Title: UILabel = {
         let title = UILabel()
-        title.text = "알림 설정"
+//        title.text = "알림 설정"
+        title.text = "Notification Setting"
         title.textColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
         title.font = UIFont.boldSystemFont(ofSize: 16)
         title.textAlignment = .left
@@ -222,9 +227,10 @@ class SettingView: UIView {
     
     let title1ForSection2: UILabel = {
         let text = UILabel()
-        text.text = "푸쉬 알람"
+//        text.text = "푸쉬 알람"
+        text.text = "Push Alarm"
         text.textColor = .white
-        text.font = UIFont.boldSystemFont(ofSize: 19)
+        text.font = UIFont.boldSystemFont(ofSize: 16)
         text.textAlignment = .left
         return text
     }()
@@ -254,9 +260,10 @@ class SettingView: UIView {
     
     let title2ForSection2: UILabel = {
         let text = UILabel()
-        text.text = "생일 및 기념일 알람"
+//        text.text = "생일 및 기념일 알람"
+        text.text = "BirthDay And AnniversaryDay"
         text.textColor = .white
-        text.font = UIFont.boldSystemFont(ofSize: 19)
+        text.font = UIFont.boldSystemFont(ofSize: 16)
         text.textAlignment = .left
         return text
     }()
@@ -288,7 +295,8 @@ class SettingView: UIView {
     
     let section3Title: UILabel = {
         let title = UILabel()
-        title.text = "Love Counter"
+//        title.text = "Love Counter"
+        title.text = "HAEALIM APP INFO"
         title.textColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
         title.font = UIFont.boldSystemFont(ofSize: 16)
         title.textAlignment = .left
@@ -309,9 +317,10 @@ class SettingView: UIView {
     
     let title1ForSection3: UILabel = {
         let text = UILabel()
-        text.text = "문의하기"
+//        text.text = "문의하기"
+        text.text = "Q&A"
         text.textColor = .white
-        text.font = UIFont.boldSystemFont(ofSize: 19)
+        text.font = UIFont.boldSystemFont(ofSize: 16)
         text.textAlignment = .left
         return text
     }()
@@ -341,9 +350,10 @@ class SettingView: UIView {
     
     let title2ForSection3: UILabel = {
         let text = UILabel()
-        text.text = "리뷰와 별점주기"
+//        text.text = "리뷰와 별점주기"
+        text.text = "Review And Stars"
         text.textColor = .white
-        text.font = UIFont.boldSystemFont(ofSize: 19)
+        text.font = UIFont.boldSystemFont(ofSize: 16)
         text.textAlignment = .left
         return text
     }()
@@ -367,9 +377,10 @@ class SettingView: UIView {
     
     let title3ForSection3: UILabel = {
         let text = UILabel()
-        text.text = "버전 정보"
+//        text.text = "버전 정보"
+        text.text = "Version"
         text.textColor = .white
-        text.font = UIFont.boldSystemFont(ofSize: 19)
+        text.font = UIFont.boldSystemFont(ofSize: 16)
         text.textAlignment = .left
         return text
     }()
@@ -379,7 +390,7 @@ class SettingView: UIView {
         let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         version.text = appVersion
         version.textColor = .white
-        version.font = UIFont.boldSystemFont(ofSize: 19)
+        version.font = UIFont.boldSystemFont(ofSize: 16)
         version.textAlignment = .right
         return version
     }()

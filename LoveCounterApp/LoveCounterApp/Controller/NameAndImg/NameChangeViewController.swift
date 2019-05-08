@@ -22,7 +22,8 @@ class NameChangeViewController: UIViewController {
     
     let completeBtn: UIButton = {
         let btn = UIButton()
-        btn.setTitle("완료", for: .normal)
+//        btn.setTitle("완료", for: .normal)
+        btn.setTitle("Complete", for: .normal)
         btn.titleLabel?.textColor = .white
         btn.titleLabel?.textAlignment = .center
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 20)
@@ -68,6 +69,11 @@ class NameChangeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 연인의 이름 변경시 lover 이름을 변경하도록 가이드 메세지를 보여준다
+        if let tag = btnTag, tag == 2 {
+            nameChangeView.textLabel.text = "Type your lover's name"
+        }
         
         getUserDefaultNameForTextField()
         

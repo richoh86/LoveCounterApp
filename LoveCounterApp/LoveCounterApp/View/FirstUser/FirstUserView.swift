@@ -60,7 +60,8 @@ class FirstUserView: UIView {
     func createTopTitleView(){
         
         titleOnTop.textAlignment = .center
-        titleOnTop.text = "연인이 된 날을 입력해주세요!"
+//        titleOnTop.text = "연인이 된 날을 입력해주세요!"
+        titleOnTop.text = "choose date\nthat became a couple!"
         titleOnTop.textColor = UIColor.white
         titleOnTop.backgroundColor = .none
         titleOnTop.font = UIFont.systemFont(ofSize: 20)
@@ -70,6 +71,7 @@ class FirstUserView: UIView {
         imageView.frame = CGRect(x: 10 , y: 10, width: 20, height: 20)
         imageView.image = UIImage(named: "icons8-love-filled-100")
         titleOnTop.addSubview(imageView)
+        imageView.isHidden = true
         
     }
     
@@ -88,7 +90,8 @@ class FirstUserView: UIView {
     
     func createTextInShapeLayer(){
         
-        textLb.text = "1일"
+//        textLb.text = "1일"
+        textLb.text = "1 D"
         textLb.textColor = UIColor.white
         textLb.textAlignment = .center
         textLb.font = UIFont.boldSystemFont(ofSize: 50)
@@ -128,7 +131,8 @@ class FirstUserView: UIView {
     
     func createButton(){
         
-        nextButton.setTitle("다음", for: .normal)
+//        nextButton.setTitle("다음", for: .normal)
+        nextButton.setTitle("Next", for: .normal)
         nextButton.setTitleColor(UIColor.white, for: .normal)
         nextButton.backgroundColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
         nextButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
@@ -160,7 +164,8 @@ class FirstUserView: UIView {
             make.height.equalTo(45)
         }
         
-        cancelBtn.setTitle("취소", for: .normal)
+//        cancelBtn.setTitle("취소", for: .normal)
+        cancelBtn.setTitle("Cancel", for: .normal)
         cancelBtn.setTitleColor(#colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1), for: .normal)
         cancelBtn.titleLabel?.font = UIFont.systemFont(ofSize: 19)
         
@@ -171,7 +176,8 @@ class FirstUserView: UIView {
             make.right.equalTo(dateSpinnerUIbox).inset(15)
         }
         
-        let locale = Locale(identifier: "ko_KR")
+//        let locale = Locale(identifier: "ko_KR")
+        let locale = Locale(identifier: "en_US")
         dateSpinner.datePickerMode = .date
         dateSpinner.locale = locale
         
@@ -185,7 +191,8 @@ class FirstUserView: UIView {
         }
 
         completeBtn.setTitleColor(#colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1), for: UIControl.State.normal)
-        completeBtn.setTitle("완료", for: .normal)
+//        completeBtn.setTitle("완료", for: .normal)
+        completeBtn.setTitle("Complete", for: .normal)
         completeBtn.titleLabel?.textAlignment = .center
         completeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         
@@ -207,7 +214,7 @@ class FirstUserView: UIView {
         
         titleOnTop.snp.makeConstraints { make in
             make.width.equalTo(300)
-            make.height.equalTo(50)
+            make.height.equalTo(60)
             make.centerX.equalToSuperview()
 //            make.topMargin.equalTo(130)
             make.top.equalTo(self.snp.top).offset(80)

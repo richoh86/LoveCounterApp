@@ -35,7 +35,8 @@ class NameAndImgChangeView: UIView {
     
     let textLb1: UILabel = {
         let text = UILabel()
-        text.text = "이름 변경"
+//        text.text = "이름 변경"
+        text.text = "Name Change"
         text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         text.textAlignment = .center
         return text
@@ -49,7 +50,8 @@ class NameAndImgChangeView: UIView {
     
     let textLb2: UILabel = {
         let text = UILabel()
-        text.text = "프로필사진 변경"
+//        text.text = "프로필사진 변경"
+        text.text = "Picture Change"
         text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         text.textAlignment = .center
         return text
@@ -63,7 +65,8 @@ class NameAndImgChangeView: UIView {
     
     let textLb3: UILabel = {
         let text = UILabel()
-        text.text = "돌아가기"
+//        text.text = "돌아가기"
+        text.text = "Cancel"
         text.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         text.textAlignment = .center
         return text

@@ -34,7 +34,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>YES</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>이 앱에서는 메인 화면의 프로필 사진에 보여줄 이미지를 포토 앨범에서 선택합니다</string>
+	<string>This app use a image for profile picture on the main view from user’s photo library</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

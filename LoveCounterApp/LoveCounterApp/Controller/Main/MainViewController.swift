@@ -89,7 +89,7 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
             
             if let dateText = noti.userInfo?["dateText"] as? String {
                 self.mainView.topTitle.text =
-                "\(dateText)!\n우리의 사랑은 시작되었다."
+                "\(dateText)\nOur love is begun"
             }
             
             if let countedDay = noti.userInfo?["countedDay"] as? Int {
@@ -197,10 +197,10 @@ class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
                 
                 let days = numberOfDay + 1
                 if days % 366 == 0 {
-                    mainView.textLb.text = "\(days / 366)주년"
+                    mainView.textLb.text = "\(days / 366)\nAnniversary"
                 }else{
                     // 연인이 된 날짜도 1일로 카운트하기 때문에 날짜 차이값에서 1을 더해준다
-                    mainView.textLb.text = "\(numberOfDay + 1)일"
+                    mainView.textLb.text = "\(numberOfDay + 1) D"
                 }
             }
         }
