@@ -36,9 +36,11 @@ class FirstUseViewController2: UIViewController {
             CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height )
         
         // 입력 페이지에 따라서 변경 (본인 생일 입력 페이지)
-        firstUserView.titleOnTop.text = "본인의 생일을 입력해주세요!"
+//        firstUserView.titleOnTop.text = "본인의 생일을 입력해주세요!"
+        firstUserView.titleOnTop.text = "choose your birthday date!"
         firstUserView.imageView.image = UIImage(named: "icons8-confetti-filled-100")
-        firstUserView.textLb.text = "본인"
+//        firstUserView.textLb.text = "본인"
+        firstUserView.textLb.text = "You"
         
         // 다음 VC로 넘겨주는 버튼 액션
         firstUserView.nextButton.addTarget(self, action: #selector(nextBtnAction), for: .touchUpInside)

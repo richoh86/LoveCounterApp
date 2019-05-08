@@ -54,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 알람설정 공통 로직
         // 현재 등록되어 있는 모든 알람을 모두 삭제하고
         // 마지막으로 설정된 날짜로 다시 알람 설정을 수행
+        
+        print("EnterBackGround")
 
         // 푸쉬알람이 꺼진 상태로 백그라운드 진입이나 종료시 모든 알림 설정을 삭제한다
         if let pushAlarm = UserDefaults.standard.value(forKey: "pushAlarm") as? Bool, pushAlarm == false{
@@ -124,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // 0이 아니면 수행 0주년은 없음.
             if yearDifCnt != 0 {
             
-            let body = "💝 \(yearDifCnt)주년"
+            let body = "💝 \(yearDifCnt) Year Anniversary"
             
             let content = makeUnmutableNotiContent(title: "LoveCounter", subtitle: nil, body: body, threadIdentifier: "\(yearDifCnt)YearlyAlarm")
             let dateComponents = makeDatecomponents(date: selDate)
@@ -179,7 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 guard let days = components.day else {return}
             
-                let body100s = "❤️ \(days + 1)일"
+                let body100s = "❤️ \(days + 1) Days"
                 
                 let content100s = makeUnmutableNotiContent(title: "LoveCounter", subtitle: nil, body: body100s, threadIdentifier: "\(days + 1)sAlarm")
                 let dateComp100s = makeDatecomponents(date: date)
@@ -205,7 +207,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var bodyMyBirth = ""
             if let month = dateCompMyBirth.month,
                 let day = dateCompMyBirth.day{
-                bodyMyBirth = " 🎁 \(name1)생일 \(month)월 \(day)일"
+                bodyMyBirth = " 🎁 \(name1)'s birthday \(month).\(day)!!"
             }
             let contentMyBirth = makeUnmutableNotiContent(title: "LoveCounter", subtitle: nil, body: bodyMyBirth, threadIdentifier: "myBirthAlarm")
             let requestMyBirth = makeTriggerAndRequestForLocalNotification(repeatsForTrigger: true, dateComponents: dateCompMyBirth, identifier: "myBirthAlarm", content: contentMyBirth)
@@ -227,7 +229,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var bodyYourBirth = ""
             if let month = dateCompYourBirth.month,
                 let day = dateCompYourBirth.day{
-                bodyYourBirth = "🎁 \(name2)생일 \(month)월 \(day)일"
+                bodyYourBirth = " 🎁 \(name2)'s birthday \(month).\(day)!!"
             }
             let contentYourBirth = makeUnmutableNotiContent(title: "LoveCounter", subtitle: nil, body: bodyYourBirth, threadIdentifier: "yourBirthAlarm")
             let requestYourBirth = makeTriggerAndRequestForLocalNotification(repeatsForTrigger: true, dateComponents: dateCompYourBirth, identifier: "yourBirthAlarm", content: contentYourBirth)
@@ -246,25 +248,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 dateOfAnniversaryDay.remove(at: 0) // 내꺼생일 제거
 
                 let nameOfAnniversaryDay: [String] = [
-                    "다이어리데이",
-                    "발렌타인데이",
-                    "화이트데이",
-                    "블랙데이",
-                    "로즈데이",
-                    "키스데이",
-                    "실버데이",
-                    "그린데이",
-                    "포토데이",
-                    "와인데이",
-                    "무비데이",
-                    "허그데이",
-                    "크리스마스"
+                    "Diary Day",
+                    "Valentine's Day",
+                    "White Day",
+                    "Black Day",
+                    "Rose Day",
+                    "Kiss Day",
+                    "Silver Day",
+                    "Green Day",
+                    "Photo Day",
+                    "Wine Day",
+                    "Movie Day",
+                    "Hug Day",
+                    "Christmas"
                 ]
 
             // 두 배열의 총 카운트 숫자가 다르면 아래 코드 실행하지 않는다
             guard dateOfAnniversaryDay.count == nameOfAnniversaryDay.count else {return}
 
-            for (index, dateStr) in dateOfAnniversaryDay.enumerated(){
+            for (index, dateStr) in
+                dateOfAnniversaryDay.enumerated(){
 
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "YYYY년 M월 d일"
@@ -378,6 +381,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 현재 등록되어 있는 모든 알람을 모두 삭제하고
         // 마지막으로 설정된 날짜로 다시 알람 설정을 수행
         
+        print("WillTerminate")
+        
         // 푸쉬알람이 꺼진 상태로 백그라운드 진입이나 종료시 모든 알림 설정을 삭제한다
         if let pushAlarm = UserDefaults.standard.value(forKey: "pushAlarm") as? Bool, pushAlarm == false{
             print("알림설정여부: ",pushAlarm)
@@ -447,7 +452,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // 0이 아니면 수행 0주년은 없음.
             if yearDifCnt != 0 {
                 
-                let body = "💝 \(yearDifCnt)주년"
+                let body = "💝 \(yearDifCnt) Year Anniversary"
                 
                 let content = makeUnmutableNotiContent(title: "LoveCounter", subtitle: nil, body: body, threadIdentifier: "\(yearDifCnt)YearlyAlarm")
                 let dateComponents = makeDatecomponents(date: selDate)
@@ -502,7 +507,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 guard let days = components.day else {return}
                 
-                let body100s = "❤️ \(days + 1)일"
+                let body100s = "❤️ \(days + 1) Days"
                 
                 let content100s = makeUnmutableNotiContent(title: "LoveCounter", subtitle: nil, body: body100s, threadIdentifier: "\(days + 1)sAlarm")
                 let dateComp100s = makeDatecomponents(date: date)
@@ -528,7 +533,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 var bodyMyBirth = ""
                 if let month = dateCompMyBirth.month,
                     let day = dateCompMyBirth.day{
-                    bodyMyBirth = " 🎁 \(name1)생일 \(month)월 \(day)일"
+                    bodyMyBirth = " 🎁 \(name1)'s birthday \(month).\(day)!!"
                 }
                 let contentMyBirth = makeUnmutableNotiContent(title: "LoveCounter", subtitle: nil, body: bodyMyBirth, threadIdentifier: "myBirthAlarm")
                 let requestMyBirth = makeTriggerAndRequestForLocalNotification(repeatsForTrigger: true, dateComponents: dateCompMyBirth, identifier: "myBirthAlarm", content: contentMyBirth)
@@ -550,7 +555,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 var bodyYourBirth = ""
                 if let month = dateCompYourBirth.month,
                     let day = dateCompYourBirth.day{
-                    bodyYourBirth = "🎁 \(name2)생일 \(month)월 \(day)일"
+                    bodyYourBirth = " 🎁 \(name2)'s birthday \(month).\(day)!!"
                 }
                 let contentYourBirth = makeUnmutableNotiContent(title: "LoveCounter", subtitle: nil, body: bodyYourBirth, threadIdentifier: "yourBirthAlarm")
                 let requestYourBirth = makeTriggerAndRequestForLocalNotification(repeatsForTrigger: true, dateComponents: dateCompYourBirth, identifier: "yourBirthAlarm", content: contentYourBirth)
@@ -569,19 +574,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 dateOfAnniversaryDay.remove(at: 0) // 내꺼생일 제거
                 
                 let nameOfAnniversaryDay: [String] = [
-                    "다이어리데이",
-                    "발렌타인데이",
-                    "화이트데이",
-                    "블랙데이",
-                    "로즈데이",
-                    "키스데이",
-                    "실버데이",
-                    "그린데이",
-                    "포토데이",
-                    "와인데이",
-                    "무비데이",
-                    "허그데이",
-                    "크리스마스"
+                    "Diary Day",
+                    "Valentine's Day",
+                    "White Day",
+                    "Black Day",
+                    "Rose Day",
+                    "Kiss Day",
+                    "Silver Day",
+                    "Green Day",
+                    "Photo Day",
+                    "Wine Day",
+                    "Movie Day",
+                    "Hug Day",
+                    "Christmas"
                 ]
                 
                 // 두 배열의 총 카운트 숫자가 다르면 아래 코드 실행하지 않는다
@@ -599,7 +604,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         var body = ""
                         if let month = dateCompAnni.month,
                             let day = dateCompAnni.day{
-                            body = "\(month)월 \(day)일 \(nameOfAnniversaryDay[index])"
+                            body = "\(month).\(day) \(nameOfAnniversaryDay[index])"
                         }
                         
                         let contentsAnni = makeUnmutableNotiContent(title: "LoveCounter", subtitle: nil, body: body, threadIdentifier: "\(index)AnniAlarm")

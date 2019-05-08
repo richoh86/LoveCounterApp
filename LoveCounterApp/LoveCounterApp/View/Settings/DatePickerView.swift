@@ -23,7 +23,7 @@ class DatePickerView: UIView {
     
     let completeBtn: UIButton = {
        let btn = UIButton()
-       btn.setTitle("완료", for: .normal)
+       btn.setTitle("Complete", for: .normal)
        btn.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
        btn.backgroundColor = #colorLiteral(red: 0.9943013787, green: 0.4424599409, blue: 0.4413398504, alpha: 1)
        return btn
@@ -45,7 +45,8 @@ class DatePickerView: UIView {
     private func createUI(){
         
         // 1. date picker view 한국 날짜 타입으로 변경
-        let locale = Locale(identifier: "ko_KR")
+//        let locale = Locale(identifier: "ko_KR")
+        let locale = Locale(identifier: "en_US")
         datePickerView.datePickerMode = .date
         datePickerView.locale = locale
         

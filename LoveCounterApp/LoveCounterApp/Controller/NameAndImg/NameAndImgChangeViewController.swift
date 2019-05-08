@@ -69,8 +69,10 @@ class NameAndImgChangeViewController: UIViewController{
                             self.present(imagePickerController, animated: true, completion: nil)
                         }
                     }else{
-                        let alertVC = UIAlertController(title: "권한요청확인", message: "앨범 접근권한이 없으면\n프로필 사진 변경을 할 수 없습니다", preferredStyle: UIAlertController.Style.alert)
-                        let action1 = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action1) in})
+//                        let alertVC = UIAlertController(title: "권한요청확인", message: "앨범 접근권한이 없으면\n프로필 사진 변경을 할 수 없습니다", preferredStyle: UIAlertController.Style.alert)
+                        let alertVC = UIAlertController(title: "AuthorizationCheck", message: "With no authorization to access photo library,\nyou can't change your profile picture", preferredStyle: UIAlertController.Style.alert)
+//                        let action1 = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action1) in})
+                        let action1 = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { (action1) in})
                         alertVC.addAction(action1)
                         self.present(alertVC, animated: true, completion: nil)
                     }

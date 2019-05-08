@@ -122,13 +122,16 @@ class MainView: UIView {
         if let selectedDate = UserDefaults.standard.value(forKey: "selDate") as? Date {
             // Date 포맷은 yyyy.MM.dd
             let dateFormatter1 = DateFormatter()
-            dateFormatter1.dateFormat = "yyyy년 MM월 dd일"
+//            dateFormatter1.dateFormat = "yyyy년 MM월 dd일"
+              dateFormatter1.dateFormat = "yyyy ▪︎ M ▪︎ d"
             // 선택된 시간 String 값을 변환
             let strSelectedDate = dateFormatter1.string(from: selectedDate)
-            topTitle.text = "\(strSelectedDate)!\n우리의 사랑은 시작되었다."
+//            topTitle.text = "\(strSelectedDate)!\n우리의 사랑은 시작되었다."
+            topTitle.text = "\(strSelectedDate)\nOur love has begun"
         }else{
             topTitle.numberOfLines = 1
-            topTitle.text = "사랑은 위대한 것"
+//            topTitle.text = "사랑은 위대한 것"
+            topTitle.text = "Love is great"
         }
         
         addSubview(topTitle)
@@ -150,7 +153,7 @@ class MainView: UIView {
     
     func createTextInShapeLayer(){
         
-        textLb.text = "1일"
+        textLb.text = "1Day"
         textLb.textColor = UIColor.white
         textLb.textAlignment = .center
         textLb.font = UIFont.boldSystemFont(ofSize: 45)
@@ -192,7 +195,8 @@ class MainView: UIView {
         if let name1  = UserDefaults.standard.value(forKey: "name1") as? String{
             self.name1.text = name1
         }else{
-            name1.text = "본인이름"
+//            name1.text = "본인이름"
+            name1.text = "Your Name"
         }
         name1.textAlignment = .center
         name1.textColor = .white
@@ -201,7 +205,8 @@ class MainView: UIView {
         if let name2  = UserDefaults.standard.value(forKey: "name2") as? String{
             self.name2.text = name2
         }else{
-            name2.text = "내꺼이름"
+//            name2.text = "내꺼이름"
+            name2.text = "Lover Name"
         }
         name2.textAlignment = .center
         name2.textColor = .white

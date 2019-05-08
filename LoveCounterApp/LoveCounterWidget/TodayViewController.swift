@@ -60,8 +60,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             if let day = components.day {
                 days = day + 1
             }
-            self.textLb.text = "\(days)일"
-            self.textLb.font = UIFont.boldSystemFont(ofSize: 40)
+            self.textLb.text = "\(days) Days"
+            self.textLb.font = UIFont.boldSystemFont(ofSize: 30)
             self.textLb.textColor = .white
             self.textLb.textAlignment = .center
         }
@@ -70,12 +70,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // 2019.04.28 OHWS
         name1.textAlignment = .center
         name1.textColor = .white
-        name1.font = UIFont.systemFont(ofSize: 25)
+        name1.font = UIFont.systemFont(ofSize: 15)
         name1.text = "본인"
         
         name2.textAlignment = .center
         name2.textColor = .white
-        name2.font = UIFont.systemFont(ofSize: 25)
+        name2.font = UIFont.systemFont(ofSize: 15)
         name2.text = "내꺼"
         
         if let name1FromUserDefault = widgetUd.value(forKey: "name1") as? String,

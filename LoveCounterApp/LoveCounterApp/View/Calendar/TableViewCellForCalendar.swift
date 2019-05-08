@@ -100,7 +100,7 @@ class TableViewCellForCalendar: UITableViewCell {
         
         // 하트이미지 셀에 삽입 2019.4.26 OHWS
         heartImage.snp.makeConstraints {
-            $0.left.equalTo(countDay.snp.right)
+            $0.left.equalTo(countDay.snp.right).offset(5)
             $0.width.equalTo(25)
             $0.height.equalTo(25)
             $0.centerY.equalTo(countDay.snp.centerY)
@@ -118,7 +118,7 @@ class TableViewCellForCalendar: UITableViewCell {
         }
 
         countDay.snp.makeConstraints { make in
-            make.width.equalTo(100)
+            make.width.equalTo(120) // 20190508 OHWSC
             make.height.equalTo(55)
             make.left.equalToSuperview().offset(10)
             make.centerY.equalToSuperview()

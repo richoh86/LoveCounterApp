@@ -37,25 +37,44 @@ class CalenderDataCenter {
     // ---------------------------- //
     
     // 1. 기념일 이름 ex) 발렌타인 데이, 생일
+//    var nameOfAnniversaryDay: [String] =
+//        [
+//            "본인생일",
+//            "내꺼생일",
+//            "다이어리데이",
+//            "발렌타인데이",
+//            "화이트데이",
+//            "블랙데이",
+//            "로즈데이",
+//            "키스데이",
+//            "실버데이",
+//            "그린데이",
+//            "포토데이",
+//            "와인데이",
+//            "무비데이",
+//            "허그데이",
+//            "크리스마스"
+//
+//        ]
+    
     var nameOfAnniversaryDay: [String] =
         [
-            "본인생일",
-            "내꺼생일",
-            "다이어리데이",
-            "발렌타인데이",
-            "화이트데이",
-            "블랙데이",
-            "로즈데이",
-            "키스데이",
-            "실버데이",
-            "그린데이",
-            "포토데이",
-            "와인데이",
-            "무비데이",
-            "허그데이",
-            "크리스마스"
-    
-        ]
+            "Your Birthday",
+            "Lover Birthday",
+            "Diary Day",
+            "Valentine's Day",
+            "White Day",
+            "Black Day",
+            "Rose Day",
+            "Kiss Day",
+            "Silver Day",
+            "Green Day",
+            "Photo Day",
+            "Wine Day",
+            "Movie Day",
+            "Hug Day",
+            "Christmas"    
+    ]
     
     // 2. 기념일 날짜 ex) 2019년(올해) 3월 14일
     var dateOfAnniversaryDay: [String] = []
@@ -80,10 +99,11 @@ class CalenderDataCenter {
         for i in 100..<11000{
             
             if i % 100 == 0 {
-                strCountDays.append("\(i)일")
+//                strCountDays.append("\(i)일")
+                strCountDays.append("\(i) Days")
                 countDays.append(i)
             }else if i % 365 == 0 {
-                strCountDays.append("\(i/365)주년")
+                strCountDays.append("\(i/365) Year 💝")
                 countDays.append(i)
             }
         }
@@ -102,15 +122,20 @@ class CalenderDataCenter {
         let dateFormatterForYear = DateFormatter()
         let dateFormatterAll = DateFormatter()
         
-        dateFormatter.dateFormat = "MM월 dd일"
-        dateFormatterForYear.dateFormat = "YYYY년"
-        dateFormatterAll.dateFormat = "YYYY년 MM월 dd일"
+//        dateFormatter.dateFormat = "MM월 dd일"
+//        dateFormatterForYear.dateFormat = "YYYY년"
+//        dateFormatterAll.dateFormat = "YYYY년 MM월 dd일"
+        dateFormatter.dateFormat = "M ▪︎ d"
+        dateFormatterForYear.dateFormat = "YYYY"
+        dateFormatterAll.dateFormat = "YYYY ▪︎ M ▪︎ d"
+
         
         if let selectedDate = UserDefaults.standard.value(forKey: "selDate") as? Date {
             strOfselectedDate = dateFormatter.string(from: selectedDate)
             strOfselectedDateForYear = dateFormatterForYear.string(from: selectedDate)
             
-            year = Int(strOfselectedDateForYear.dropLast())!
+//            year = Int(strOfselectedDateForYear.dropLast())!
+            year = Int(strOfselectedDateForYear)!
         }
         
         for i in countDays {
@@ -118,7 +143,8 @@ class CalenderDataCenter {
             // 1주년 단위 계산된 날짜 텍스트
             if i % 365 == 0 {
                 
-                let strDate = "\(year+1)년 "+strOfselectedDate
+//                let strDate = "\(year+1)년 "+strOfselectedDate
+                let strDate = "\(year+1) ▪︎ "+strOfselectedDate
                 self.strDate.append(strDate)
                 year += 1
                 // 계산된 날짜 Date 타입 (아래 현재날짜로부터 얼마나 남았는지 계산하기 위한 값)   
@@ -204,37 +230,42 @@ class CalenderDataCenter {
         
         // 1. 본인생일과 내꺼생일을 UserDefault에서 가져와서 String 값으로 넣어준다
         let dateFormatter1 = DateFormatter()
-        dateFormatter1.dateFormat = "MM월 dd일"
+//        dateFormatter1.dateFormat = "MM월 dd일"
+        dateFormatter1.dateFormat = "M ▪︎ d"
         
         let curDate = Date()
         let dateFormatter2 = DateFormatter()
-        dateFormatter2.dateFormat = "yyyy년"
+//        dateFormatter2.dateFormat = "yyyy년"
+        dateFormatter2.dateFormat = "yyyy ▪︎ "
         let strCurYear = dateFormatter2.string(from: curDate)
         
         if let myBirthDay = UserDefaults.standard.value(forKey: "myBirthDay") as? Date {
             let strMyBirthDay = dateFormatter1.string(from: myBirthDay)
-            dateOfAnniversaryDay.append(strCurYear+" "+strMyBirthDay)
+//            dateOfAnniversaryDay.append(strCurYear+" "+strMyBirthDay)
+            dateOfAnniversaryDay.append(strCurYear+strMyBirthDay)
         
         }
         
         if let loveBirthDay = UserDefaults.standard.value(forKey: "LoveBirthDay") as? Date {
             let strloveBirthDay = dateFormatter1.string(from: loveBirthDay)
-            dateOfAnniversaryDay.append(strCurYear+" "+strloveBirthDay)
+//            dateOfAnniversaryDay.append(strCurYear+" "+strloveBirthDay)
+            dateOfAnniversaryDay.append(strCurYear+strloveBirthDay)
         }
         
         // 2. 나머지 기념일들은 현재 연도를 year에 넣어주고 나머지 날짜들을 넣어준다
         for i in 1..<13 {
-            dateOfAnniversaryDay.append("\(strCurYear) \(i)월 14일")
+            dateOfAnniversaryDay.append("\(strCurYear)\(i) ▪︎ 14")
         }
         // 3. 크리스마스 12월 25일 추가
-        dateOfAnniversaryDay.append("\(strCurYear) 12월 25일")
+        dateOfAnniversaryDay.append("\(strCurYear)12 ▪︎ 25")
         
         // 기념일 푸쉬 알람을 위한 저장
         UserDefaults.standard.set(dateOfAnniversaryDay, forKey: "dateOfAnniversaryDay")
         
         // 4. 현재로 부터 기념일까지 D-Day 계산 로직
         let dateFormatter3 = DateFormatter()
-        dateFormatter3.dateFormat = "yyyy년 MM월 dd일"
+//        dateFormatter3.dateFormat = "yyyy년 MM월 dd일"
+        dateFormatter3.dateFormat = "yyyy ▪︎ M ▪︎ d"
         
         for date in dateOfAnniversaryDay{
             if let anniversaryDate = dateFormatter3.date(from: date) {
@@ -301,14 +332,16 @@ extension Date {
 //            dateComponents.day = days
             let resultDate = Calendar.current.date(byAdding: dateComponents, to: selectedDate)!
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+//            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+            dateFormatter.dateFormat = "yyyy ▪︎ M ▪︎ d"
             let strResultDay = dateFormatter.string(from: resultDate)
             
             return strResultDay
         }else{
             let currentDate = Date()
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+//            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+            dateFormatter.dateFormat = "yyyy ▪︎ M ▪︎ d"
             let strResultDay = dateFormatter.string(from: currentDate)
             
             return strResultDay
