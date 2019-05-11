@@ -99,23 +99,11 @@ class NameAndImgChangeViewController: UIViewController{
     
     func updateAutoLayout(){
         
-        let device = UIDevice.current
-        
-        if device.name == "iPhone 6"
-            || device.name == "iPhone 6s" || device.name == "iPhone 6 Plus"
-            || device.name == "iPhone 6s Plus" || device.name == "iPhone 7" || device.name == "iPhone 7" || device.name == "iPhone 7 Plus" || device.name == "iPhone 8" || device.name == "iPhone 8 Plus" || device.name == "iPhone SE" {
-            
-            nameAndImgChangeView.snp.makeConstraints { (make) in
-                make.edges.equalToSuperview()
-            }
-            
-        }else{
             nameAndImgChangeView.snp.makeConstraints { make in
-                make.width.equalToSuperview().offset(-100)
-                make.height.equalToSuperview().offset(-650)
+                make.width.equalTo(220)
+                make.height.equalTo(240)
                 make.center.equalToSuperview()
             }
-        }
     }
 }
 
