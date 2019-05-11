@@ -247,27 +247,16 @@ class MainView: UIView {
 //            make.bottom.equalTo(textLb).offset(150)
 //        }
         
-        if device.name == "iPhone 6"
-            || device.name == "iPhone 6s" || device.name == "iPhone 6 Plus"
-            || device.name == "iPhone 6s Plus" || device.name == "iPhone 7" || device.name == "iPhone 7" || device.name == "iPhone 7 Plus" || device.name == "iPhone 8" || device.name == "iPhone 8 Plus" {
-        
-            topTitle.snp.makeConstraints { make in
-                make.top.equalToSuperview().offset(50)
-                make.left.equalToSuperview().offset(20)
-                make.width.greaterThanOrEqualTo(100)
-                make.height.greaterThanOrEqualTo(100)
-            }
-            
-        }else if device.name == "iPhone 5s" || device.name == "iPhone SE"{
-                
-            topTitle.snp.makeConstraints { make in
-                make.top.equalToSuperview().offset(25)
-                make.left.equalToSuperview().offset(20)
-                make.width.greaterThanOrEqualTo(100)
-                make.height.greaterThanOrEqualTo(100)
-            }
-            
+        let device = Device.current
+        if device == .iPhone5 || device == .iPhone5s || device == .iPhone6 || device == .iPhone6s || device == .iPhone7 || device == .iPhone8{
+                    topTitle.snp.makeConstraints { make in
+                        make.top.equalToSuperview().offset(50)
+                        make.left.equalToSuperview().offset(20)
+                        make.width.greaterThanOrEqualTo(100)
+                        make.height.greaterThanOrEqualTo(100)
+                    }
         }else{
+            
             topTitle.snp.makeConstraints { make in
                 make.top.equalToSuperview().offset(80)
                 make.left.equalToSuperview().offset(20)

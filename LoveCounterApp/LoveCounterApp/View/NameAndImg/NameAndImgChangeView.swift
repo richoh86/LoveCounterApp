@@ -121,28 +121,25 @@ class NameAndImgChangeView: UIView {
     
     private func updateAutoLayout() {
         
-        let device = UIDevice.current
+//        let device = UIDevice.current
         
         // 이름, 이미지 변경 UI 박스 깨지는 기기들만 수정 분기
         // 가로 세로 길이를 정해주고 뷰 컨트롤러 가운데 위치하도록 수정
-        if device.name == "iPhone 6"
-            || device.name == "iPhone 6s" || device.name == "iPhone 6 Plus"
-            || device.name == "iPhone 6s Plus" || device.name == "iPhone 7" || device.name == "iPhone 7" || device.name == "iPhone 7 Plus" || device.name == "iPhone 8" || device.name == "iPhone 8 Plus" || device.name == "iPhone SE" {
-            
-            containerView.snp.makeConstraints { (make) in
-                
-                make.width.equalTo(220)
-                make.height.equalTo(240)
-                make.center.equalToSuperview()
-            }
-            
-        }else{
-            
+//        if device.name == "iPhone 6"
+//            || device.name == "iPhone 6s" || device.name == "iPhone 6 Plus"
+//            || device.name == "iPhone 6s Plus" || device.name == "iPhone 7" || device.name == "iPhone 7" || device.name == "iPhone 7 Plus" || device.name == "iPhone 8" || device.name == "iPhone 8 Plus" || device.name == "iPhone SE" {
+//            containerView.snp.makeConstraints { (make) in
+//
+//                make.width.equalTo(220)
+//                make.height.equalTo(240)
+//                make.center.equalToSuperview()
+//            }
+//        }else{
+        
             containerView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            
-        }
+//        }
         
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
